@@ -1,0 +1,26 @@
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
+    org.springframework.web.servlet: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sns
+    username: postgres
+    password:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    log-request-details: true
+  jpa:
+    defer-datasource-initialization: true
+    hibernate.ddl-auto: create-drop
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.default_batch_fetch_size: 100
+#  sql.init.mode: always
