@@ -1,4 +1,4 @@
-package com.seb33.digitalWizardserver.auth;
+package com.seb33.digitalWizardserver.auth.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

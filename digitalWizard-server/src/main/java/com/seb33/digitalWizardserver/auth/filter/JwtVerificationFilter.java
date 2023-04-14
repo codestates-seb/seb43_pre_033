@@ -1,6 +1,6 @@
 package com.seb33.digitalWizardserver.auth.filter;
 
-import com.seb33.digitalWizardserver.auth.JwtTokenizer;
+import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.utils.CustomAuthorityUtils;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException; //주의 - org.security에 똑같은 SignatureException 있음

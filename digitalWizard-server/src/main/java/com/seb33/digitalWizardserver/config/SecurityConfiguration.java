@@ -1,6 +1,6 @@
 package com.seb33.digitalWizardserver.config;
 
-import com.seb33.digitalWizardserver.auth.JwtTokenizer;
+import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.filter.JwtAuthenticationFilter;
 import com.seb33.digitalWizardserver.auth.filter.JwtVerificationFilter;
 import com.seb33.digitalWizardserver.auth.handler.MemberAccessDeniedHandler;
@@ -9,7 +9,6 @@ import com.seb33.digitalWizardserver.auth.handler.MemberAuthenticationSuccessHan
 import com.seb33.digitalWizardserver.auth.utils.CustomAuthorityUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -101,7 +100,7 @@ public class SecurityConfiguration {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);  // AuthenticationManager 객체 가져오기
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);  // JwtAuthenticationFilter를 생성하면서 JwtAuthenticationFilter에서 사용되는 AuthenticationManager와 JwtTokenizer를 DI
-            jwtAuthenticationFilter.setFilterProcessesUrl("/v11/auth/login");          // setFilterProcessesUrl() 메서드를 통해 디폴트 request URL인 “/login”을 “/v11/auth/login”으로 변경
+            jwtAuthenticationFilter.setFilterProcessesUrl("/members/login"); // setFilterProcessesUrl() 메서드를 통해 디폴트 request URL인 “/login”을 “/v11/auth/login”으로 변경
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new MemberAuthenticationSuccessHandler());  // 인증 성공시 사용할 객체 등록
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new MemberAuthenticationFailureHandler());  // 인증 실패시 사용할 객체 등록
             // 빈등록으로 DI 안하고 new 쓴 이유는??
