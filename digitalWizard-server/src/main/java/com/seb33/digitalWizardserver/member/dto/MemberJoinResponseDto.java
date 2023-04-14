@@ -8,5 +8,5 @@ import lombok.Getter;
 public class MemberJoinResponseDto {
     private long memberId;
     private String email;
-    private String name;
+    private String memberNickName;
 }

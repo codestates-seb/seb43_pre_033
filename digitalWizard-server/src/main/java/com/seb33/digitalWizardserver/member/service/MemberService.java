@@ -1,6 +1,8 @@
 package com.seb33.digitalWizardserver.member.service;
 
 import com.seb33.digitalWizardserver.auth.utils.CustomAuthorityUtils;
+import com.seb33.digitalWizardserver.exception.BusinessLogicException;
+import com.seb33.digitalWizardserver.exception.ExceptionCode;
 import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.member.repository.MemberRepository;
 import lombok.AllArgsConstructor;
@@ -39,7 +41,6 @@ public class MemberService {
     private void verifyExistsEmail(String email) {
         Optional<Member> member = memberRepository.findByEmail(email);
         if (member.isPresent())
-//            throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
-            throw new RuntimeException();
+            throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
     }
 }
