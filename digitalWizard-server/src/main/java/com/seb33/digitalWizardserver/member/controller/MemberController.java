@@ -1,6 +1,8 @@
 package com.seb33.digitalWizardserver.member.controller;
 
 import com.seb33.digitalWizardserver.member.dto.MemberDto;
+import com.seb33.digitalWizardserver.member.dto.MemberJoinResponseDto;
+import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.member.mapper.MemberMapper;
 import com.seb33.digitalWizardserver.member.service.MemberService;
 import lombok.AllArgsConstructor;
@@ -22,9 +24,13 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberMapper memberMapper;
 
-//    @PostMapping
-//    public ResponseEntity postMember(@Valid @RequestBody MemberDto.PostMember requestBody) {
-//    }
+    @PostMapping
+    public ResponseEntity<MemberJoinResponseDto> postMember(@Valid @RequestBody MemberDto.PostMember requestBody) {
+        Member member = memberMapper.memberPostToMember(requestBody);
+        Member createMember = memberService.createMember(member);
+        MemberJoinResponseDto responseDto = memberMapper.memberToMemberResponse(createMember);
+        return ResponseEntity.ok(responseDto);
+    }
 //
 //    @PatchMapping("/{member-id}")
 //    public ResponseEntity patchMember(
