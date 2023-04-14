@@ -19,6 +19,5 @@ public abstract class Auditable {
     private LocalDateTime createdAt;
 
     @LastModifiedDate // 조회한 Entity의 값을 변경할 때 시간 자동 저장(수정)
-    @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modifiedAt;
 }
