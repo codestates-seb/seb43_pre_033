@@ -1,7 +1,7 @@
 package com.seb33.digitalWizardserver.auth.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seb33.digitalWizardserver.auth.JwtTokenizer;
+import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.dto.LoginDto;
 import com.seb33.digitalWizardserver.member.entity.Member;
 import lombok.SneakyThrows;
@@ -39,7 +39,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class); // 역직렬화(Deserialization)
 
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()); // Username과 Password 정보를 포함한 UsernamePasswordAuthenticationToken 생성
+                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()); // Username과 Password 정보를 포함한 UsernamePasswordAuthenticationToken 생성
 
         return authenticationManager.authenticate(authenticationToken);  // UsernamePasswordAuthenticationToken을 AuthenticationManager에게 전달하면서 인증 처리를 위임
     }
