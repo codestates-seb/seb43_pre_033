@@ -14,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 public class AnswerService {
 
@@ -28,24 +30,63 @@ public class AnswerService {
     }
 
     @Transactional
-    public void answer(Long questionId, String email, String body){
+    public void create(Long questionId, String email, String body) {
         Question question = getQuestionOrException(questionId);
         Member member = getMemberOrException(email);
         answerRepository.save(Answer.of(member, question, body));
     }
 
-    public Page<AnswerDto> answerList(Long questionId, Pageable pageable){
+    @Transactional
+    public AnswerDto update(String body, String email, Long questionId, Long answerId) {
+        Member member = getMemberOrException(email);
+        Answer answer = getAnswerOrException(answerId);
+        Question question = getQuestionOrException(questionId);
+        checkAnswerMember(answer, member, email, answerId);
+        checkAnswerQuestion(answer, question, questionId, answerId);
+        answer.setBody(body);
+        return AnswerDto.from(answerRepository.save(answer));
+    }
+
+    @Transactional
+    public void delete(String email, Long questionId, Long answerId) {
+        Member member = getMemberOrException(email);
+        Question question = getQuestionOrException(questionId);
+        Answer answer = getAnswerOrException(answerId);
+        checkAnswerMember(answer, member, email, answerId);
+        checkAnswerQuestion(answer, question, questionId, answerId);
+        answerRepository.delete(answer);
+    }
+
+
+    public Page<AnswerDto> answerList(Long questionId, Pageable pageable) {
         Question question = getQuestionOrException(questionId);
         return answerRepository.findAllByQuestion(question, pageable).map(AnswerDto::from);
     }
 
-    private Question getQuestionOrException(Long questionId){
-        return questionRepository.findById(questionId).orElseThrow(()->
+    private Question getQuestionOrException(Long questionId) {
+        return questionRepository.findById(questionId).orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND, String.format("%s 번의 질문을 찾을수 없습니다.", questionId)));
     }
 
-    private Member getMemberOrException(String email){
-        return memberRepository.findByEmail(email).orElseThrow(()->
+    private Member getMemberOrException(String email) {
+        return memberRepository.findByEmail(email).orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND, String.format("%s 멤버를 찾을 수 없습니다.", email)));
+    }
+
+    private Answer getAnswerOrException(Long answerId) {
+        return answerRepository.findById(answerId).orElseThrow(() ->
+                new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND, String.format("%s 번의 답변을 찾을 수 없습니다.", answerId)));
+    }
+
+    private void checkAnswerMember(Answer answer, Member member, String email, Long answerId) {
+        if (!Objects.equals(answer.getMember().getMemberId(), member.getMemberId())) {
+            throw new BusinessLogicException(ExceptionCode.INVALID_PERMISSION, String.format("%s 는 %s의 권한을 가지고 있지 않습니다.", email, answerId));
+        }
+    }
+
+    private void checkAnswerQuestion(Answer answer, Question question, Long questionId, Long answerId) {
+        if (!Objects.equals(answer.getQuestion().getQuestionId(), question.getQuestionId())) {
+            throw new BusinessLogicException(ExceptionCode.INVALID_REQUEST, String.format("%s 번의 질문에 대한 %s 번의 답변이 아닙니다.", questionId, answerId));
+        }
     }
 }
