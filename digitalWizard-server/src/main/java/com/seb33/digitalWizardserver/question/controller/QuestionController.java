@@ -1,12 +1,10 @@
 package com.seb33.digitalWizardserver.question.controller;
 
-
 import com.seb33.digitalWizardserver.exception.Response.Response;
 import com.seb33.digitalWizardserver.question.dto.QuestionDto;
 import com.seb33.digitalWizardserver.question.dto.request.QuestionCreateRequest;
 import com.seb33.digitalWizardserver.question.dto.request.QuestionUpdateRequest;
 import com.seb33.digitalWizardserver.question.dto.response.QuestionResponse;
-import com.seb33.digitalWizardserver.question.entity.Question;
 import com.seb33.digitalWizardserver.question.service.QuestionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,6 +41,17 @@ public class QuestionController {
                                  Authentication authentication){
         questionService.delete(authentication.getName(), questionId);
         return Response.success();
+    }
+
+    @GetMapping("/search")
+    public Response<Page<QuestionResponse>> search(@RequestParam String keyword, Pageable pageable){
+        return Response.success(questionService.search(keyword, pageable).map(QuestionResponse::from));
+    }
+
+    @GetMapping("/{questionId}")
+    public Response<QuestionResponse> get(@PathVariable Long questionId) {
+        QuestionDto questionDto = questionService.findById(questionId);
+        return Response.success(QuestionResponse.from(questionDto));
     }
 
     @GetMapping
