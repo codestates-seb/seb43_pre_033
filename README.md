@@ -26,3 +26,21 @@
 |[init]|브랜치 초기화 및 초기셋팅 관련된 설정일 경우|
 
 <br/>
+
+***
+
+### 스키마
+
+![image](https://user-images.githubusercontent.com/120456261/232237794-ad06c20c-0a47-477b-b4f1-58eb99634311.png)
+
+### api 명세서
+
+![image](https://user-images.githubusercontent.com/120456261/232237842-063c0d2e-f0a3-4b3d-a7bb-d52c90ca300f.png)
+
+
+### 요구사항 정의서
+
+![image](https://user-images.githubusercontent.com/120456261/232237815-7fdc2c13-e465-473b-bca9-1d76e9f4fd19.png)
+![image](https://user-images.githubusercontent.com/120456261/232237821-92752557-c74c-4ad3-807b-b0dbb302ed96.png)
+![image](https://user-images.githubusercontent.com/120456261/232237826-45a692e4-f935-4be2-a025-421a5bc7574b.png)
+
