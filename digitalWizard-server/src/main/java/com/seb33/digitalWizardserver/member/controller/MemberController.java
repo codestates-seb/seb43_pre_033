@@ -51,7 +51,7 @@ public class MemberController {
 //
 //    }
 //
-//    @DeleteMapping("/{member-id}")
+//    @DeleteMapping("/{member-id}") // 케법 케이스 (url 경로에서 주로 사용하는 방식 => 필드값은 카멜케이스로 작성하니까 구분을 위해 사용)
 //    public ResponseEntity deleteMember(
 //            @PathVariable("member-id") @Positive long memberId) {
 //
