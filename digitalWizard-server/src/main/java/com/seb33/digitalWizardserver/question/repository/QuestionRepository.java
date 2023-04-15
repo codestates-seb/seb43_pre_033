@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long> {
     Page<Question> findAllByMember(Member member, Pageable pageable);
+    Page<Question> findByTitleContaining(String keyword, Pageable pageable);
+    Page<Question> findByTitleContainingOrMember_MemberNickNameContaining(String keyword1, String keyword2, Pageable pageable);
 }

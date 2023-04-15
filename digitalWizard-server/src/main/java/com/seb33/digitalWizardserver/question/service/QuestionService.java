@@ -56,11 +56,24 @@ public class QuestionService {
         }
         questionRepository.delete(question);
     }
+    @Transactional(readOnly = true)
+    public QuestionDto findById(Long questionId){
+        Question question = questionRepository.findById(questionId).orElseThrow(() ->
+                new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND, String.format("%s 을 찾을 수 없습니다.",questionId)));
+        return QuestionDto.from(question);
+    }
 
+    @Transactional(readOnly = true)
+    public Page<QuestionDto> search(String keyword, Pageable pageable){
+        return questionRepository.findByTitleContainingOrMember_MemberNickNameContaining(keyword, keyword, pageable).map(QuestionDto::from);
+    }
+
+    @Transactional(readOnly = true)
     public Page<QuestionDto> list(Pageable pageable){
         return questionRepository.findAll(pageable).map(QuestionDto::from);
     }
 
+    @Transactional(readOnly = true)
     public Page<QuestionDto> myQuestionList(String email, Pageable pageable){
         Member member = memberRepository.findByEmail(email).orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND, String.format("%s 을 찾을 수 없습니다.", email)));
