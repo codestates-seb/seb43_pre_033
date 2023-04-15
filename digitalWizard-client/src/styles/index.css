@@ -1,1 +1,58 @@
 @import url(reset.css);
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap");
+
+:root {
+  /* --- main color --- */
+  --bg-color: #ffffff;
+  --brand-color: #f38023;
+
+  /* -- box bg color --- */
+  --box-head-color: #fbf3d5;
+  --box-content-color: #fdf7e2;
+
+  /* --- text color --- */
+  /* headline tag(h1~h6) color */
+  --text-head-color: #232629;
+  /* content color */
+  --text-content-color: #3b4045;
+  --text-sub-color: #6a737c;
+  /* nav color */
+  --text-active-color: #0c0d0e;
+  --text-disabled-color: #525960;
+  /* link color */
+  --text-link-color: #0074cc;
+  --text-link-hover: #0a95ff;
+
+  /* --- primary button --- */
+  --btn-primary-bg-color: #0a95ff;
+  --btn-primary-bg-hover: #0074cc;
+  --btn-primary-text-color: #ffffff;
+
+  /* --- filter, login button --- */
+  --btn-sub-bg-color: #e1ecf4;
+  --btn-sub-bg-hover: #b3d3ea;
+  --btn-sub-text-color: #39739d;
+  --btn-sub-text-hover: #2c5877;
+
+  /* --- tag button --- */
+  --tag-bg-color: var(--btn-sub-bg-color);
+  --tag-bg-hover: #d0e3f1;
+  --tag-text-color: var(--btn-sub-text-color);
+  --tag-text-hover: var(--btn-sub-text-hover);
+
+  /* --- sort button --- */
+  --sort-text-color: var(--text-sub-color);
+  --sort-text-active: var(--text-content-color);
+  --sort-text-hover: #525060;
+  --sort-bg-active: #e3e6e8;
+  --sort-bg-hover: #f8f9f9;
+}
+
+body,
+input,
+a,
+textarea,
+button,
+pre {
+  font-family: "Noto Sans KR", sans-serif;
+}
