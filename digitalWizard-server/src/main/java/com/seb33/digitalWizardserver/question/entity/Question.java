@@ -31,7 +31,7 @@ public class Question extends Auditable {
     private Member member;
 
     @OrderBy("createdAt DESC")
-    @OneToMany(mappedBy = "question", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();
 
     public static Question of(String title, String body, Member member){
