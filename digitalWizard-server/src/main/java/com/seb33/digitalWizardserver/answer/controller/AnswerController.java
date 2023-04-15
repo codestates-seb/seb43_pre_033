@@ -1,5 +1,6 @@
 package com.seb33.digitalWizardserver.answer.controller;
 
+import com.seb33.digitalWizardserver.answer.dto.AnswerDto;
 import com.seb33.digitalWizardserver.answer.dto.request.AnswerRequest;
 import com.seb33.digitalWizardserver.answer.dto.response.AnswerResponse;
 import com.seb33.digitalWizardserver.answer.service.AnswerService;
@@ -26,9 +27,24 @@ public class AnswerController {
 
     @PostMapping("/{questionId}/answers")
     public Response<Void> answer(@PathVariable Long questionId, @RequestBody AnswerRequest request, Authentication authentication){
-        answerService.answer(questionId, authentication.getName(), request.getBody());
+        answerService.create(questionId, authentication.getName(), request.getBody());
         return Response.success();
     }
 
+    @PatchMapping("/{questionId}/answers/{answerId}")
+    public Response<AnswerResponse> update(@PathVariable Long questionId,
+                                           @PathVariable Long answerId,
+                                           @RequestBody AnswerRequest request,
+                                           Authentication authentication){
+        AnswerDto answerDto = answerService.update(request.getBody(), authentication.getName(),questionId, answerId);
+        return Response.success(AnswerResponse.from(answerDto));
+    }
 
+    @DeleteMapping("/{questionId}/answers/{answerId}")
+    public Response<Void> delete(@PathVariable Long questionId,
+                                 @PathVariable Long answerId,
+                                 Authentication authentication){
+        answerService.delete(authentication.getName(), questionId, answerId);
+        return Response.success();
+    }
 }
