@@ -1,14 +1,16 @@
 package com.seb33.digitalWizardserver.config;
 
-import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.filter.JwtAuthenticationFilter;
 import com.seb33.digitalWizardserver.auth.filter.JwtVerificationFilter;
 import com.seb33.digitalWizardserver.auth.handler.MemberAccessDeniedHandler;
+import com.seb33.digitalWizardserver.auth.handler.MemberAuthenticationEntryPoint;
 import com.seb33.digitalWizardserver.auth.handler.MemberAuthenticationFailureHandler;
 import com.seb33.digitalWizardserver.auth.handler.MemberAuthenticationSuccessHandler;
+import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.utils.CustomAuthorityUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -49,29 +51,19 @@ public class SecurityConfiguration {
                 .formLogin().disable()   // 폼 로그인 방식을 비활성화
                 .httpBasic().disable()   // HTTP Basic 인증 방식을 비활성화
                 .exceptionHandling()
-//                .authenticationEntryPoint(new MemberAuthenticationEntryPoint())  // 인증오류가 발생할 때 처리해주는 핸들러 호출  // Todo 이거 하자잉
+                .authenticationEntryPoint(new MemberAuthenticationEntryPoint())  // 인증오류가 발생할 때 처리해주는 핸들러 호출
                 .accessDeniedHandler(new MemberAccessDeniedHandler())  // 인증에는 성공했지만 해당 리소스에 대한 권한이 없을 때 처리해주는 핸들러 호출
                 .and()
                 .apply(new CustomFilterConfigurer())   // Custom Configurer 적용
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-//                        .anyRequest().permitAll()                // 모든 HTTP request 요청에 대해서 접근 허용
+                        .anyRequest().permitAll()                // 모든 HTTP request 요청에 대해서 접근 허용
 //                                .antMatchers(HttpMethod.POST, "/*/members").permitAll() // 누구나 접근 가능
 //                                .antMatchers(HttpMethod.PATCH, "/*/members/**").hasRole("USER")  // USER권한 있눈 사용자만
 //                                .antMatchers(HttpMethod.GET, "/*/members").hasRole("ADMIN")
 //                                .antMatchers(HttpMethod.GET, "/*/members/**").hasAnyRole("USER", "ADMIN")
 //                                .antMatchers(HttpMethod.DELETE, "/*/members/**").hasRole("USER")
-//                                .antMatchers(HttpMethod.POST,"/*/coffees").hasRole("ADMIN")
-//                                .antMatchers(HttpMethod.PATCH,"/*/coffees/**").hasRole("ADMIN")
-//                                .antMatchers(HttpMethod.GET,"/*/coffees").hasAnyRole("USER", "ADMIN")
-//                                .antMatchers(HttpMethod.GET,"/*/coffees/**").hasAnyRole("USER", "ADMIN")
-//                                .antMatchers(HttpMethod.DELETE,"/*/coffees/**").hasRole("ADMIN")
-//                                .antMatchers(HttpMethod.POST,"/*/orders").hasAnyRole("USER", "ADMIN")
-//                                .antMatchers(HttpMethod.PATCH,"/*/orders/**").hasAnyRole("USER", "ADMIN")
-//                                .antMatchers(HttpMethod.GET,"/*/orders").hasRole("ADMIN")
-//                                .antMatchers(HttpMethod.GET,"/*/orders/**").hasAnyRole("USER", "ADMIN")
-//                                .antMatchers(HttpMethod.DELETE,"/*/orders").hasAnyRole("USER", "ADMIN")
-                                .anyRequest().permitAll() // 위에 설정한 요청 외의 모든 요청 허용
+//                                .anyRequest().permitAll() // 위에 설정한 요청 외의 모든 요청 허용
                 );
         return http.build();
     }
@@ -100,7 +92,7 @@ public class SecurityConfiguration {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);  // AuthenticationManager 객체 가져오기
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);  // JwtAuthenticationFilter를 생성하면서 JwtAuthenticationFilter에서 사용되는 AuthenticationManager와 JwtTokenizer를 DI
-            jwtAuthenticationFilter.setFilterProcessesUrl("/members/login"); // setFilterProcessesUrl() 메서드를 통해 디폴트 request URL인 “/login”을 “/v11/auth/login”으로 변경
+            jwtAuthenticationFilter.setFilterProcessesUrl("/members/login"); // setFilterProcessesUrl() 메서드를 통해 디폴트 request URL인 “/login”을 “/members/login”으로 변경
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new MemberAuthenticationSuccessHandler());  // 인증 성공시 사용할 객체 등록
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new MemberAuthenticationFailureHandler());  // 인증 실패시 사용할 객체 등록
             // 빈등록으로 DI 안하고 new 쓴 이유는??
