@@ -79,7 +79,6 @@ public class JwtTokenizer { // JWT(JSON Web Token)를 생성하고 검증하는 
                 .parseClaimsJws(jws);
     }
 
-    // (5)
     public Date getTokenExpiration(int expirationMinutes) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, expirationMinutes);
