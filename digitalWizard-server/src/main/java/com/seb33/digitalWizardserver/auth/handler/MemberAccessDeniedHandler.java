@@ -1,5 +1,6 @@
 package com.seb33.digitalWizardserver.auth.handler;
 
+import com.seb33.digitalWizardserver.audit.utils.ErrorResponder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
@@ -17,7 +18,7 @@ import java.io.IOException;
 public class MemberAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-//        ErrorResponder.sendErrorResponse(response, HttpStatus.FORBIDDEN); // 클라이언트한테 응답
+        ErrorResponder.sendErrorResponse(response, HttpStatus.FORBIDDEN); // 클라이언트한테 응답
         log.warn("Forbidden error happened: {}", accessDeniedException.getMessage()); // 발생한 예외 log로 남기기
     }
 }
