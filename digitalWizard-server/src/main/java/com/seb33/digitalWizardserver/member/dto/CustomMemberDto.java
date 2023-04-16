@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 public class CustomMemberDto {
 
     private Long memberId;
-    private String memberName;
     private String memberNickName;
     private String email;
     private String profileImage;
@@ -25,7 +24,6 @@ public class CustomMemberDto {
     public static CustomMemberDto from(Member entity) {
         return new CustomMemberDto(
                 entity.getMemberId(),
-                entity.getMemberName(),
                 entity.getMemberNickName(),
                 entity.getEmail(),
                 entity.getProfileImage(),
