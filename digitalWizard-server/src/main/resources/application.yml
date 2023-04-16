@@ -25,9 +25,7 @@ spring:
       hibernate.format_sql: true
       hibernate.default_batch_fetch_size: 100
 #  sql.init.mode: always
-mail:
-  address:
-    admin: admin@gmail.com
+
 jwt:
   key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 30
