@@ -22,6 +22,7 @@ public class Member extends Auditable {
     private Long memberId;
     private String memberNickName;
     private String email;
+    @Column(length = 2000000)
     private String profileImage;
     private String password;
 

@@ -88,4 +88,17 @@ public class MemberController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @PatchMapping("/{member-id}/profile-image")
+    public ResponseEntity updateProfileImage(
+            @PathVariable("member-id") @Positive long memberId,
+            @RequestBody MemberDto.ProfileImage requestBody) {
+        Member member = memberService.findMember(memberId);
+        member.setProfileImage(requestBody.getProfileImage());
+        Member updatedMember = memberService.updateMember(member);
+        MemberJoinResponseDto responseDto = memberMapper.memberToMemberResponse(updatedMember);
+        return new ResponseEntity(responseDto, HttpStatus.OK);
+    }
+
+
 }
