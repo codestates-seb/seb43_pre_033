@@ -37,6 +37,10 @@ public class MemberService {
         List<String> roles = authorityUtils.createRoles(member.getEmail());
         member.setRoles(roles);
 
+        if (member.getProfileImage() == null || member.getProfileImage().isEmpty()) { // 기본 이미지 등록
+            member.setProfileImage("https://avatars.githubusercontent.com/u/120456261?v=4");
+        }
+
         Member savedMember = memberRepository.save(member);
 
         return savedMember;
