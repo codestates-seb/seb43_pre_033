@@ -6,12 +6,14 @@ import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.member.repository.MemberRepository;
 import com.seb33.digitalWizardserver.question.dto.QuestionDto;
 import com.seb33.digitalWizardserver.question.entity.Question;
+import com.seb33.digitalWizardserver.question.entity.View;
 import com.seb33.digitalWizardserver.question.repository.QuestionRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -51,9 +53,21 @@ public class QuestionService {
         }
         questionRepository.delete(question);
     }
-    @Transactional(readOnly = true)
+    @Transactional
     public QuestionDto findById(Long questionId){
         Question question = getQuestionOrException(questionId);
+        List<View> views = question.getView();
+        if (views.isEmpty()) {
+            View view = new View();
+            view.setQuestion(question);
+            view.setCount(1);
+            views.add(view);
+        } else {
+            View view = views.get(views.size() - 1);
+            view.setCount(view.getCount() + 1);
+        }
+        question.setView(views);
+        questionRepository.save(question);
         return QuestionDto.from(question);
     }
 

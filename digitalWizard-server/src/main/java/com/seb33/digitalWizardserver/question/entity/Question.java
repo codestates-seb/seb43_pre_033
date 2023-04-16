@@ -36,6 +36,9 @@ public class Question extends Auditable {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Vote> votes;
 
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private List<View> view;
+
     public static Question of(String title, String body, Member member){
         Question question = new Question();
         question.setTitle(title);
