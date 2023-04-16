@@ -13,6 +13,7 @@ public class QuestionResponse {
     private Long questionId;
     private String title;
     private String body;
+    private int vote;
     private CustomMemberResponse member;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
@@ -22,6 +23,7 @@ public class QuestionResponse {
                 dto.getQuestionId(),
                 dto.getTitle(),
                 dto.getBody(),
+                dto.getVote(),
                 CustomMemberResponse.from(dto.getMember()),
                 dto.getCreateAt(),
                 dto.getModifiedAt()
