@@ -2,6 +2,7 @@ package com.seb33.digitalWizardserver.question.dto;
 
 import com.seb33.digitalWizardserver.member.dto.CustomMemberDto;
 import com.seb33.digitalWizardserver.question.entity.Question;
+import com.seb33.digitalWizardserver.question.entity.View;
 import com.seb33.digitalWizardserver.vote.entity.Vote;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +18,7 @@ public class QuestionDto {
     private String title;
     private String body;
     private int vote;
+    private int view;
     private CustomMemberDto member;
     private LocalDateTime createAt;
     private LocalDateTime modifiedAt;
@@ -27,6 +29,7 @@ public class QuestionDto {
                 entity.getTitle(),
                 entity.getBody(),
                 entity.getVotes().stream().mapToInt(Vote::getValue).sum(),
+                entity.getView().stream().mapToInt(View::getCount).sum(),
                 CustomMemberDto.from(entity.getMember()),
                 entity.getCreatedAt(),
                 entity.getModifiedAt()

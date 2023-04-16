@@ -14,6 +14,7 @@ public class QuestionResponse {
     private String title;
     private String body;
     private int vote;
+    private int view;
     private CustomMemberResponse member;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
@@ -24,6 +25,7 @@ public class QuestionResponse {
                 dto.getTitle(),
                 dto.getBody(),
                 dto.getVote(),
+                dto.getView(),
                 CustomMemberResponse.from(dto.getMember()),
                 dto.getCreateAt(),
                 dto.getModifiedAt()
