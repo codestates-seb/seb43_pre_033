@@ -11,7 +11,6 @@ public class CustomMemberResponse {
     private Long memberId;
     private String email;
     private String profileImage;
-    private String memberName;
     private String memberNickName;
 
     public static CustomMemberResponse from(CustomMemberDto dto){
@@ -19,7 +18,6 @@ public class CustomMemberResponse {
                 dto.getMemberId(),
                 dto.getEmail(),
                 dto.getProfileImage(),
-                dto.getMemberName(),
                 dto.getMemberNickName()
         );
     }
