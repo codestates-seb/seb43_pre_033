@@ -1,6 +1,5 @@
 package com.seb33.digitalWizardserver.question.entity;
 
-
 import com.seb33.digitalWizardserver.answer.entity.Answer;
 import com.seb33.digitalWizardserver.audit.Auditable;
 import com.seb33.digitalWizardserver.member.entity.Member;
@@ -34,7 +33,7 @@ public class Question extends Auditable {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Vote> votes;
 
     public static Question of(String title, String body, Member member){
