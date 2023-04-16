@@ -19,9 +19,10 @@ public class QuestionDto {
     private String body;
     private int vote;
     private int view;
-    private CustomMemberDto member;
+    private int answerCount;
     private LocalDateTime createAt;
     private LocalDateTime modifiedAt;
+    private CustomMemberDto member;
 
     public static QuestionDto from(Question entity){
         return new QuestionDto(
@@ -30,9 +31,10 @@ public class QuestionDto {
                 entity.getBody(),
                 entity.getVotes().stream().mapToInt(Vote::getValue).sum(),
                 entity.getView().stream().mapToInt(View::getCount).sum(),
-                CustomMemberDto.from(entity.getMember()),
+                entity.getAnswers().size(),
                 entity.getCreatedAt(),
-                entity.getModifiedAt()
+                entity.getModifiedAt(),
+                CustomMemberDto.from(entity.getMember())
         );
     }
 }
