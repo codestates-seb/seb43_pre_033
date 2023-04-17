@@ -66,8 +66,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     // Access Token을 생성하는 구체적인 로직
     private String delegateAccessToken(Member member) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("username", member.getEmail());
+        claims.put("memberEmail", member.getEmail());
         claims.put("roles", member.getRoles());
+        claims.put("memberNickName", member.getMemberNickName());
 
         String subject = member.getEmail();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
