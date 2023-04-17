@@ -20,7 +20,11 @@ function Post() {
         <div className={styles.detail}>질문내용</div>
       </div>
       <div className={styles.bottom}>
-        <div>share Edit Follow</div>
+        <div className={styles.share}>
+          <div>Share</div>
+          <div>Edit</div>
+          <div>Follow</div>
+        </div>
         <div>edited</div>
         <div className={styles.profile}>작성자</div>
       </div>

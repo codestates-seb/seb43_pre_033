@@ -42,12 +42,6 @@
   padding-right: 16px;
 }
 
-.bottom {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
 .check {
   width: 24px;
   height: 24px;
@@ -70,7 +64,6 @@
   color: var(--brand-color);
 }
 
-
 .vote:nth-child(4){
   color: var(--brand-color);
 }
@@ -78,5 +71,28 @@
 .clock {
   width: 18px;
   height: 18px;
+}
+
+
+/* bottom */
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.share {
+  display: flex;
+}
+
+.share > * {
+  margin: 4px;
+  color: var(--text-sub-color);
+  font-size: 11px;
+}
+
+.share > *:hover {
+  color: #8f959b;
 }
 
