@@ -59,7 +59,7 @@ public class QuestionController {
         return Response.success(questionService.list(pageable).map(QuestionResponse::from));
     }
 
-    @GetMapping("/my")
+    @GetMapping("/my/question-list")
     public Response<Page<QuestionResponse>> myList(Pageable pageable,
                                                    Authentication authentication){
         return Response.success(questionService.myQuestionList(authentication.getName(), pageable).map(QuestionResponse::from));
