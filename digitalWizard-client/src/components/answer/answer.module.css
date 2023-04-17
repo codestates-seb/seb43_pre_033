@@ -12,21 +12,3 @@
   font-weight:400 ;
   font-size: 1.46153846rem;
 }
-
-.content {
-  display: flex;
-}
-
-.button {
-  flex: 0 0 36px;
-}
-
-.detail {
-  flex: 1 1 auto;
-}
-
-.bottom {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
