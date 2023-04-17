@@ -1,8 +1,10 @@
 package com.seb33.digitalWizardserver.member.entity;
 
 import com.seb33.digitalWizardserver.answer.entity.Answer;
+import com.seb33.digitalWizardserver.answer.entity.AnswerVote;
 import com.seb33.digitalWizardserver.audit.Auditable;
 import com.seb33.digitalWizardserver.question.entity.Question;
+import com.seb33.digitalWizardserver.vote.entity.Vote;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,6 +38,13 @@ public class Member extends Auditable {
     @OrderBy("answerId") // answers 리스트를 answerId 기준으로 정렬
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Vote> questionVotes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<AnswerVote> answerVotes = new ArrayList<>();
+
 //
 //    @OneToMany(mappedBy = "member")
 //    private List<AnswerComent> answerComents = new ArrayList<>();
