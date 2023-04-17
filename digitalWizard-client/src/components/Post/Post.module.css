@@ -42,6 +42,12 @@
   padding-right: 16px;
 }
 
+.detail::after {
+  content: ' ';
+  background-color: var(--text-sub-color);
+  height: 1px;
+  display: block;
+}
 .check {
   width: 24px;
   height: 24px;
@@ -165,8 +171,4 @@
 
 
 
-/* 내용이 없어서 임시로 height 지정 */
-.content {
-  height: 150%;
-}
 
