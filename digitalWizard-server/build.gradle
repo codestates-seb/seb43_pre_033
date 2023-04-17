@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.10'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id "org.asciidoctor.jvm.convert" version "3.3.2"    // .adoc 파일 확장자를 가지는 AsciiDoc 문서를 생성해주는 Asciidoctor를 사용하기 위한 플러그인 추가
+	id 'war'
 }
 
 ext { // API 문서 스니핏이 생성될 경로를 지정
@@ -52,7 +53,7 @@ dependencies {
 }
 
 tasks.named('test') {
-	outputs.dir snippetsDir
+//	outputs.dir snippetsDir
 	useJUnitPlatform()
 }
 
@@ -75,7 +76,7 @@ build {
 
 // 애플리케이션 실행 파일이 생성하는 :bootJar task 설정
 bootJar {
-	archiveFileName = 'app.jar' // 이것도 바꿔도 되나...
+	archiveFileName = 'app.jar' // 애플리케이션 이름 짧게 만들기
 	dependsOn copyDocument    // :bootJar task 실행 전에 :copyDocument task가 실행 되도록 의존성을 설정
 	from ("${asciidoctor.outputDir}") {
 		into 'static/docs'     // Asciidoctor 실행으로 생성되는 index.html 파일을 jar 파일 안에 추가
