@@ -9,13 +9,13 @@ function Post() {
     <>
       <div className={styles.content}>
         <div className={styles.vote}>
-          <AiFillCaretUp />
+          <AiFillCaretUp className={styles.up} />
           <div>1</div>
           <AiFillCaretDown className={styles.down} />
-          <FaBookmark />
-          <FaRegBookmark />
-          <ImCheckmark />
-          <RxCounterClockwiseClock />
+          <FaBookmark className={styles.checkMark} />
+          <FaRegBookmark className={styles.mark} />
+          <ImCheckmark className={styles.check} />
+          <RxCounterClockwiseClock className={styles.clock} />
         </div>
         <div className={styles.detail}>질문내용</div>
       </div>
