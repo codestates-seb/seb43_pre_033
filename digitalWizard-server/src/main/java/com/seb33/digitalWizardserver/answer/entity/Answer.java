@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,6 +28,9 @@ public class Answer extends Auditable {
     @ManyToOne(optional = false)
     @JoinColumn(name = "question_id")
     private Question question;
+
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL)
+    private List<AnswerVote> votes;
 
     public static Answer of(Member member, Question question, String body){
         Answer entity = new Answer();

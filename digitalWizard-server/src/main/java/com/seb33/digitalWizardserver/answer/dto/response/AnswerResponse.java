@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class AnswerResponse {
     private Long answerId;
     private String body;
+    private int vote;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private CustomMemberResponse member;
@@ -21,6 +22,7 @@ public class AnswerResponse {
         return new AnswerResponse(
                 dto.getAnswerId(),
                 dto.getBody(),
+                dto.getVote(),
                 dto.getCreateAt(),
                 dto.getModifiedAt(),
                 CustomMemberResponse.from(dto.getMember())

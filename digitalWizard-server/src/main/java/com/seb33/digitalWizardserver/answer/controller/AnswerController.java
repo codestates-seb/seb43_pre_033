@@ -8,6 +8,7 @@ import com.seb33.digitalWizardserver.exception.Response.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,6 +21,7 @@ public class AnswerController {
         this.answerService = answerService;
     }
 
+    @Transactional //TODO: 지연로딩
     @GetMapping("{questionId}/answers")
     public Response<Page<AnswerResponse>> getAnswers(Pageable pageable, @PathVariable Long questionId){
         return Response.success(answerService.answerList(questionId, pageable).map(AnswerResponse::from));

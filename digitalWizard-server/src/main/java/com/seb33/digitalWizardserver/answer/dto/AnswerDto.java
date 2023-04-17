@@ -1,6 +1,7 @@
 package com.seb33.digitalWizardserver.answer.dto;
 
 import com.seb33.digitalWizardserver.answer.entity.Answer;
+import com.seb33.digitalWizardserver.answer.entity.AnswerVote;
 import com.seb33.digitalWizardserver.member.dto.CustomMemberDto;
 import com.seb33.digitalWizardserver.question.dto.QuestionDto;
 import com.seb33.digitalWizardserver.question.entity.Question;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 public class AnswerDto {
     private Long answerId;
     private String body;
+    private int vote;
     private Long questionId;
     private LocalDateTime createAt;
     private LocalDateTime modifiedAt;
@@ -25,6 +27,7 @@ public class AnswerDto {
         return new AnswerDto(
                 entity.getAnswerId(),
                 entity.getBody(),
+                entity.getVotes().stream().mapToInt(AnswerVote::getValue).sum(),
                 entity.getQuestion().getQuestionId(),
                 entity.getCreatedAt(),
                 entity.getModifiedAt(),
