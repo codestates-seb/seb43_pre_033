@@ -6,9 +6,11 @@ import com.seb33.digitalWizardserver.member.dto.MemberJoinResponseDto;
 import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.member.mapper.MemberMapper;
 import com.seb33.digitalWizardserver.member.service.MemberService;
+import com.seb33.digitalWizardserver.util.UriCreator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -33,7 +35,12 @@ public class MemberController {
         Member member = memberMapper.memberPostToMember(requestBody);
         Member createMember = memberService.createMember(member);
         MemberJoinResponseDto responseDto = memberMapper.memberToMemberResponse(createMember);
-        return new ResponseEntity(responseDto, HttpStatus.CREATED);
+
+        URI location = UriCreator.createUri("/members", createMember.getMemberId());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(location);
+
+        return new ResponseEntity(responseDto, headers, HttpStatus.CREATED);
     }
 
     @PatchMapping("/{member-id}") // 케법 케이스 (url 경로에서 주로 사용하는 방식 => 필드값은 카멜케이스로 작성하니까 구분을 위해 사용)
