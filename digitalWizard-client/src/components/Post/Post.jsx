@@ -25,7 +25,24 @@ function Post() {
             <div>Follow</div>
           </div>
           <div className={styles.edtied}>edited 9 mins ago</div>
-          <div className={styles.profile}>작성자</div>
+          <div className={styles.profile}>
+            <div className={styles.create}>answered 31 min ago</div>
+            <div className={styles.user}>
+              <img
+                src="https://avatars.githubusercontent.com/u/120456261?v=4"
+                alt="아바타이미지"
+                className={styles.img}
+              />
+              <div className={styles.userDetail}>
+                <div className={styles.name}>이름</div>
+                <div>
+                  <span className={styles.userScore}>1,463</span>
+                  <span className={styles.silver}>8</span>
+                  <span className={styles.bronze}>8</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
