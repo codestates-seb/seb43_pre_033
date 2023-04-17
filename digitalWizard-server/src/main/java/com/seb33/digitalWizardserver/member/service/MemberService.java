@@ -47,8 +47,12 @@ public class MemberService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
-    public Member updateMember(Member member) {
+    public Member updateMember(Member member, String email) {
         Member findMember = findVerifiedMember(member.getMemberId());
+
+        if(!email.equals(findMember.getEmail())){
+            throw new BusinessLogicException(ExceptionCode.INVALID_PERMISSION, String.format("유저(%s)가 권한을 가지고 있지 않습니다.", email));
+        }
 
         Optional.ofNullable(member.getMemberNickName())
                 .ifPresent(name -> findMember.setMemberNickName(name));
@@ -75,8 +79,12 @@ public class MemberService {
                 Sort.by("memberId").descending()));
     }
 
-    public void deleteMember(long memberId) {
+    public void deleteMember(long memberId, String email) {
         Member findMember = findVerifiedMember(memberId);
+
+        if(!email.equals(findMember.getEmail())){
+            throw new BusinessLogicException(ExceptionCode.INVALID_PERMISSION, String.format("유저(%s)가 권한을 가지고 있지 않습니다.", email));
+        }
 
         memberRepository.delete(findMember);
     }
