@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/question")
 public class VoteController {
 
     private final VoteService voteService;
