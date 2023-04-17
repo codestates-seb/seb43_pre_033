@@ -1,0 +1,366 @@
+{
+  "question": [
+    {
+      "id": 1,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:42:40.279535",
+      "modifiedAt": "2023-04-17T14:42:40.279535",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 2,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:42:46.842958",
+      "modifiedAt": "2023-04-17T14:42:46.842958",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 3,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:42:47.429055",
+      "modifiedAt": "2023-04-17T14:42:47.429055",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 4,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:42:48.061457",
+      "modifiedAt": "2023-04-17T14:42:48.061457",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 5,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:42:48.486677",
+      "modifiedAt": "2023-04-17T14:42:48.486677",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 6,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:42:48.947159",
+      "modifiedAt": "2023-04-17T14:42:48.947159",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 7,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:43:12.850748",
+      "modifiedAt": "2023-04-17T14:43:12.850748",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 8,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:43:13.428112",
+      "modifiedAt": "2023-04-17T14:43:13.428112",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 9,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:43:13.9521",
+      "modifiedAt": "2023-04-17T14:43:13.9521",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 10,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:43:29.318912",
+      "modifiedAt": "2023-04-17T14:43:29.318912",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 11,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:43:29.777489",
+      "modifiedAt": "2023-04-17T14:43:29.777489",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 12,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:43:30.316077",
+      "modifiedAt": "2023-04-17T14:43:30.316077",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 13,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:43:30.818497",
+      "modifiedAt": "2023-04-17T14:43:30.818497",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 14,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:43:31.195965",
+      "modifiedAt": "2023-04-17T14:43:31.195965",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 15,
+      "title": "나는 타이틀",
+      "body": "나는 바디",
+      "vote": 0,
+      "view": 0,
+      "answerCount": 0,
+      "createdAt": "2023-04-17T14:43:31.678323",
+      "modifiedAt": "2023-04-17T14:43:31.678323",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    }
+  ],
+  "answer": [
+    {
+      "id": 1001,
+      "body": "나는 답변",
+      "createdAt": "2023-04-17T14:51:38.427982",
+      "modifiedAt": "2023-04-17T14:51:38.427982",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 1002,
+      "body": "나는 답변",
+      "createdAt": "2023-04-17T14:51:39.003601",
+      "modifiedAt": "2023-04-17T14:51:39.003601",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 1003,
+      "body": "나는 답변",
+      "createdAt": "2023-04-17T14:51:39.480445",
+      "modifiedAt": "2023-04-17T14:51:39.480445",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 1004,
+      "body": "나는 답변",
+      "createdAt": "2023-04-17T14:51:39.991267",
+      "modifiedAt": "2023-04-17T14:51:39.991267",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 1005,
+      "body": "나는 답변",
+      "createdAt": "2023-04-17T14:51:40.437723",
+      "modifiedAt": "2023-04-17T14:51:40.437723",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 1006,
+      "body": "나는 답변",
+      "createdAt": "2023-04-17T14:51:40.879288",
+      "modifiedAt": "2023-04-17T14:51:40.879288",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 1007,
+      "body": "나는 답변",
+      "createdAt": "2023-04-17T14:51:41.268682",
+      "modifiedAt": "2023-04-17T14:51:41.268682",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 1008,
+      "body": "나는 답변",
+      "createdAt": "2023-04-17T14:51:41.774837",
+      "modifiedAt": "2023-04-17T14:51:41.774837",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 1009,
+      "body": "나는 답변",
+      "createdAt": "2023-04-17T14:51:42.165862",
+      "modifiedAt": "2023-04-17T14:51:42.165862",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    },
+    {
+      "id": 1010,
+      "body": "나는 답변",
+      "createdAt": "2023-04-17T14:51:42.576425",
+      "modifiedAt": "2023-04-17T14:51:42.576425",
+      "member": {
+        "memberId": 1,
+        "email": "test1@gmail.com",
+        "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
+        "memberNickName": "김아무개"
+      }
+    }
+  ]
+}
