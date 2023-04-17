@@ -15,9 +15,10 @@ public class QuestionResponse {
     private String body;
     private int vote;
     private int view;
-    private CustomMemberResponse member;
+    private int answerCount;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+    private CustomMemberResponse member;
 
     public static QuestionResponse from(QuestionDto dto){
         return new QuestionResponse(
@@ -26,9 +27,10 @@ public class QuestionResponse {
                 dto.getBody(),
                 dto.getVote(),
                 dto.getView(),
-                CustomMemberResponse.from(dto.getMember()),
+                dto.getAnswerCount(),
                 dto.getCreateAt(),
-                dto.getModifiedAt()
-        );
+                dto.getModifiedAt(),
+                CustomMemberResponse.from(dto.getMember())
+                );
     }
 }

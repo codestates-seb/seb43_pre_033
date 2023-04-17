@@ -17,18 +17,18 @@ public class AnswerDto {
     private Long answerId;
     private String body;
     private Long questionId;
-    private CustomMemberDto member;
     private LocalDateTime createAt;
     private LocalDateTime modifiedAt;
+    private CustomMemberDto member;
 
     public static AnswerDto from(Answer entity){
         return new AnswerDto(
                 entity.getAnswerId(),
                 entity.getBody(),
                 entity.getQuestion().getQuestionId(),
-                CustomMemberDto.from(entity.getMember()),
                 entity.getCreatedAt(),
-                entity.getModifiedAt()
-        );
+                entity.getModifiedAt(),
+                CustomMemberDto.from(entity.getMember())
+                );
     }
 }

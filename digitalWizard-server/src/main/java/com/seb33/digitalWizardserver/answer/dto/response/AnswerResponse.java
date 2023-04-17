@@ -12,18 +12,18 @@ import java.time.LocalDateTime;
 public class AnswerResponse {
     private Long answerId;
     private String body;
-    private CustomMemberResponse member;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+    private CustomMemberResponse member;
 
 
     public static AnswerResponse from(AnswerDto dto){
         return new AnswerResponse(
                 dto.getAnswerId(),
                 dto.getBody(),
-                CustomMemberResponse.from(dto.getMember()),
                 dto.getCreateAt(),
-                dto.getModifiedAt()
-        );
+                dto.getModifiedAt(),
+                CustomMemberResponse.from(dto.getMember())
+                );
     }
 }
