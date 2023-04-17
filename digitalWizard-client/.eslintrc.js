@@ -24,7 +24,8 @@ module.exports = {
     "react/jsx-uses-react": "off", // import React 생략하면 error 나던 현상 제거
     "react/jsx-filename-extension": ["warn", { extensions: ["jsx", "js"] }], // react 파일 확장자 js, jsx 허용
     "react/prop-types": "off", // props type 선언 안했을 때 error 나던 현상 제거
-    "no-unused-vars": "warn", // 변수 선언 후 사용하지 않을 때 경고
+    "no-unused-vars": "warn", // 변수 선언 후 사용하지 않을 때 경고,
+    "prettier/prettier": ["error", { endOfLine: "auto" }],
   },
   plugins: ["json"],
 };
