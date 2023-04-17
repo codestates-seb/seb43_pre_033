@@ -1,0 +1,20 @@
+.vote {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 36px;
+}
+
+.content {
+  display: flex;
+}
+
+
+.detail {
+  flex: 1 1 auto;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
