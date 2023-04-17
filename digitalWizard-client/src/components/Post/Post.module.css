@@ -84,6 +84,7 @@
 
 .share {
   display: flex;
+  flex: 1;
 }
 
 .share > * {
@@ -96,7 +97,22 @@
   color: #8f959b;
 }
 
+.edtied {
+  color: var(--text-link-color);
+  font-size: 11px;
+  flex: 1;
+}
+
+.edtied:hover {
+    color: var(--text-link-hover);
+}
+
+.profile {
+  flex: 1;
+}
+
 /* 내용이 없어서 임시로 height 지정 */
 .content {
   height: 150%;
 }
+

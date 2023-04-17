@@ -24,7 +24,7 @@ function Post() {
             <div>Edit</div>
             <div>Follow</div>
           </div>
-          <div>edited</div>
+          <div className={styles.edtied}>edited 9 mins ago</div>
           <div className={styles.profile}>작성자</div>
         </div>
       </div>
