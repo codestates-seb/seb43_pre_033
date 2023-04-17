@@ -1,3 +1,9 @@
+.post {
+  display: flex;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
 .vote {
   display: flex;
   flex-direction: column;
@@ -28,12 +34,6 @@
 
 .down:active {
   color: var(--brand-color);
-}
-
-.content {
-  display: flex;
-  padding-top: 16px;
-  padding-bottom: 16px;
 }
 
 
@@ -96,3 +96,7 @@
   color: #8f959b;
 }
 
+/* 내용이 없어서 임시로 height 지정 */
+.content {
+  height: 150%;
+}
