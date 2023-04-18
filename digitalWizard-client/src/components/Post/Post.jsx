@@ -3,10 +3,35 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { ImCheckmark } from "react-icons/im";
 import { RxCounterClockwiseClock } from "react-icons/rx";
-// import { useState } from "react";
 
 function Post({ data }) {
-  // const [day, setDay] = useState(null);
+  const edited = day(new Date(data.modifiedAt));
+  const create = day(new Date(data.createdAt));
+
+  function day(date) {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const year = date.getFullYear();
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+
+    return `${month} ${day}, ${year} at ${hour}:${minute}`;
+  }
+
   return (
     <div className={styles.post}>
       <div className={styles.vote}>
@@ -26,9 +51,9 @@ function Post({ data }) {
             <div>Edit</div>
             <div>Follow</div>
           </div>
-          <div className={styles.edtied}>edited 9 mins ago</div>
+          <div className={styles.edtied}>edited {edited}</div>
           <div className={styles.profile}>
-            <div className={styles.create}>answered 31 min ago</div>
+            <div className={styles.create}>answered {create}</div>
             <div className={styles.user}>
               <img
                 src={data.member.profileImage}
