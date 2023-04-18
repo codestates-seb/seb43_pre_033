@@ -6,9 +6,13 @@ import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.vote.entity.Vote;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -22,7 +26,7 @@ public class Question extends Auditable {
 
     private String title;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", length = 10000)
     private String body;
 
     @ManyToOne
@@ -39,11 +43,19 @@ public class Question extends Auditable {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<View> view;
 
-    public static Question of(String title, String body, Member member){
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "question_hashtag",
+            joinColumns = @JoinColumn(name = "question_id"),
+            inverseJoinColumns = @JoinColumn(name = "hashtag_id"))
+    private List<Hashtag> hashtags = new ArrayList<>();
+
+    public static Question of(String title, String body, Member member, List<Hashtag> hashtags){
         Question question = new Question();
         question.setTitle(title);
         question.setBody(body);
         question.setMember(member);
+        question.setHashtags(hashtags);
         return question;
     }
 }
