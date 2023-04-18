@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class AnswerService {
@@ -57,6 +58,24 @@ public class AnswerService {
         answerRepository.delete(answer);
     }
 
+    @Transactional
+    public void acceptAnswer(Long answerId, Long questionId, String email){
+        Optional<Answer> optionalAnswer = answerRepository.findById(answerId);
+        if(optionalAnswer.isPresent()){
+            Answer answer = optionalAnswer.get();
+            Question question = answer.getQuestion();
+            Member loggedInMember = getMemberOrException(email);
+
+            if (question.getMember().equals(loggedInMember) && question.getQuestionId().equals(questionId)) {
+                answer.acceptAnswer();
+                answerRepository.save(answer);
+            } else {
+                throw new BusinessLogicException(ExceptionCode.INVALID_PERMISSION, "답변을 채택할 권한이 없습니다.");
+            }
+        } else {
+            throw new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND, "해당 ID의 답변을 찾을 수 없습니다.");
+        }
+    }
 
     public Page<AnswerDto> answerList(Long questionId, Pageable pageable) {
         Question question = getQuestionOrException(questionId);
