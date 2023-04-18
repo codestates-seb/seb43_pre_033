@@ -17,6 +17,7 @@
   background-color: var(--black-025);
   border-top: 3px solid var(--brand-color);
   box-shadow: 0 2px 3px var(--border-color);
+  z-index: 1111;
 }
 .wrap {
   width: 100%;
