@@ -1,6 +1,7 @@
 package com.seb33.digitalWizardserver.restdocs.member;
 
 import com.google.gson.Gson;
+import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.config.TestSecurityConfig;
 import com.seb33.digitalWizardserver.member.controller.MemberController;
 import com.seb33.digitalWizardserver.member.dto.MemberDto;
@@ -31,12 +32,12 @@ import static com.seb33.digitalWizardserver.util.ApiDocumentUtils.getResponsePre
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
-import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
+import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -61,14 +62,14 @@ public class MemberControllerRestDocsTest {
     @WithMockUser
     public void postMemberTest() throws Exception {
         // given
-        MemberDto.PostMember post = new MemberDto.PostMember("wjwee9@gmail.com", "1234", "wish1");
+        MemberDto.PostMember post = new MemberDto.PostMember("test1@gmail.com", "firstPW111", "firstNickName");
         String content = gson.toJson(post);
 
         MemberJoinResponseDto responseDto =
                 new MemberJoinResponseDto(1L,
-                        "wjwee9@gmail.com",
+                        "test1@gmail.com",
                         "https://avatars.githubusercontent.com/u/120456261?v=4",
-                        "wish1");
+                        "firstNickName");
 
         // willReturn()이 최소한 null은 아니어야 한다.
         given(mapper.memberPostToMember(Mockito.any(MemberDto.PostMember.class))).willReturn(new Member());
@@ -108,69 +109,69 @@ public class MemberControllerRestDocsTest {
                 ));
     }
 
-//    @Test
-//    public void patchMemberTest() throws Exception {
-//        // given
-//        long memberId = 1L;
-//        MemberDto.Patch patch = new MemberDto.Patch(memberId, "wish1", "1234");
-//        String content = gson.toJson(patch);
-//
-//        MemberJoinResponseDto responseDto =
-//                new MemberJoinResponseDto(1L,
-//                        "hgd@gmail.com",
-//                        "홍길동",
-//                        "010-1111-1111",
-//                        Member.MemberStatus.MEMBER_ACTIVE,
-//                        new Stamp());
-//
-//        // willReturn()이 최소한 null은 아니어야 한다.
-//        given(mapper.memberPatchToMember(Mockito.any(MemberDto.Patch.class))).willReturn(new Member());
-//
-//        given(memberService.updateMember(Mockito.any(Member.class))).willReturn(new Member());
-//
-//        given(mapper.memberToMemberResponse(Mockito.any(Member.class))).willReturn(responseDto);
-//
-//        // when
-//        ResultActions actions =
-//                mockMvc.perform(
-//                        patch("/v11/members/{member-id}", memberId)
-//                                .accept(MediaType.APPLICATION_JSON)
-//                                .contentType(MediaType.APPLICATION_JSON)
-//                                .content(content)
-//                );
-//
-//        // then
-//        actions
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.data.memberId").value(patch.getMemberId()))
-//                .andExpect(jsonPath("$.data.name").value(patch.getMemberNickName()))
-//                .andExpect(jsonPath("$.data.phone").value(patch.getPhone()))
-//                .andExpect(jsonPath("$.data.memberStatus").value(patch.getMemberStatus().getStatus()))
-//                .andDo(document("patch-member",
-//                        getRequestPreProcessor(),
-//                        getResponsePreProcessor(),
-//                        pathParameters(
-//                                parameterWithName("member-id").description("회원 식별자")
-//                        ),
-//                        requestFields(
-//                                List.of(
-//                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 식별자").ignored(),
-//                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름").optional(),
-//                                        fieldWithPath("phone").type(JsonFieldType.STRING).description("휴대폰 번호").optional(),
-//                                        fieldWithPath("memberStatus").type(JsonFieldType.STRING).description("회원 상태: MEMBER_ACTIVE / MEMBER_SLEEP / MEMBER_QUIT").optional()
-//                                )
-//                        ),
-//                        responseFields(
-//                                List.of(
-//                                        fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
-//                                        fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("회원 식별자"),
-//                                        fieldWithPath("data.email").type(JsonFieldType.STRING).description("이메일"),
-//                                        fieldWithPath("data.name").type(JsonFieldType.STRING).description("이름"),
-//                                        fieldWithPath("data.phone").type(JsonFieldType.STRING).description("휴대폰 번호"),
-//                                        fieldWithPath("data.memberStatus").type(JsonFieldType.STRING).description("회원 상태: 활동중 / 휴면 상태 / 탈퇴 상태"),
-//                                        fieldWithPath("data.stamp").type(JsonFieldType.NUMBER).description("스탬프 갯수")
-//                                )
-//                        )
-//                ));
-//    }
+    @Test
+    public void patchMemberTest() throws Exception {
+        // given
+        long memberId = 1L;
+        MemberDto.Patch patch = new MemberDto.Patch(memberId, "changedNickName222", "changedPW222");
+        String content = gson.toJson(patch);
+
+        MemberJoinResponseDto responseDto =
+                new MemberJoinResponseDto(1L,
+                        "test1@gmail.com",
+                        "https://avatars.githubusercontent.com/u/120456261?v=4",
+                        "changedNickName222");
+
+        // willReturn()이 최소한 null은 아니어야 한다.
+        given(mapper.memberPatchToMember(Mockito.any(MemberDto.Patch.class))).willReturn(new Member());
+
+        given(memberService.updateMember(Mockito.any(Member.class))).willReturn(new Member());
+
+        given(mapper.memberToMemberResponse(Mockito.any(Member.class))).willReturn(responseDto);
+
+        Mockito.doNothing().when(memberService).sameMemberTest(Mockito.anyLong(), Mockito.anyString());
+
+        // when
+        ResultActions actions =
+                mockMvc.perform(
+                        patch("/members/{member-id}", memberId)
+                                .header(HttpHeaders.AUTHORIZATION, "WishJWT " + "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sIm1lbWJlckVtYWlsIjoidGVzdDFAZ21haWwuY29tIiwic3ViIjoidGVzdDFAZ21haWwuY29tIiwiaWF0IjoxNjgxODIxOTEwLCJleHAiOjE2ODE4MjM3MTB9.h_V93dhS-RhzqVdYuRkxHHIxYjG61LSn87a_8HtpBgM") // JWT 토큰 값 설정
+                                .accept(MediaType.APPLICATION_JSON)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(content)
+                );
+
+        // then
+        actions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.memberId").value(patch.getMemberId()))
+                .andExpect(jsonPath("$.email").value(responseDto.getEmail()))
+                .andExpect(jsonPath("$.profileImage").value(responseDto.getProfileImage()))
+                .andExpect(jsonPath("$.memberNickName").value(patch.getMemberNickName()))
+                .andDo(document("patch-member",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("member-id").description("회원 식별자")
+                        ),
+                        requestHeaders(
+                                headerWithName("Authorization").description("JWT토큰")
+                        ),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 식별자").ignored(),
+                                        fieldWithPath("memberNickName").type(JsonFieldType.STRING).description("닉네임").optional(),
+                                        fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호").optional()
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
+                                        fieldWithPath("profileImage").type(JsonFieldType.STRING).description("프로필 이미지"),
+                                        fieldWithPath("memberNickName").type(JsonFieldType.STRING).description("닉네임")
+                                )
+                        )
+                ));
+    }
 }
