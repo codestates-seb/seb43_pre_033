@@ -13,7 +13,7 @@ import java.util.Base64;
 @Component
 public class JwtUtil {
 
-    @Value("${JWT_SECRET_KEY}")
+    @Value("${jwt.key}")
     private String secretKey;
 
     public String extractEmailFromToken(String token) {

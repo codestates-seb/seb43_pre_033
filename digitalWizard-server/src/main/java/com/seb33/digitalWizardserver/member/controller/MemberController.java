@@ -6,7 +6,6 @@ import com.seb33.digitalWizardserver.member.dto.MemberJoinResponseDto;
 import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.member.mapper.MemberMapper;
 import com.seb33.digitalWizardserver.member.service.MemberService;
-import com.seb33.digitalWizardserver.util.JwtUtil;
 import com.seb33.digitalWizardserver.util.UriCreator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +30,6 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper memberMapper;
-    private final JwtUtil jwtUtil;
 
     @PostMapping
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.PostMember requestBody) {
@@ -51,12 +49,10 @@ public class MemberController {
             @PathVariable("member-id") @Positive long memberId,
             @Valid @RequestBody MemberDto.Patch requestBody,
             @RequestHeader("Authorization") String token) {
+        memberService.sameMemberTest(memberId, token); // 변경하려는 회원이 맞는지 확인
+
         requestBody.setMemberId(memberId);
-
-        String userEmail = jwtUtil.extractEmailFromToken(token);
-
-        Member updateMember = memberService.updateMember(memberMapper.memberPatchToMember(requestBody), userEmail);
-
+        Member updateMember = memberService.updateMember(memberMapper.memberPatchToMember(requestBody));
         MemberJoinResponseDto responseDto = memberMapper.memberToMemberResponse(updateMember);
 
         return new ResponseEntity(responseDto, HttpStatus.OK);
@@ -97,8 +93,9 @@ public class MemberController {
     @DeleteMapping("/{member-id}")
     public ResponseEntity deleteMember(
             @PathVariable("member-id") @Positive long memberId, @RequestHeader("Authorization") String token) {
-        String userEmail = jwtUtil.extractEmailFromToken(token);
-        memberService.deleteMember(memberId, userEmail);
+        memberService.sameMemberTest(memberId, token); // 삭제하려는 회원이 맞는지 확인
+
+        memberService.deleteMember(memberId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -108,13 +105,12 @@ public class MemberController {
             @PathVariable("member-id") @Positive long memberId,
             @RequestBody MemberDto.ProfileImage requestBody,
             @RequestHeader("Authorization") String token) {
-        String userEmail = jwtUtil.extractEmailFromToken(token);
+        memberService.sameMemberTest(memberId, token); // 변경하려는 회원이 맞는지 확인
+
         Member member = memberService.findMember(memberId);
         member.setProfileImage(requestBody.getProfileImage());
-        Member updatedMember = memberService.updateMember(member, userEmail);
+        Member updatedMember = memberService.updateMember(member);
         MemberJoinResponseDto responseDto = memberMapper.memberToMemberResponse(updatedMember);
         return new ResponseEntity(responseDto, HttpStatus.OK);
     }
-
-
 }

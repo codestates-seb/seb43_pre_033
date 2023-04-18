@@ -8,6 +8,7 @@ import com.seb33.digitalWizardserver.member.dto.MemberJoinResponseDto;
 import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.member.mapper.MemberMapper;
 import com.seb33.digitalWizardserver.member.service.MemberService;
+import com.seb33.digitalWizardserver.util.JwtUtil;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,9 @@ public class MemberControllerRestDocsTest {
 
     @Autowired
     private Gson gson;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @Test
     @WithMockUser
