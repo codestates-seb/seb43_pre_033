@@ -167,6 +167,8 @@
 /* 내용이 없어서 임시로 height 지정 */
 .content {
   min-height: 230px;
-  padding: 10px 0px 10px 0px
+  padding: 10px 0px 10px 0px;
+  color: var(--text-content-color);
+  font-size: 15px;
 }
 
