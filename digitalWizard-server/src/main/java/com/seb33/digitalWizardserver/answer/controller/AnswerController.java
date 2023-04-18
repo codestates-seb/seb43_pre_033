@@ -5,6 +5,8 @@ import com.seb33.digitalWizardserver.answer.dto.request.AnswerRequest;
 import com.seb33.digitalWizardserver.answer.dto.response.AnswerResponse;
 import com.seb33.digitalWizardserver.answer.service.AnswerService;
 import com.seb33.digitalWizardserver.exception.Response.Response;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Safelist;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -29,7 +31,8 @@ public class AnswerController {
 
     @PostMapping("/{questionId}/answers")
     public Response<Void> answer(@PathVariable Long questionId, @RequestBody AnswerRequest request, Authentication authentication){
-        answerService.create(questionId, authentication.getName(), request.getBody());
+        String bodyRemoveTag = Jsoup.clean(request.getBody(), Safelist.none());
+        answerService.create(questionId, authentication.getName(), bodyRemoveTag);
         return Response.success();
     }
 

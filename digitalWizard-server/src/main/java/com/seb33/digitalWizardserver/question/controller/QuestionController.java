@@ -6,6 +6,8 @@ import com.seb33.digitalWizardserver.question.dto.request.QuestionCreateRequest;
 import com.seb33.digitalWizardserver.question.dto.request.QuestionUpdateRequest;
 import com.seb33.digitalWizardserver.question.dto.response.QuestionResponse;
 import com.seb33.digitalWizardserver.question.service.QuestionService;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Safelist;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -24,7 +26,8 @@ public class QuestionController {
     @PostMapping
     public Response<Void> create(@RequestBody QuestionCreateRequest request,
                                  Authentication authentication){
-        questionService.create(request.getTitle(), request.getBody(), authentication.getName());
+        String bodyRemoveTag = Jsoup.clean(request.getBody(), Safelist.none());
+        questionService.create(request.getTitle(), bodyRemoveTag, authentication.getName());
         return Response.success();
     }
 
