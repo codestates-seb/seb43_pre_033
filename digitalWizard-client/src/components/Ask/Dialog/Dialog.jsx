@@ -14,8 +14,10 @@ export default function Dialog({
     closeModal();
   };
 
+  const handleModal = e => e.target.classList.contains("close") && closeModal();
+
   return (
-    <div className={styles.modal}>
+    <div className={`close ${styles.modal}`} onClick={handleModal} role="none">
       <div className={styles.modalContent}>
         <button className={styles.btnClose} onClick={closeModal}>
           <AiOutlineClose />
