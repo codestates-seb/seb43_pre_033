@@ -5,6 +5,7 @@ import com.seb33.digitalWizardserver.exception.BusinessLogicException;
 import com.seb33.digitalWizardserver.exception.ExceptionCode;
 import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.member.repository.MemberRepository;
+import com.seb33.digitalWizardserver.util.JwtUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,6 +29,8 @@ public class MemberService {
 
     private final CustomAuthorityUtils authorityUtils;
 
+    private final JwtUtil jwtUtil;
+
     public Member createMember(Member member) {
         verifyExistsEmail(member.getEmail());
 
@@ -47,17 +50,13 @@ public class MemberService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
-    public Member updateMember(Member member, String email) {
+    public Member updateMember(Member member) {
         Member findMember = findVerifiedMember(member.getMemberId());
-
-        if(!email.equals(findMember.getEmail())){
-            throw new BusinessLogicException(ExceptionCode.INVALID_PERMISSION, String.format("유저(%s)가 권한을 가지고 있지 않습니다.", email));
-        }
 
         Optional.ofNullable(member.getMemberNickName())
                 .ifPresent(name -> findMember.setMemberNickName(name));
         Optional.ofNullable(member.getPassword())
-                .ifPresent(password -> findMember.setEmail(password));
+                .ifPresent(password -> findMember.setPassword(password));
         Optional.ofNullable(member.getProfileImage())
                 .ifPresent(image -> findMember.setProfileImage(image));
         Optional.ofNullable(member.getLocation())
@@ -79,12 +78,8 @@ public class MemberService {
                 Sort.by("memberId").descending()));
     }
 
-    public void deleteMember(long memberId, String email) {
+    public void deleteMember(long memberId) {
         Member findMember = findVerifiedMember(memberId);
-
-        if(!email.equals(findMember.getEmail())){
-            throw new BusinessLogicException(ExceptionCode.INVALID_PERMISSION, String.format("유저(%s)가 권한을 가지고 있지 않습니다.", email));
-        }
 
         memberRepository.delete(findMember);
     }
@@ -103,5 +98,14 @@ public class MemberService {
         Optional<Member> member = memberRepository.findByEmail(email);
         if (member.isPresent())
             throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
+    }
+
+    public void sameMemberTest(long memberId, String token){
+        String email = jwtUtil.extractEmailFromToken(token);
+        Member findMember = findVerifiedMember(memberId);
+
+        if(!email.equals(findMember.getEmail())){
+            throw new BusinessLogicException(ExceptionCode.INVALID_PERMISSION, String.format("유저(%s)가 권한을 가지고 있지 않습니다. 사용자(%s) 정보를 수정할 수 없습니다.", email, findMember.getEmail()));
+        }
     }
 }

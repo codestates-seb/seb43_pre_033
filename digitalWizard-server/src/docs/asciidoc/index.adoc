@@ -28,68 +28,68 @@ include::{snippets}/post-member/http-response.adoc[]
 include::{snippets}/post-member/response-headers.adoc[]
 
 
-// === 회원 정보 수정
-// .curl-request
-// include::{snippets}/patch-member/curl-request.adoc[]
-//
-// .http-request
-// include::{snippets}/patch-member/http-request.adoc[]
-//
-// .path-parameters
-// include::{snippets}/patch-member/path-parameters.adoc[]
-//
-// .request-fields
-// include::{snippets}/patch-member/request-fields.adoc[]
-//
-// .http-response
-// include::{snippets}/patch-member/http-response.adoc[]
-//
-// .response-fields
-// include::{snippets}/patch-member/response-fields.adoc[]
-//
-// === 회원 정보 조회
-// .curl-request
-// include::{snippets}/get-member/curl-request.adoc[]
-//
-// .http-request
-// include::{snippets}/get-member/http-request.adoc[]
-//
-// .path-parameters
-// include::{snippets}/get-member/path-parameters.adoc[]
-//
-// .http-response
-// include::{snippets}/get-member/http-response.adoc[]
-//
-// .response-fields
-// include::{snippets}/get-member/response-fields.adoc[]
-//
-//
-// === 회원 리스트 조회
-// .curl-request
-// include::{snippets}/get-members/curl-request.adoc[]
-//
-// .http-request
-// include::{snippets}/get-members/http-request.adoc[]
-//
-// .request-parameters
-// include::{snippets}/get-members/request-parameters.adoc[]
-//
-// .http-response
-// include::{snippets}/get-members/http-response.adoc[]
-//
-// .response-fields
-// include::{snippets}/get-members/response-fields.adoc[]
-//
-//
-// === 회원 삭제
-// .curl-request
-// include::{snippets}/delete-member/curl-request.adoc[]
-//
-// .http-request
-// include::{snippets}/delete-member/http-request.adoc[]
-//
-// .path-parameters
-// include::{snippets}/delete-member/path-parameters.adoc[]
-//
-// .http-response
-// include::{snippets}/delete-member/http-response.adoc[]
+=== 회원 정보 수정
+.curl-request
+include::{snippets}/patch-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-member/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/patch-member/path-parameters.adoc[]
+
+.request-fields
+include::{snippets}/patch-member/request-fields.adoc[]
+
+.http-response
+include::{snippets}/patch-member/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-member/response-fields.adoc[]
+
+=== 회원 정보 조회
+.curl-request
+include::{snippets}/get-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-member/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/get-member/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/get-member/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-member/response-fields.adoc[]
+
+
+=== 회원 리스트 조회
+.curl-request
+include::{snippets}/get-members/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-members/http-request.adoc[]
+
+.request-parameters
+include::{snippets}/get-members/request-parameters.adoc[]
+
+.http-response
+include::{snippets}/get-members/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-members/response-fields.adoc[]
+
+
+=== 회원 삭제
+.curl-request
+include::{snippets}/delete-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/delete-member/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/delete-member/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/delete-member/http-response.adoc[]
