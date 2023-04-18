@@ -52,4 +52,12 @@ public class AnswerController {
         answerService.delete(authentication.getName(), questionId, answerId);
         return Response.success();
     }
+
+    @PatchMapping("/{questionId}/answers/{answerId}/accept")
+    public Response<Void> accept(@PathVariable Long questionId,
+                                 @PathVariable Long answerId,
+                                 Authentication authentication) {
+        answerService.acceptAnswer(answerId, questionId, authentication.getName());
+        return Response.success();
+    }
 }

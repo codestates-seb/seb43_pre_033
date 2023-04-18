@@ -32,11 +32,18 @@ public class Answer extends Auditable {
     @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL)
     private List<AnswerVote> votes;
 
+    private boolean isAccepted;
+
+    public void acceptAnswer(){
+        this.setAccepted(true);
+    }
+
     public static Answer of(Member member, Question question, String body){
         Answer entity = new Answer();
         entity.setMember(member);
         entity.setQuestion(question);
         entity.setBody(body);
+        entity.setAccepted(false);
         return entity;
     }
 }
