@@ -1,0 +1,54 @@
+.modal {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  background-color: var(--modal-bg);
+}
+
+.modalContent {
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  position: relative;
+  box-shadow: 0 1px 6px var(--text-content-color);
+}
+.btnClose {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  background-color: transparent;
+  border: none;
+}
+.btnClose svg {
+  font-size: 1rem;
+}
+.modalMsg {
+  margin-bottom: 1.5rem;
+}
+.msgHead {
+  font-size: 1.68rem;
+  margin-bottom: 1rem;
+  color: var(--danger-text);
+}
+.msgBody {
+  font-size: 0.81rem;
+}
+
+@media screen and (max-width: 640px) {
+  .modalContent {
+    max-width: 375px;
+    width: 90%;
+  }
+  .msgHead {
+    font-size: 1.4rem;
+  }
+  .msgBody {
+    font-size: 0.7rem;
+  }
+}
