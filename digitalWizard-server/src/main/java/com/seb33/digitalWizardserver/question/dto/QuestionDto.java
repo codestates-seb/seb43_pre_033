@@ -4,7 +4,7 @@ import com.seb33.digitalWizardserver.member.dto.CustomMemberDto;
 import com.seb33.digitalWizardserver.question.entity.Hashtag;
 import com.seb33.digitalWizardserver.question.entity.Question;
 import com.seb33.digitalWizardserver.question.entity.View;
-import com.seb33.digitalWizardserver.vote.entity.Vote;
+import com.seb33.digitalWizardserver.question.entity.Vote;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

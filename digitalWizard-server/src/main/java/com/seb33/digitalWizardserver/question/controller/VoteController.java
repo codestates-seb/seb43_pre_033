@@ -1,7 +1,7 @@
-package com.seb33.digitalWizardserver.vote.controller;
+package com.seb33.digitalWizardserver.question.controller;
 
 import com.seb33.digitalWizardserver.exception.Response.Response;
-import com.seb33.digitalWizardserver.vote.service.VoteService;
+import com.seb33.digitalWizardserver.question.service.VoteService;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 

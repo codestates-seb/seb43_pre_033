@@ -1,4 +1,4 @@
-package com.seb33.digitalWizardserver.vote.service;
+package com.seb33.digitalWizardserver.question.service;
 
 import com.seb33.digitalWizardserver.exception.BusinessLogicException;
 import com.seb33.digitalWizardserver.exception.ExceptionCode;
@@ -6,8 +6,8 @@ import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.member.repository.MemberRepository;
 import com.seb33.digitalWizardserver.question.entity.Question;
 import com.seb33.digitalWizardserver.question.repository.QuestionRepository;
-import com.seb33.digitalWizardserver.vote.entity.Vote;
-import com.seb33.digitalWizardserver.vote.repository.VoteRepository;
+import com.seb33.digitalWizardserver.question.entity.Vote;
+import com.seb33.digitalWizardserver.question.repository.VoteRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

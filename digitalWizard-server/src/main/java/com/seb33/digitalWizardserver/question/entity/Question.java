@@ -3,16 +3,12 @@ package com.seb33.digitalWizardserver.question.entity;
 import com.seb33.digitalWizardserver.answer.entity.Answer;
 import com.seb33.digitalWizardserver.audit.Auditable;
 import com.seb33.digitalWizardserver.member.entity.Member;
-import com.seb33.digitalWizardserver.vote.entity.Vote;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Setter
 @Getter
