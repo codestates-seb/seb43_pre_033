@@ -1,5 +1,6 @@
-@import url(reset.css);
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap");
+@import url("reset.css");
+@import url("pages.css");
 
 :root {
   /* --- main color --- */
@@ -46,6 +47,16 @@
   --sort-text-hover: #525060;
   --sort-bg-active: #e3e6e8;
   --sort-bg-hover: #f8f9f9;
+
+  /* additional */
+  --tipBox-bg-color: #ebf4fb;
+  --header-bg-color: #f8f9f9;
+  --border-color: #d1d5d7;
+
+  /* modal */
+  --modal-bg: rgba(0, 0, 0, 0.5);
+  --danger-text: #c22e32;
+  --danger-btn: #d03932;
 }
 
 body,
@@ -55,4 +66,5 @@ textarea,
 button,
 pre {
   font-family: "Noto Sans KR", sans-serif;
+  color: var(--text-content-color);
 }
