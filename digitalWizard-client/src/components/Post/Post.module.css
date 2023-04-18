@@ -1,7 +1,8 @@
 .post {
   display: flex;
   padding-top: 16px;
-  padding-bottom: 16px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #dbdbdb ;
 }
 
 .vote {
@@ -172,3 +173,9 @@
   font-size: 15px;
 }
 
+/* .post::after {
+  content: ' ';
+  background-color: var(--text-sub-color);
+  height: 1px;
+  display: block;
+} */

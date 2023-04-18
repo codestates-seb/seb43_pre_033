@@ -3,6 +3,7 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { ImCheckmark } from "react-icons/im";
 import { RxCounterClockwiseClock } from "react-icons/rx";
+// import axios from "axios";
 
 function Post({ data, QA }) {
   const edited = day(new Date(data.modifiedAt));
@@ -32,6 +33,21 @@ function Post({ data, QA }) {
     return `${month} ${day}, ${year} at ${hour}:${minute}`;
   }
 
+  // const baseUrl = "base";
+  // const url =
+  //   QA === "Q"
+  //     ? baseUrl + "/question/" + data.id
+  //     : baseUrl + "/answer/" + data.id;
+
+  // function like() {
+  //   axios.post(url + "/likes", {
+  //     data: "",
+  //     headers: {
+  //       Authorization: "token",
+  //     },
+  //   });
+  // }
+
   return (
     <div className={styles.post}>
       <div className={styles.vote}>
@@ -40,7 +56,9 @@ function Post({ data, QA }) {
         <AiFillCaretDown className={styles.down} />
         <FaBookmark className={styles.checkMark} />
         <FaRegBookmark className={styles.mark} />
-        {QA === "answered" ? <ImCheckmark className={styles.check} /> : null}
+        {QA === "A" && data.accepted ? (
+          <ImCheckmark className={styles.checkin} />
+        ) : null}
         <RxCounterClockwiseClock className={styles.clock} />
       </div>
       <div className={styles.detail}>
@@ -53,7 +71,9 @@ function Post({ data, QA }) {
           </div>
           <div className={styles.edtied}>edited {edited}</div>
           <div className={styles.profile}>
-            <div className={styles.create}>{QA + " " + create}</div>
+            <div className={styles.create}>
+              {QA === "A" ? "answered " + create : "aked " + create}
+            </div>
             <div className={styles.user}>
               <img
                 src={data.member.profileImage}
