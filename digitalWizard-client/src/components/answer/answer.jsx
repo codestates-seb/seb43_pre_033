@@ -21,7 +21,11 @@ function Answer() {
         <div>sort</div>
       </div>
       {data.map(data => (
-        <Post className={styles.post} key={data.id} data={data}></Post>
+        <Post
+          className={styles.post}
+          key={data.id}
+          data={data}
+          QA={"answered"}></Post>
       ))}
     </div>
   );

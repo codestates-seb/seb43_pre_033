@@ -4,7 +4,7 @@ import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { ImCheckmark } from "react-icons/im";
 import { RxCounterClockwiseClock } from "react-icons/rx";
 
-function Post({ data }) {
+function Post({ data, QA }) {
   const edited = day(new Date(data.modifiedAt));
   const create = day(new Date(data.createdAt));
 
@@ -53,7 +53,7 @@ function Post({ data }) {
           </div>
           <div className={styles.edtied}>edited {edited}</div>
           <div className={styles.profile}>
-            <div className={styles.create}>answered {create}</div>
+            <div className={styles.create}>{QA + " " + create}</div>
             <div className={styles.user}>
               <img
                 src={data.member.profileImage}
