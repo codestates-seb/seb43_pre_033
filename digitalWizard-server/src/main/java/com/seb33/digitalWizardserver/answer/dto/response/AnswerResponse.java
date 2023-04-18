@@ -13,6 +13,7 @@ public class AnswerResponse {
     private Long answerId;
     private String body;
     private int vote;
+    private boolean isAccepted;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private CustomMemberResponse member;
@@ -23,9 +24,9 @@ public class AnswerResponse {
                 dto.getAnswerId(),
                 dto.getBody(),
                 dto.getVote(),
+                dto.isAccepted(),
                 dto.getCreateAt(),
                 dto.getModifiedAt(),
-                CustomMemberResponse.from(dto.getMember())
-                );
+                CustomMemberResponse.from(dto.getMember()));
     }
 }

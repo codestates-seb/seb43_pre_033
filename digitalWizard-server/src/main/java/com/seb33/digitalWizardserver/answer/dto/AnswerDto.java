@@ -18,6 +18,7 @@ public class AnswerDto {
     private Long answerId;
     private String body;
     private int vote;
+    private boolean isAccepted;
     private Long questionId;
     private LocalDateTime createAt;
     private LocalDateTime modifiedAt;
@@ -28,6 +29,7 @@ public class AnswerDto {
                 entity.getAnswerId(),
                 entity.getBody(),
                 entity.getVotes().stream().mapToInt(AnswerVote::getValue).sum(),
+                entity.isAccepted(),
                 entity.getQuestion().getQuestionId(),
                 entity.getCreatedAt(),
                 entity.getModifiedAt(),
