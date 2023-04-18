@@ -1,0 +1,80 @@
+/* --- Common --- */
+.content {
+  max-width: 1216px;
+  margin: 0 auto;
+  padding-bottom: 7rem;
+}
+/* layout */
+button {
+  cursor: pointer;
+}
+.btn {
+  padding: 0.63rem;
+  font-size: 0.81rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.btn:not(:first-of-type) {
+  margin-left: 0.6rem;
+}
+.btnPrimary {
+  color: var(--btn-primary-text-color);
+  background-color: var(--btn-primary-bg-color);
+}
+.btnPrimary:hover {
+  background-color: var(--btn-primary-bg-hover);
+}
+.btnDanger {
+  color: var(--btn-primary-text-color);
+  background-color: var(--danger-btn);
+}
+.btnDanger:active {
+  background-color: var(--danger-text);
+}
+.btnDangerText {
+  color: var(--danger-text);
+  background-color: transparent;
+}
+.btnDangerText:active {
+  box-shadow: 0px 0px 6px var(--danger-btn);
+}
+.btnNormal {
+  background-color: transparent;
+}
+.btnNormal:hover {
+  background-color: var(--header-bg-color);
+}
+.btnNormal:active {
+  box-shadow: 0px 0px 6px var(--border-color);
+}
+/* button */
+/* --- Common --- */
+
+/* react-quil */
+.quill:focus-within {
+  outline: none;
+
+  box-shadow: 0 0 4px var(--btn-sub-bg-hover);
+}
+.quill:focus-within .ql-snow {
+  border-color: var(--btn-primary-bg-color) !important;
+}
+.ql-snow {
+  border-color: var(--border-color) !important;
+}
+.ql-toolbar {
+  border-radius: 0.2rem 0.2rem 0 0;
+  border-bottom: none !important;
+}
+.ql-container {
+  border-radius: 0 0 0.2rem 0.2rem;
+}
+.ql-editor {
+  height: 100% !important;
+  min-height: 210px;
+}
+/* react-quil */
+.test {
+  width: 100%;
+}
