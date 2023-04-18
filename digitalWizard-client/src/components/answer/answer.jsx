@@ -17,11 +17,11 @@ function Answer() {
   return (
     <div className={styles.answer}>
       <div className={styles.header}>
-        <h2 className={styles.total}> Answers</h2>
+        <h2 className={styles.total}>{data.length + " Answers"}</h2>
         <div>sort</div>
       </div>
       {data.map(data => (
-        <Post key={data.id} data={data}></Post>
+        <Post className={styles.post} key={data.id} data={data}></Post>
       ))}
     </div>
   );

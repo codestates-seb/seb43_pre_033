@@ -12,3 +12,10 @@
   font-weight:400 ;
   font-size: 1.46153846rem;
 }
+
+.post::after {
+  content: ' ';
+  background-color: var(--text-sub-color);
+  height: 1px;
+  display: block;
+}

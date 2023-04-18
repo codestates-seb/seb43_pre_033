@@ -10,7 +10,6 @@
   flex: 0 0 36px;
   color: rgb(186, 191, 196);
   align-items: center;
-  justify-content: center;
   padding-right: 16px;
 }
 
@@ -42,12 +41,6 @@
   padding-right: 16px;
 }
 
-.detail::after {
-  content: ' ';
-  background-color: var(--text-sub-color);
-  height: 1px;
-  display: block;
-}
 .check {
   width: 24px;
   height: 24px;
@@ -171,4 +164,9 @@
 
 
 
+/* 내용이 없어서 임시로 height 지정 */
+.content {
+  min-height: 230px;
+  padding: 10px 0px 10px 0px
+}
 
