@@ -57,9 +57,6 @@ public class MemberControllerRestDocsTest {
     @Autowired
     private Gson gson;
 
-    @Autowired
-    private JwtUtil jwtUtil;
-
     @Test
     @WithMockUser
     public void postMemberTest() throws Exception {
