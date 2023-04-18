@@ -25,6 +25,7 @@ function Answer() {
           className={styles.post}
           key={data.id}
           data={data}
+          // 질문은 asked로 수정
           QA={"answered"}></Post>
       ))}
     </div>

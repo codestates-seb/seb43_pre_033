@@ -40,7 +40,7 @@ function Post({ data, QA }) {
         <AiFillCaretDown className={styles.down} />
         <FaBookmark className={styles.checkMark} />
         <FaRegBookmark className={styles.mark} />
-        <ImCheckmark className={styles.check} />
+        {QA === "answered" ? <ImCheckmark className={styles.check} /> : null}
         <RxCounterClockwiseClock className={styles.clock} />
       </div>
       <div className={styles.detail}>
