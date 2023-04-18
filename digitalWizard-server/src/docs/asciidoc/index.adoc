@@ -81,15 +81,15 @@ include::{snippets}/get-members/http-response.adoc[]
 include::{snippets}/get-members/response-fields.adoc[]
 
 
-// === 회원 삭제
-// .curl-request
-// include::{snippets}/delete-member/curl-request.adoc[]
-//
-// .http-request
-// include::{snippets}/delete-member/http-request.adoc[]
-//
-// .path-parameters
-// include::{snippets}/delete-member/path-parameters.adoc[]
-//
-// .http-response
-// include::{snippets}/delete-member/http-response.adoc[]
+=== 회원 삭제
+.curl-request
+include::{snippets}/delete-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/delete-member/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/delete-member/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/delete-member/http-response.adoc[]

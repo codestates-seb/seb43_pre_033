@@ -39,6 +39,7 @@ import static com.seb33.digitalWizardserver.util.ApiDocumentUtils.getResponsePre
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
@@ -266,6 +267,30 @@ public class MemberControllerRestDocsTest {
                                 fieldWithPath("pageInfo.totalPages").type(JsonFieldType.NUMBER).description("총 페이지 수")
                         )
                 )));
+    }
+
+    @Test
+    void deleteMemberTest() throws Exception { // 결론적으로 spring연결 확인하는 정도 밖에 의미 없음
+
+        doNothing().when(memberService).deleteMember(Mockito.anyLong()); // 그나마 하나 있는 기능 아무것도 안하게 만들기
+
+        mockMvc.perform(
+                        delete("/members/{member-id}", 1L)
+                                .header(HttpHeaders.AUTHORIZATION, "WishJWT " + "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sIm1lbWJlckVtYWlsIjoidGVzdDFAZ21haWwuY29tIiwic3ViIjoidGVzdDFAZ21haWwuY29tIiwiaWF0IjoxNjgxODIxOTEwLCJleHAiOjE2ODE4MjM3MTB9.h_V93dhS-RhzqVdYuRkxHHIxYjG61LSn87a_8HtpBgM") // JWT 토큰 값 설정
+                                .accept(MediaType.APPLICATION_JSON)
+                                .contentType(MediaType.APPLICATION_JSON)
+                ).andExpect(status().isNoContent())
+                .andDo(document(
+                        "delete-member",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("member-id").description("회원 식별자")
+                        ),
+                        requestHeaders(
+                                headerWithName("Authorization").description("JWT토큰")
+                        )
+                ));
     }
 
     public MemberJoinResponseDto makeMemberResponse(Long num) {
