@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
+import Signup from "./pages/Signup/Signup.jsx";
 // import QuestionDetail from "./pages/QuestionDetail/QuestionDetail.jsx";
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
         <Route path="/question/:questionId" />
         <Route path="/question/:questionId/questionEdit" />
         <Route path="/question/:questionId/answerEdit/:answerId" />
-        <Route path="/signup" />
-        <Route path="/login" />
+        <Route path="/users/signup" element={<Signup />} />
+        <Route path="/users/login" />
       </Routes>
     </div>
   );
