@@ -1,0 +1,179 @@
+.post {
+  display: flex;
+  padding-top: 16px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.vote {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 36px;
+  color: rgb(186, 191, 196);
+  align-items: center;
+  padding-right: 16px;
+}
+
+.vote > * {
+  margin-bottom: 10px;
+}
+
+.up {
+  width: 32px;
+  height: 32px;
+}
+
+.up:active {
+  color: var(--brand-color);
+}
+
+.down {
+  width: 32px;
+  height: 32px;
+}
+
+.down:active {
+  color: var(--brand-color);
+}
+
+.detail {
+  flex: 1 1 auto;
+  padding-right: 16px;
+}
+
+.check {
+  width: 24px;
+  height: 24px;
+}
+
+.checkin {
+  width: 24px;
+  height: 24px;
+  color: rgb(74, 111, 68);
+}
+
+.mark {
+  width: 18px;
+  height: 18px;
+}
+
+.checkMark {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-color);
+}
+
+.vote:nth-child(4) {
+  color: var(--brand-color);
+}
+
+.clock {
+  width: 18px;
+  height: 18px;
+}
+
+/* bottom */
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-sub-color);
+}
+
+.share {
+  display: flex;
+  flex: 1;
+  height: 11px;
+}
+
+.share > * {
+  margin: 0px 4px;
+}
+
+.share > *:hover {
+  color: #8f959b;
+}
+
+.edtied {
+  color: var(--text-link-color);
+  flex: 1;
+  height: 11px;
+}
+
+.edtied:hover {
+  color: var(--text-link-hover);
+}
+
+.profile {
+  flex: 1;
+}
+
+.user {
+  display: flex;
+}
+
+.name {
+  color: var(--text-link-color);
+}
+
+.name:hover {
+  color: var(--text-link-hover);
+}
+
+.img {
+  width: 32px;
+  height: 32px;
+}
+
+.create {
+  margin: 1px 0px 4px 0px;
+}
+
+.userDetail {
+  margin-left: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.userScore {
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.silver::before {
+  content: " ";
+  display: inline-block;
+  background-color: rgb(106, 115, 124);
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  margin: auto 4px 1px 3px;
+}
+
+.bronze::before {
+  content: " ";
+  display: inline-block;
+  background-color: #cc924f;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  margin: auto 4px 1px 3px;
+}
+
+/* 내용이 없어서 임시로 height 지정 */
+.content {
+  min-height: 230px;
+  padding: 10px 0px 10px 0px;
+  color: var(--text-content-color);
+  font-size: 15px;
+}
+
+/* .post::after {
+  content: ' ';
+  background-color: var(--text-sub-color);
+  height: 1px;
+  display: block;
+} */
