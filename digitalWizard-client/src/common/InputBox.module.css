@@ -1,0 +1,31 @@
+.boxBorder {
+  width: 65%;
+  margin-bottom: 16px;
+  padding: 24px;
+  border: solid 1px;
+  border-radius: 2px;
+  border-color: var(--black-075);
+  background-color: var(--white);
+}
+
+.labelTitle {
+  display: block;
+  font-weight: 600;
+  color: var(--fc-dark);
+}
+
+.description {
+  margin: 2px 0;
+  display: block;
+  font-size: 12px;
+}
+
+.input {
+  width: 95%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  display: inline-block;
+}
+.input::placeholder {
+  color: var(--fc-light);
+}
