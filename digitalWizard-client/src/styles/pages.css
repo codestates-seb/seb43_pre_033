@@ -1,12 +1,11 @@
 /* --- Common --- */
-.content {
-  max-width: 1216px;
-  margin: 0 auto;
-  padding-bottom: 7rem;
+.App {
+  padding-top: 47px;
 }
-/* layout */
 button {
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 .btn {
   padding: 0.63rem;
@@ -24,6 +23,14 @@ button {
 }
 .btnPrimary:hover {
   background-color: var(--btn-primary-bg-hover);
+}
+.btnSub {
+  color: var(--btn-sub-text-color);
+  background-color: var(--btn-sub-bg-color);
+  border: 1px solid var(--btn-sub-bg-hover);
+}
+.btnSub:hover {
+  background-color: var(--btn-sub-bg-hover);
 }
 .btnDanger {
   color: var(--btn-primary-text-color);
@@ -77,4 +84,17 @@ button {
 /* react-quil */
 .test {
   width: 100%;
+}
+
+@media screen and (min-width: 1101px) {
+  .content {
+    max-width: 1216px;
+    margin: 0 auto;
+    padding-bottom: 7rem;
+  }
+  /* layout */
+}
+@media screen and (min-width: 641px) and (max-width: 1100px) {
+}
+@media screen and (max-width: 640px) {
 }

@@ -1,0 +1,135 @@
+.menu,
+.list {
+  font-size: 0.8rem;
+}
+/* -- common -- */
+
+.header {
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.375rem 1rem;
+  box-sizing: border-box;
+  background-color: var(--black-025);
+  border-top: 3px solid var(--brand-color);
+  box-shadow: 0 2px 3px var(--border-color);
+  z-index: 1111;
+}
+.wrap {
+  width: 100%;
+  max-width: 1264px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* layout */
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  flex-grow: auto;
+}
+.logo {
+  display: block;
+  width: 150px;
+}
+.logoImg {
+  width: 100%;
+}
+.menuList {
+  display: flex;
+}
+/* logo wrap */
+
+.searchBar {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.searchIco {
+  position: absolute;
+  left: 0.5rem;
+  color: var(--text-disabled-color);
+}
+.search {
+  padding: 0.33rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+}
+.search:focus {
+  outline: none;
+  border-color: var(--btn-primary-bg-color);
+  box-shadow: 0 0 4px var(--btn-sub-bg-hover);
+}
+/* search */
+
+.menubar,
+.loginBox {
+  display: flex;
+  margin-left: 0.8rem;
+}
+.list {
+  text-align: center;
+}
+.list:not(:first-of-type) {
+  margin-left: 0.4rem;
+}
+.list a {
+  display: block;
+  padding: 0.6rem 0.8em;
+  border-radius: 0.2rem;
+}
+/* right menu */
+
+.login .none {
+  display: none;
+}
+.loginBox > button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+.profile {
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  border-radius: 0.2rem;
+  margin-right: 0.3rem;
+}
+.img {
+  width: 100%;
+  vertical-align: middle;
+}
+.icon {
+  font-size: 1.3rem;
+  margin-left: 1rem;
+  color: var(--text-disabled-color);
+}
+
+@media screen and (min-width: 1101px) {
+  .menu,
+  .searchBar {
+    margin-left: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 815px) and (max-width: 1100px) {
+  .menu,
+  .searchBar {
+    margin-left: 0.7rem;
+  }
+  .none {
+    display: none;
+  }
+}
+@media screen and (max-width: 640px) {
+  .none {
+    display: none;
+  }
+}
