@@ -1,0 +1,91 @@
+.signupAuth {
+  min-height: 100vh;
+  margin: 0% auto;
+  background-color: var(--black-050);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-weight: 600;
+}
+
+.signuptextFrom {
+  padding: 0;
+  width: 180px;
+
+  padding: 20px;
+
+  justify-content: center;
+
+  height: auto;
+  margin: 50 0px;
+  background-color: var(--white);
+}
+
+.signupBar input {
+  display: flex;
+  width: 100%;
+  height: 25px;
+  margin-bottom: 15px;
+}
+
+.textMessageOne {
+  font-size: 0.5rem;
+  color: var(--black-500);
+  border: 1px solid red;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkBoxIcon {
+  font-size: 5px;
+  border: 1px solid blue;
+}
+
+.svgIcon {
+  fill: var(--black-500);
+  size: 7px;
+}
+
+.textMessageTwo {
+  font-size: 0.7rem;
+  color: var(--black-800);
+  border: 1px solid red;
+}
+
+.signupGoolglebtn {
+  margin-bottom: 12px;
+}
+
+.nativeSvgIconGoogle,
+.svgIconGitHub,
+.svgIconFacebook {
+  margin-right: 5px;
+}
+
+.signupGiHubbtn {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.checkboxIcon {
+  display: flex;
+}
+
+.signupFacebookbtn {
+  margin-bottom: 12px;
+}
+
+.under {
+  margin-top: 5px;
+  color: var(--black-700);
+  font-size: 12px;
+}
