@@ -2,7 +2,7 @@
   display: flex;
   padding-top: 16px;
   padding-bottom: 40px;
-  border-bottom: 1px solid #dbdbdb ;
+  border-bottom: 1px solid #dbdbdb;
 }
 
 .vote {
@@ -36,7 +36,6 @@
   color: var(--brand-color);
 }
 
-
 .detail {
   flex: 1 1 auto;
   padding-right: 16px;
@@ -64,7 +63,7 @@
   color: var(--brand-color);
 }
 
-.vote:nth-child(4){
+.vote:nth-child(4) {
   color: var(--brand-color);
 }
 
@@ -72,7 +71,6 @@
   width: 18px;
   height: 18px;
 }
-
 
 /* bottom */
 
@@ -87,10 +85,11 @@
 .share {
   display: flex;
   flex: 1;
+  height: 11px;
 }
 
 .share > * {
-  margin: 4px;
+  margin: 0px 4px;
 }
 
 .share > *:hover {
@@ -100,10 +99,11 @@
 .edtied {
   color: var(--text-link-color);
   flex: 1;
+  height: 11px;
 }
 
 .edtied:hover {
-    color: var(--text-link-hover);
+  color: var(--text-link-hover);
 }
 
 .profile {
@@ -122,7 +122,7 @@
   color: var(--text-link-hover);
 }
 
-.img{
+.img {
   width: 32px;
   height: 32px;
 }
@@ -135,7 +135,7 @@
   margin-left: 8px;
   display: flex;
   flex-direction: column;
-  justify-content:space-around
+  justify-content: space-around;
 }
 
 .userScore {
@@ -144,7 +144,7 @@
 }
 
 .silver::before {
-  content: ' ';
+  content: " ";
   display: inline-block;
   background-color: rgb(106, 115, 124);
   border-radius: 50%;
@@ -154,7 +154,7 @@
 }
 
 .bronze::before {
-  content: ' ';
+  content: " ";
   display: inline-block;
   background-color: #cc924f;
   border-radius: 50%;
@@ -162,8 +162,6 @@
   height: 6px;
   margin: auto 4px 1px 3px;
 }
-
-
 
 /* 내용이 없어서 임시로 height 지정 */
 .content {
