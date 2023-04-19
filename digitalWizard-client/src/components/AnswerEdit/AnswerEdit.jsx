@@ -28,7 +28,7 @@ function AnswerEdit() {
     <>
       <div>
         <div className={styles.memo}>
-          <p className={styles.title}>
+          <p className={styles.memoTitle}>
             Your edit will be placed in a queue until it is peer reviewed.
           </p>
           <p>
@@ -40,17 +40,17 @@ function AnswerEdit() {
           </p>
         </div>
         <div>
-          <div>{dataQ.title}</div>
-          <div>{dataQ.body}</div>
+          <div className={styles.title}>{dataQ.title}</div>
+          <div className={styles.body}>{dataQ.body}</div>
         </div>
       </div>
-      <h2>Answer</h2>
+      <h2 className={styles.answer}>Answer</h2>
       <Editor vaule={value} setFocus={setFocus} />
       <div>미리보기</div>
       <button className={`btnPrimary btn ${styles.btn}`}>Save edits</button>
       <button className={`btn ${styles.cancelBt}`}>Cancel</button>
-      <div className={styles.shadow}>
-        <p className={styles.memoTitle}>How to Edit</p>
+      <div className={styles.modal}>
+        <p className={styles.memoTitle2}>How to Edit</p>
         <div className={styles.memo2}>
           <ul className={styles.ul}>
             <li>Correct minor typos or mistakes</li>

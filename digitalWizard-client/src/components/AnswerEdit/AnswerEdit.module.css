@@ -1,15 +1,18 @@
+* {
+  color: var(--text-content-color);
+}
+
 .memo {
   margin-top: 100px;
   background-color: var(--box-content-color);
   border: 1px solid hsl(47, 69%, 69%);
   border-radius: 3px;
   font-size: 13px;
-  color: var(--text-content-color);
   padding: 16px;
   line-height: 1.5;
 }
 
-.title {
+.memoTitle {
   padding-bottom: 13px;
 }
 
@@ -33,7 +36,6 @@
   border-radius: 0px 0px 3px 3px;
   font-size: 13px;
   border: 1px solid rgb(241, 229, 188);
-  color: var(--text-content-color);
 }
 
 .ul > * {
@@ -41,18 +43,44 @@
   margin-left: 15px;
 }
 
-.memoTitle {
+.memoTitle2 {
   background-color: var(--yellow-100);
   border-radius: 3px 3px 0px 0px;
   padding: 15px;
   border: 1px solid rgb(241, 229, 188);
   border-bottom: 0px;
   font-size: 13px;
-  color: var(--text-content-color);
 }
 
-.shadow {
+.modal {
   width: 300px;
   box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
     0 2px 8px hsla(0, 0%, 0%, 0.05);
+}
+
+.title {
+  font-size: 20px;
+  color: var(--blue);
+  margin: 16px 0px;
+}
+
+.body {
+  font-size: 16.5px;
+}
+
+.answer {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 16px 0px;
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 980px) {
+  .modal {
+  }
 }
