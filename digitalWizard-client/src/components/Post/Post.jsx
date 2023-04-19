@@ -3,11 +3,13 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { ImCheckmark } from "react-icons/im";
 import { RxCounterClockwiseClock } from "react-icons/rx";
+import { useState } from "react";
 import axios from "axios";
 
 function Post({ data, QA }) {
   const edited = day(new Date(data.modifiedAt));
   const create = day(new Date(data.createdAt));
+  const [bookmark, setBookmark] = useState(false);
 
   function day(date) {
     const months = [
@@ -33,20 +35,29 @@ function Post({ data, QA }) {
     return `${month} ${day}, ${year} at ${hour}:${minute}`;
   }
 
-  // const baseUrl = "base";
-  // const url =
-  //   QA === "Q"
-  //     ? baseUrl + "/question/" + data.id
-  //     : baseUrl + "/answer/" + data.id;
+  const baseUrl = "base";
+  const url =
+    QA === "Q"
+      ? baseUrl + "/question/" + data.id
+      : baseUrl + "/answer/" + data.id;
 
-  // function like() {
-  //   axios.post(url + "/likes", {
-  //     data: "",
-  //     headers: {
-  //       Authorization: "token",
-  //     },
-  //   });
-  // }
+  function like() {
+    axios.post(url + "/likes", {
+      data: "",
+      headers: {
+        Authorization: "token",
+      },
+    });
+  }
+
+  function hate() {
+    axios.post(url + "/hates", {
+      data: "",
+      headers: {
+        Authorization: "token",
+      },
+    });
+  }
 
   return (
     <div className={styles.post}>
@@ -54,8 +65,12 @@ function Post({ data, QA }) {
         <AiFillCaretUp className={styles.up} />
         <div>{data.vote}</div>
         <AiFillCaretDown className={styles.down} />
-        <FaBookmark className={styles.checkMark} />
-        <FaRegBookmark className={styles.mark} />
+        {bookmark ? (
+          <FaBookmark className={styles.checkMark} />
+        ) : (
+          <FaRegBookmark className={styles.mark} />
+        )}
+
         {QA === "A" && data.accepted ? (
           <ImCheckmark className={styles.checkin} />
         ) : null}
