@@ -73,6 +73,26 @@
   margin: 16px 0px;
 }
 
+.summary {
+  margin: 10px 0px;
+}
+
+.input {
+  width: 97.5%;
+  padding: 7.8px 9.1px;
+  border: 1px solid var(--black-200);
+  border-radius: 3px;
+}
+
+.input::placeholder {
+  color: var(--black-200);
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 5px hsla(206, 100%, 40%, 15)
+}
+
 @media (max-width: 640px) {
   .title {
     font-size: 17px;
