@@ -3,7 +3,7 @@ import Header from "./components/Header/Header.jsx";
 import Header from "./components/Header/Header.jsx";
 // import QuestionDetail from "./pages/QuestionDetail/QuestionDetail.jsx";
 import AskQuestion from "./pages/AskQuestion/AskQuestion.jsx";
-import AskQuestion from "./pages/AskQuestion/AskQuestion.jsx";
+import QuestionSection from "./components/QuestionSection/QuestionSection.jsx";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" />
-        <Route path="/question" />
+        <Route path="/question" element={<QuestionSection />} />
         <Route path="/question/ask" element={<AskQuestion />} />
         <Route path="/question/:questionId" />
         <Route path="/question/:questionId/questionEdit" />

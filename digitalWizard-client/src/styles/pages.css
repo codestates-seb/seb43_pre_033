@@ -1,6 +1,11 @@
 /* --- Common --- */
+.App {
+  padding-top: 47px;
+}
 button {
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 .btn {
   padding: 0.63rem;
@@ -82,9 +87,6 @@ button {
 }
 
 @media screen and (min-width: 1101px) {
-  .App {
-    padding-top: 47px;
-  }
   .content {
     max-width: 1216px;
     margin: 0 auto;
