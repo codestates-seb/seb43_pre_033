@@ -9,7 +9,7 @@ function Answer() {
   // 실제 url http://localhost:8080/question/1/answers
   // /question/{questionId}/answers
   const [data, setData] = useState([]);
-  const [bind, reset] = useInput("", true);
+  const [value, reset] = useInput("", true);
   const [focus, setFocus] = useState(false);
 
   useEffect(() => {
@@ -18,6 +18,18 @@ function Answer() {
       .then(res => setData(res.data))
       .catch(error => console.log(error));
   }, []);
+
+  function answerAdd(data) {
+    //http://{{BaseUrl}}/question/{questionId}/answers
+    axios
+      .post("http://localhost:4001/answer", {
+        body: data,
+        headers: {
+          Authorization: "token",
+        },
+      })
+      .catch(error => console.log(error));
+  }
 
   return (
     <div className={styles.answer}>
@@ -34,8 +46,10 @@ function Answer() {
           QA={"A"}></Post>
       ))}
       <h2 className={styles.title}>Your Answer</h2>
-      <Editor {...bind} setFocus={setFocus} />
-      <button className={`btnPrimary btn ${styles.btn}`}>
+      <Editor vaule={value} setFocus={setFocus} />
+      <button
+        className={`btnPrimary btn ${styles.btn}`}
+        onClick={() => answerAdd(value.value)}>
         Post Your Answer
       </button>
     </div>

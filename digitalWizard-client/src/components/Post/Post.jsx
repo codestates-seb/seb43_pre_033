@@ -3,7 +3,7 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { ImCheckmark } from "react-icons/im";
 import { RxCounterClockwiseClock } from "react-icons/rx";
-// import axios from "axios";
+import axios from "axios";
 
 function Post({ data, QA }) {
   const edited = day(new Date(data.modifiedAt));

@@ -253,7 +253,8 @@
         "email": "test1@gmail.com",
         "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
         "memberNickName": "김아무개"
-      }
+      },
+      "accepted": true
     },
     {
       "id": 1002,
@@ -266,7 +267,8 @@
         "email": "test1@gmail.com",
         "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
         "memberNickName": "김아무개"
-      }
+      },
+      "accepted": false
     },
     {
       "id": 1003,
@@ -279,7 +281,8 @@
         "email": "test1@gmail.com",
         "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
         "memberNickName": "김아무개"
-      }
+      },
+      "accepted": false
     },
     {
       "id": 1004,
@@ -292,7 +295,8 @@
         "email": "test1@gmail.com",
         "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
         "memberNickName": "김아무개"
-      }
+      },
+      "accepted": false
     },
     {
       "id": 1005,
@@ -305,7 +309,8 @@
         "email": "test1@gmail.com",
         "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
         "memberNickName": "김아무개"
-      }
+      },
+      "accepted": false
     },
     {
       "id": 1006,
@@ -318,7 +323,8 @@
         "email": "test1@gmail.com",
         "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
         "memberNickName": "김아무개"
-      }
+      },
+      "accepted": true
     },
     {
       "id": 1007,
@@ -331,7 +337,8 @@
         "email": "test1@gmail.com",
         "profileImage": "https://avatars.githubusercontent.com/u/120456261?v=4",
         "memberNickName": "김아무개"
-      }
+      },
+      "accepted": false
     },
     {
       "id": 1008,
