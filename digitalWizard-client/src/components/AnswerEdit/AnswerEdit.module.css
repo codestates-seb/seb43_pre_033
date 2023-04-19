@@ -84,7 +84,12 @@
     display: flex;
   }
   .modal {
-    flex: 0 1 600px;
+    flex: 0 0 auto;
+    width: 300px;
     margin-left: 24px;
+  }
+  .shadow {
+    position: fixed;
+    
   }
 }
