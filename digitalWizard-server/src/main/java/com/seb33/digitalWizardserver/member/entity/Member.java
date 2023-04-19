@@ -4,11 +4,10 @@ import com.seb33.digitalWizardserver.answer.entity.Answer;
 import com.seb33.digitalWizardserver.answer.entity.AnswerVote;
 import com.seb33.digitalWizardserver.audit.Auditable;
 import com.seb33.digitalWizardserver.question.entity.Question;
-import com.seb33.digitalWizardserver.vote.entity.Vote;
+import com.seb33.digitalWizardserver.question.entity.Vote;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -1,8 +1,7 @@
-package com.seb33.digitalWizardserver.vote.entity;
+package com.seb33.digitalWizardserver.question.entity;
 
 import com.seb33.digitalWizardserver.audit.Auditable;
 import com.seb33.digitalWizardserver.member.entity.Member;
-import com.seb33.digitalWizardserver.question.entity.Question;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;

@@ -119,7 +119,7 @@ public class QuestionService {
 
     public List<String> extractHashtagNames(String body) {
         List<String> hashtags = new ArrayList<>();
-        Pattern pattern = Pattern.compile("#\\w+");
+        Pattern pattern = Pattern.compile("#([\\p{L}\\d_ㄱ-ㅎㅏ-ㅣ가-힣]+)");
         Matcher matcher = pattern.matcher(body);
         while (matcher.find()) {
             String hashtag = matcher.group().substring(1);

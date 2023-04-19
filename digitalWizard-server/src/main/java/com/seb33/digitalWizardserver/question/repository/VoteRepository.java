@@ -1,8 +1,8 @@
-package com.seb33.digitalWizardserver.vote.repository;
+package com.seb33.digitalWizardserver.question.repository;
 
 import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.question.entity.Question;
-import com.seb33.digitalWizardserver.vote.entity.Vote;
+import com.seb33.digitalWizardserver.question.entity.Vote;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
