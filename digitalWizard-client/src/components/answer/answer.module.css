@@ -1,0 +1,20 @@
+.answer {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-head-color);
+}
+
+.title {
+  font-weight:400 ;
+  font-size: 19px;
+  padding: 20px 0px
+}
+
+
+.btn {
+  margin: 25px 0px
+}
