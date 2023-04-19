@@ -1,0 +1,58 @@
+.memo {
+  margin-top: 100px;
+  background-color: var(--box-content-color);
+  border: 1px solid hsl(47, 69%, 69%);
+  border-radius: 3px;
+  font-size: 13px;
+  color: var(--text-content-color);
+  padding: 16px;
+  line-height: 1.5;
+}
+
+.title {
+  padding-bottom: 13px;
+}
+
+.btn {
+  margin: 25px 0px;
+}
+
+.cancelBt {
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--btn-primary-bg-color);
+}
+
+.cancelBt:hover {
+  background-color: var(--blue-100);
+}
+
+.memo2 {
+  background-color: var(--box-content-color);
+  padding: 15px;
+  line-height: 2;
+  border-radius: 0px 0px 3px 3px;
+  font-size: 13px;
+  border: 1px solid rgb(241, 229, 188);
+  color: var(--text-content-color);
+}
+
+.ul > * {
+  list-style-type: disc;
+  margin-left: 15px;
+}
+
+.memoTitle {
+  background-color: var(--yellow-100);
+  border-radius: 3px 3px 0px 0px;
+  padding: 15px;
+  border: 1px solid rgb(241, 229, 188);
+  border-bottom: 0px;
+  font-size: 13px;
+  color: var(--text-content-color);
+}
+
+.shadow {
+  width: 300px;
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
+    0 2px 8px hsla(0, 0%, 0%, 0.05);
+}
