@@ -72,7 +72,7 @@ function Signup() {
     <div className={styles.signupAuth}>
       <AboutSignup />
       <div className={styles.signupContainer}>
-        <form>
+        <div>
           <div className={styles.loginGoolglebtn}>
             <Button
               text="Sign up with Google"
@@ -81,7 +81,7 @@ function Signup() {
                 backgroundColor: "var(--white)",
                 color: "var(--black)",
                 padding: "10.4px",
-                width: "219px",
+                width: "100%",
               }}
               handleClick={handleRequestSignupGoogle}>
               <svg
@@ -113,7 +113,7 @@ function Signup() {
                 backgroundColor: "var(--black)",
                 color: "var(--white)",
                 padding: "10.4px",
-                width: "219px",
+                width: "100%",
               }}>
               <svg
                 aria-hidden="true"
@@ -135,7 +135,7 @@ function Signup() {
                 backgroundColor: "var(--blue-900)",
                 color: "var(--white)",
                 padding: "10.4px",
-                width: "219px",
+                width: "100%",
               }}>
               <svg
                 aria-hidden="true"
@@ -149,7 +149,7 @@ function Signup() {
               </svg>
             </Button>
           </div>
-        </form>
+        </div>
         <div className={styles.signuptextFrom}>
           <div className={styles.fromContainer}>
             <div className={styles.signupBar}>
@@ -188,17 +188,19 @@ function Signup() {
                   Passwords must contain at least eight characters, including at
                   least 1 letter and 1 number.
                 </p>
+                <div className={styles.recap}>
+                  <ReCAPTCHA
+                    className={styles.recaptcha}
+                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                    onChange={() => recaptchaOnChange()}
+                  />
+                  {/* {errorMessage ? (
+                    <p className=" mb-4 font-medium text-xs text-red-600">
+                      {errorMessage}
+                    </p>
+                  ) : null} */}
+                </div>
 
-                <ReCAPTCHA
-                  className=" scale-90 mr-80 mb-4"
-                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                  onChange={() => recaptchaOnChange()}
-                />
-                {errorMessage ? (
-                  <p className=" mb-4 font-medium text-xs text-red-600">
-                    {errorMessage}
-                  </p>
-                ) : null}
                 <div className={styles.up}>
                   <div className={styles.checkbox}>
                     <input
@@ -224,7 +226,7 @@ function Signup() {
                   <Button
                     text="Sign up"
                     addStyle={{
-                      width: "190px",
+                      width: "316px",
                     }}
                   />
                 </div>
