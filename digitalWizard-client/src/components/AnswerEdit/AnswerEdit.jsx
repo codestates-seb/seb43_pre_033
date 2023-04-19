@@ -48,6 +48,10 @@ function AnswerEdit() {
         <h2 className={styles.answer}>Answer</h2>
         <Editor vaule={value} setFocus={setFocus} />
         <div>미리보기</div>
+        <h2 className={styles.summary}>Edit Summary</h2>
+        <input
+          className={styles.input}
+          placeholder="briefly explain your changes (corrected spelling, fixed grammar, improved formatting)"></input>
         <button className={`btnPrimary btn ${styles.btn}`}>Save edits</button>
         <button className={`btn ${styles.cancelBt}`}>Cancel</button>
       </div>
