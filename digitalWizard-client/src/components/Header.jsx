@@ -43,7 +43,7 @@ const Header = () => {
               path="/users/signup"
               addStyle={{
                 borderColor: "var(--powder-500)",
-                backgroundColor: "var(--btn-primary-bg-color)",
+                backgroundColor: "var(--powder-100)",
                 color: "var(--powder-700)",
               }}
             />
