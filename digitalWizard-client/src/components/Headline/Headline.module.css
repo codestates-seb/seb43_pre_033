@@ -1,0 +1,14 @@
+.headline {
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  font-size: 1.68rem;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 640px) {
+  .title {
+    font-size: 1.37rem;
+  }
+}

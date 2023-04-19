@@ -1,0 +1,17 @@
+.signupContainer {
+  margin-right: 100px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.svgIcon {
+  fill: var(--blue-500);
+  margin-right: 10px;
+}
+
+.iconContainer {
+  display: flex;
+  padding: 5px;
+  margin-top: 10px;
+}
