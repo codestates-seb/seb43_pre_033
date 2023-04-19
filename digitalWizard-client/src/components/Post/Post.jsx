@@ -5,11 +5,15 @@ import { ImCheckmark } from "react-icons/im";
 import { RxCounterClockwiseClock } from "react-icons/rx";
 import { useState } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
+//
 function Post({ data, QA }) {
+  // 날짜 계산
   const edited = day(new Date(data.modifiedAt));
   const create = day(new Date(data.createdAt));
   const [bookmark, setBookmark] = useState(false);
+  const [result, setResult] = useState(data.vote);
 
   function day(date) {
     const months = [
@@ -35,6 +39,7 @@ function Post({ data, QA }) {
     return `${month} ${day}, ${year} at ${hour}:${minute}`;
   }
 
+  // 좋아요, 싫어요 함수
   const baseUrl = "base";
   const url =
     QA === "Q"
@@ -42,17 +47,35 @@ function Post({ data, QA }) {
       : baseUrl + "/answer/" + data.id;
 
   function like() {
-    axios.post(url + "/likes", {
-      data: "",
-      headers: {
-        Authorization: "token",
-      },
-    });
+    axios
+      .post(url + "/likes", {
+        data: "",
+        headers: {
+          Authorization: "token",
+        },
+      })
+      .get(url + "/results")
+      .then(res => setResult(res.result));
   }
 
   function hate() {
-    axios.post(url + "/hates", {
-      data: "",
+    axios
+      .post(url + "/hates", {
+        data: "",
+        headers: {
+          Authorization: "token",
+        },
+      })
+      .get(url + "/results")
+      .then(res => setResult(res.result));
+  }
+
+  // 삭제 함수
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const delURL = QA === "Q" ? currentPath : currentPath + "/answers/" + data.id;
+  function deletePost() {
+    axios.delete(delURL, {
       headers: {
         Authorization: "token",
       },
@@ -63,7 +86,7 @@ function Post({ data, QA }) {
     <div className={styles.post}>
       <div className={styles.vote}>
         <AiFillCaretUp className={styles.up} />
-        <div>{data.vote}</div>
+        <div>{result}</div>
         <AiFillCaretDown className={styles.down} />
         {bookmark ? (
           <FaBookmark className={styles.checkMark} />
