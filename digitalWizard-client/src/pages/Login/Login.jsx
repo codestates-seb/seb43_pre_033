@@ -18,7 +18,7 @@ const Login = () => {
 
   // 로그인 요청 처리
   const loginRequestHandler = () => {
-    const BASE_URL = "https://728f-121-133-205-229.ngrok-free.app";
+    const BASE_URL = "https://8abf-121-133-205-229.ngrok-free.app";
     const { email, password } = loginInfo;
     if (!email || !password) {
       setErrorMessage("아이디와 비밀번호를 입력하세요");

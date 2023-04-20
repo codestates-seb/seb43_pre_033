@@ -20,15 +20,22 @@ function Signup() {
     setRecaptchaState({ isVerified: true });
   };
 
-  const BASE_URL = "https://f009-121-133-205-229.ngrok-free.app";
+  const BASE_URL = "https://8abf-121-133-205-229.ngrok-free.app";
   const register = () => {
     axios
-      .post(`${BASE_URL}/members`, {
-        username: username,
-        email: email,
-        password: password,
-      })
+      .post(
+        "/members",
+        {
+          memberNickName: username,
+          email: email,
+          password: password,
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then(response => {
+        console.log(response);
         // Handle success.
         console.log("Well done!");
         console.log("User profile", response.data.user);
