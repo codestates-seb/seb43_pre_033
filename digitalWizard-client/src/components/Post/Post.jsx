@@ -3,11 +3,12 @@ import { AiFillCaretDown, AiFillCaretUp, AiOutlineClose } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { ImCheckmark } from "react-icons/im";
 import { RxCounterClockwiseClock } from "react-icons/rx";
-
 import { useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import Comment from "../Comment/Comment.jsx";
+import { useLocation } from "react-router-dom";
+import useModal from "../../hooks/useMdoal";
 
 //
 function Post({ data, QA }) {
@@ -16,7 +17,7 @@ function Post({ data, QA }) {
   const create = day(new Date(data.createdAt));
   const [bookmark, setBookmark] = useState(false);
   const [result, setResult] = useState(data.vote);
-  const [modal, setModal] = useState(false);
+  const [modal, openModal, closeModal] = useModal(false);
 
   function day(date) {
     const months = [
@@ -129,7 +130,7 @@ function Post({ data, QA }) {
           <div className={styles.share}>
             <div>Share</div>
             <div>Edit</div>
-            <div onClick={() => setModal(true)} role="none">
+            <div onClick={openModal} role="none">
               Delete
             </div>
           </div>
@@ -141,7 +142,7 @@ function Post({ data, QA }) {
               role="none">
               <div className={styles.modalContent}>
                 <button className={styles.btnClose}>
-                  <AiOutlineClose onClick={() => setModal(false)} role="none" />
+                  <AiOutlineClose onClick={closeModal} role="none" />
                 </button>
                 <dl className={styles.modalMsg}>
                   <dt className={styles.msgHead}>
@@ -159,9 +160,7 @@ function Post({ data, QA }) {
                     onClick={() => deletePost()}>
                     {QA === "A" ? "Discard Answer" : "Discard Question"}
                   </button>
-                  <button
-                    className="btn btnNormal"
-                    onClick={() => setModal(false)}>
+                  <button className="btn btnNormal" onClick={closeModal}>
                     Cancel
                   </button>
                 </div>
