@@ -200,56 +200,59 @@
   font-size: 15px;
 }
 
-/* .post::after {
-  content: ' ';
-  background-color: var(--text-sub-color);
-  height: 1px;
-  display: block;
-} */
+/* 모달 css */
 
-/* 반응형 추가 */
-@media screen and (min-width: 416px) and (max-width: 780px) {
-  .bottom {
-    display: block;
-    position: relative;
-    padding-bottom: 130px;
+.modal {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  background-color: var(--modal-bg);
+}
+
+.modalContent {
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  position: relative;
+  box-shadow: 0 1px 6px var(--text-content-color);
+}
+.btnClose {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  background-color: transparent;
+  border: none;
+}
+.btnClose svg {
+  font-size: 1rem;
+}
+.modalMsg {
+  margin-bottom: 1.5rem;
+}
+.msgHead {
+  font-size: 1.68rem;
+  margin-bottom: 1rem;
+  color: var(--danger-text);
+}
+.msgBody {
+  font-size: 0.81rem;
+}
+
+@media screen and (max-width: 640px) {
+  .modalContent {
+    max-width: 375px;
+    width: 90%;
   }
-  .bottom:after {
-    content: "";
-    display: block;
-    visibility: hidden;
-    clear: both;
+  .msgHead {
+    font-size: 1.4rem;
   }
-  .bottom > * {
-    float: left;
-  }
-  .share {
-    width: calc(100% - 210px);
-  }
-  .edtied {
-    width: 210px;
-    text-align: left;
-  }
-  .profile {
-    position: absolute;
-    top: 3rem;
-    right: 0;
+  .msgBody {
+    font-size: 0.7rem;
   }
 }
-@media screen and (max-width: 415px) {
-  .bottom {
-    flex-direction: column;
-  }
-  .share {
-    margin-bottom: 20px;
-  }
-  .edtied {
-    width: 205px;
-    margin: 0 0 30px auto;
-  }
-  .profile {
-    width: 200px;
-    padding: 0px 6px 3px 6px;
-  }
-}
-/* 반응형 추가 */
