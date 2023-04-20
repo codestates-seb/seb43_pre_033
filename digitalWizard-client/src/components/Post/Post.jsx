@@ -1,8 +1,9 @@
 import styles from "./Post.module.css";
-import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { AiFillCaretDown, AiFillCaretUp, AiOutlineClose } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { ImCheckmark } from "react-icons/im";
 import { RxCounterClockwiseClock } from "react-icons/rx";
+
 import { useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -14,6 +15,7 @@ function Post({ data, QA }) {
   const create = day(new Date(data.createdAt));
   const [bookmark, setBookmark] = useState(false);
   const [result, setResult] = useState(data.vote);
+  const [modal, setModal] = useState(false);
 
   function day(date) {
     const months = [
@@ -75,11 +77,14 @@ function Post({ data, QA }) {
   const currentPath = location.pathname;
   const delURL = QA === "Q" ? currentPath : currentPath + "/answers/" + data.id;
   function deletePost() {
-    axios.delete(delURL, {
-      headers: {
-        Authorization: "token",
-      },
-    });
+    // axios.delete(delURL, {
+    //   headers: {
+    //     Authorization: "token",
+    //   },
+    // });
+
+    // json 서버 테스트용
+    axios.delete("http://localhost:4001/answer/" + data.id);
   }
 
   return (
@@ -105,9 +110,47 @@ function Post({ data, QA }) {
           <div className={styles.share}>
             <div>Share</div>
             <div>Edit</div>
-            <div>Follow</div>
+            <div onClick={() => setModal(true)} role="none">
+              Delete
+            </div>
           </div>
+          {/* 삭제 확인 모달 */}
+          {modal ? (
+            <div
+              className={`close ${styles.modal}`}
+              // onClick={handleModal}
+              role="none">
+              <div className={styles.modalContent}>
+                <button className={styles.btnClose}>
+                  <AiOutlineClose onClick={() => setModal(false)} role="none" />
+                </button>
+                <dl className={styles.modalMsg}>
+                  <dt className={styles.msgHead}>
+                    {QA === "A" ? "Discard Answer" : "Discard Question"}
+                  </dt>
+                  <dd className={styles.msgBody}>
+                    {QA === "A"
+                      ? "Are you sure you want to discard this Answer? This cannot be undone."
+                      : "Are you sure you want to discard this Question? This cannot be undone."}
+                  </dd>
+                </dl>
+                <div>
+                  <button
+                    className="btn btnDanger"
+                    onClick={() => deletePost()}>
+                    {QA === "A" ? "Discard Answer" : "Discard Question"}
+                  </button>
+                  <button
+                    className="btn btnNormal"
+                    onClick={() => setModal(false)}>
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : null}
           <div className={styles.edtied}>edited {edited}</div>
+          {/* 사람프로필 */}
           <div className={styles.profile}>
             <div className={styles.create}>
               {QA === "A" ? "answered " + create : "aked " + create}
