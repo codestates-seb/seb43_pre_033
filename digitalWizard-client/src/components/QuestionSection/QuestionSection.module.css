@@ -1,0 +1,20 @@
+.section {
+  display: flex;
+  padding-top: 1.5rem;
+}
+.titleWrap {
+  padding: 0 0 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--black-150);
+}
+
+@media screen and (min-width: 1101px) {
+  .mainbar {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  /* layout */
+}
+@media screen and (min-width: 641px) and (max-width: 1100px) {
+}
+@media screen and (max-width: 640px) {
+}
