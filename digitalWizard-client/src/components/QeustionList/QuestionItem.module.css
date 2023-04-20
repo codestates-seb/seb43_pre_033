@@ -1,15 +1,10 @@
 .question {
   display: flex;
-  padding: 1rem;
+  padding: 1rem 1rem 0rem 1rem;
   border-bottom: 1px solid var(--border-color);
 }
-
 .summary {
-  display: grid;
-  align-content: start;
-  text-align: right;
   gap: 0.8rem;
-  min-width: 110px;
   font-size: 0.81rem;
 }
 .vote {
@@ -22,7 +17,6 @@
 
 .postWrap {
   flex-grow: 1;
-  margin-left: 1rem;
 }
 .post {
   margin-bottom: 0.5rem;
@@ -38,25 +32,22 @@
 .title *:hover {
   color: var(--text-link-hover);
 }
-.body {
-  font-size: 0.81rem;
-  line-height: 1.1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
 
 .summaryBottom {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
+.tags {
+  margin-bottom: 1rem;
+}
 .tags button:not(:first-of-type) {
   margin-left: 0.3rem;
 }
 
+.user {
+  margin-bottom: 1rem;
+}
 .user,
 .profile {
   display: flex;
@@ -86,4 +77,56 @@
 }
 .date {
   color: var(--text-sub-color);
+}
+
+@media screen and (min-width: 1101px) {
+  .summary {
+    display: grid;
+    align-content: start;
+    text-align: right;
+    min-width: 110px;
+  }
+  .postWrap {
+    margin-left: 1rem;
+  }
+  .body {
+    font-size: 0.81rem;
+    line-height: 1.1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
+@media screen and (min-width: 641px) and (max-width: 1100px) {
+  .question {
+    flex-direction: column;
+  }
+  .summary {
+    display: flex;
+    margin-bottom: 0.5rem;
+  }
+  .body {
+    display: none;
+  }
+}
+@media screen and (max-width: 640px) {
+  .question {
+    flex-direction: column;
+  }
+  .summary {
+    display: flex;
+    margin-bottom: 0.5rem;
+  }
+  .title * {
+    font-size: 0.88rem;
+    line-height: 1rem;
+  }
+  .body {
+    display: none;
+  }
+  .user {
+    margin: 0 0 1rem auto;
+  }
 }
