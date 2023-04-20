@@ -1,7 +1,7 @@
-import Filters from "../Filters/Filters.jsx";
-import Headline from "../Headline/Headline.jsx";
+import Filters from "../../components/Filters/Filters.jsx";
+import Headline from "../../components/Headline/Headline.jsx";
 import styles from "./QuestionSection.module.css";
-import QuestionList from "../QeustionList/QuestionList.jsx";
+import QuestionList from "../../components/QeustionList/QuestionList.jsx";
 import { useEffect, useState } from "react";
 import { getQuestion } from "../../api/questionApi.js";
 import { RiFolderWarningLine } from "react-icons/ri";
