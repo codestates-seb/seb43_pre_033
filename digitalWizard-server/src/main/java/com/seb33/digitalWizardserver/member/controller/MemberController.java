@@ -113,4 +113,9 @@ public class MemberController {
         MemberJoinResponseDto responseDto = memberMapper.memberToMemberResponse(updatedMember);
         return new ResponseEntity(responseDto, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/**", method = RequestMethod.OPTIONS)
+    public ResponseEntity<Void> handleOptionsRequest() {
+        return ResponseEntity.ok().build();
+    }
 }

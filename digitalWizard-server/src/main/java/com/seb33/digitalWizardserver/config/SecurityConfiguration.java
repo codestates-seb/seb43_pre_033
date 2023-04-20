@@ -64,7 +64,7 @@ public class SecurityConfiguration {
 //                                .antMatchers(HttpMethod.GET, "/*/members/**").hasAnyRole("USER", "ADMIN")
 //                                .antMatchers(HttpMethod.DELETE, "/*/members/**").hasRole("USER")
 //                                .anyRequest().permitAll() // 위에 설정한 요청 외의 모든 요청 허용
-                );
+                ).oauth2Login(withDefaults());
         return http.build();
     }
 
@@ -78,7 +78,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() { // CorsConfigurationSource Bean 생성을 통해 구체적인 CORS 정책을 설정
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));   // 모든 출처(Origin)에 대해 스크립트 기반의 HTTP 통신을 허용하도록 설정
-        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE"));  // 파라미터로 지정한 HTTP Method에 대한 HTTP 통신을 허용
+        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE", "OPTIONS"));  // 파라미터로 지정한 HTTP Method에 대한 HTTP 통신을 허용
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();   // CorsConfigurationSource 인터페이스의 구현 클래스인 UrlBasedCorsConfigurationSource 클래스의 객체를 생성
         source.registerCorsConfiguration("/**", configuration);      // 모든 URL에 앞에서 구성한 CORS 정책(CorsConfiguration)을 적용
