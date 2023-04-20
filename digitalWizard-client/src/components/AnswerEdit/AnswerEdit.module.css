@@ -1,4 +1,4 @@
-* {
+.answerEdit {
   color: var(--text-content-color);
 }
 
@@ -90,7 +90,7 @@
 
 .input:focus {
   outline: none;
-  box-shadow: 0 0 5px hsla(206, 100%, 40%, 15)
+  box-shadow: 0 0 5px hsla(206, 100%, 40%, 15);
 }
 
 @media (max-width: 640px) {
@@ -110,6 +110,5 @@
   }
   .shadow {
     position: fixed;
-    
   }
 }
