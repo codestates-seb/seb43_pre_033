@@ -1,8 +1,15 @@
 .signupContainer {
-  margin-right: 100px;
+  margin-right: 50px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  width: 421px;
+  height: 300px;
+  text-align: left;
+  border: 1px solid red;
+}
+
+h1 {
+  font-size: 20px;
 }
 
 .svgIcon {
