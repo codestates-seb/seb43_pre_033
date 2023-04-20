@@ -1,9 +1,12 @@
 .headline {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  height: 49px;
 }
 .title {
   font-size: 1.68rem;
+  line-height: 2rem;
   font-weight: 500;
 }
 

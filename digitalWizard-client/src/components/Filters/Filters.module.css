@@ -1,7 +1,111 @@
 .filters {
   display: flex;
+  font-size: 1.6rem;
+  font-weight: 500;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
 }
+.size {
+  font-size: 1.1rem;
+}
+.btnGroup {
+  display: flex;
+}
+.btnGroup button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  color: var(--text-sub-color);
+}
+.sortedWrap {
+  display: flex;
+  border: 1px solid var(--border-color);
+  border-radius: 0.3rem;
+}
+.sorted:not(:last-of-type) {
+  border-right: 1px solid var(--border-color);
+}
+.sorted:not(.selected):hover {
+  color: var(--sort-text-hover);
+  background-color: var(--sort-bg-hover);
+}
+.sorted.selected {
+  color: var(--sort-text-hover);
+  background-color: var(--sort-bg-active);
+}
+.btnFilter {
+  margin-left: 1rem;
+  border-radius: 0.2rem;
+}
+.btnFilter.selected {
+  color: var(--sort-text-hover);
+  background-color: var(--btn-sub-bg-hover);
+}
+.btnNormal:active {
+  color: var(--btn-sub-text-color);
+  box-shadow: 0px 0px 6px var(--border-color);
+}
+.tag {
+  font-size: 0.5rem;
+  padding: 0 0.4rem;
+  border-radius: 0.2rem;
+  margin-left: 0.3rem;
+  color: white;
+  background-color: var(--blue);
+}
+/* buttons */
+
+.dropFilter {
+  margin-top: 0.75rem;
+  background-color: var(--black-050);
+  border: 1px solid var(--black-100);
+}
+.filterWrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.fieldset {
+  margin: 1rem;
+}
+.legend {
+  font-weight: 500;
+}
+.legend,
+.list {
+  font-size: 0.93rem;
+  margin: 0.4rem;
+  color: var(--text-active-color);
+}
+.list {
+  font-size: 0.93rem;
+}
+.inputTag {
+  border: 1px solid var(--border-color);
+  height: 28px;
+  width: 100%;
+  padding: 0.3rem;
+  outline: none;
+  margin-left: 15%;
+}
+.inputTag::placeholder {
+  color: var(--border-color);
+}
+.inputTag:focus {
+  box-shadow: 0 0 4px var(--btn-sub-bg-hover);
+  border-color: var(--btn-primary-bg-color);
+}
+.btnWrap {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid var(--black-100);
+}
+.btnCancle {
+  margin: 0 0 0 auto;
+  padding: 0.6rem;
+  color: var(--btn-sub-text-color);
+  font-size: 0.75rem;
+}
+/* filter drop */
 
 @media screen and (min-width: 1101px) {
 }
