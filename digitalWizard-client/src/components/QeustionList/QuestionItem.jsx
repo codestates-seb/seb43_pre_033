@@ -22,7 +22,9 @@ export default function QuestionItem({ question }) {
       <div className={styles.postWrap}>
         <dl className={styles.post}>
           <dt className={styles.title}>
-            <Link to={`/question/${id}`}>{title}</Link>
+            <Link to={`/question/${id}`} state={{ post: question }}>
+              {title}
+            </Link>
           </dt>
           <dd className={styles.body}>{body}</dd>
         </dl>
