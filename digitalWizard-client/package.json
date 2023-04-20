@@ -20,9 +20,13 @@
     "redux": "^4.2.1",
     "styled-components": "^5.3.9",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4"
 =======
+=======
+    "timeago.js": "^4.0.2",
+>>>>>>> dfbe7c8 (feat : timeago format)
     "web-vitals": "^2.1.4",
     "zustand": "^4.3.7"
 >>>>>>> 580cfc5 (chore : zustand 상태관리)
