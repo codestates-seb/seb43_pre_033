@@ -19,8 +19,13 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
     "styled-components": "^5.3.9",
+<<<<<<< HEAD
     "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4"
+=======
+    "web-vitals": "^2.1.4",
+    "zustand": "^4.3.7"
+>>>>>>> 580cfc5 (chore : zustand 상태관리)
   },
   "scripts": {
     "start": "react-scripts start",
