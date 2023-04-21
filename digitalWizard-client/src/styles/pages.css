@@ -56,6 +56,13 @@ button {
   box-shadow: 0px 0px 6px var(--border-color);
 }
 /* button */
+.tag {
+  padding: 0.2rem 0.37rem;
+  border: none;
+  border-radius: 0.13rem;
+  font-size: 0.7rem;
+}
+/* tag */
 /* --- Common --- */
 
 /* react-quil */
