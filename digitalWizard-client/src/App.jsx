@@ -4,6 +4,7 @@ import Signup from "./pages/Signup/Signup.jsx";
 import QuestionDetail from "./pages/QuestionDetail/QuestionDetail.jsx";
 import AskQuestion from "./pages/AskQuestion/AskQuestion.jsx";
 import QuestionSection from "./pages/QuestionSection/QuestionSection.jsx";
+import AskQuestionEdit from "./pages/AskQuestionEdit/AskQuestionEdit.jsx";
 
 function App() {
   return (
@@ -14,7 +15,10 @@ function App() {
         <Route path="/question" element={<QuestionSection />} />
         <Route path="/question/ask" element={<AskQuestion />} />
         <Route path="/question/:questionId" element={<QuestionDetail />} />
-        <Route path="/question/:questionId/questionEdit" />
+        <Route
+          path="/question/:questionId/questionEdit"
+          element={<AskQuestionEdit />}
+        />
         <Route path="/question/:questionId/answerEdit/:answerId" />
         <Route path="/users/signup" element={<Signup />} />
         <Route path="/users/login" />
