@@ -2,15 +2,11 @@ package com.seb33.digitalWizardserver.config;
 
 import com.seb33.digitalWizardserver.auth.filter.JwtAuthenticationFilter;
 import com.seb33.digitalWizardserver.auth.filter.JwtVerificationFilter;
-import com.seb33.digitalWizardserver.auth.handler.MemberAccessDeniedHandler;
-import com.seb33.digitalWizardserver.auth.handler.MemberAuthenticationEntryPoint;
-import com.seb33.digitalWizardserver.auth.handler.MemberAuthenticationFailureHandler;
-import com.seb33.digitalWizardserver.auth.handler.MemberAuthenticationSuccessHandler;
+import com.seb33.digitalWizardserver.auth.handler.*;
 import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.utils.CustomAuthorityUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,6 +15,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -42,8 +39,8 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .headers().frameOptions().sameOrigin() // 동일 출처로부터 들어오는 request만 페이지 렌더링을 허용 (H2 웹 콘솔(개발단계용으로) 쓰기 위해 추가한거)
-                .and()
+//                .headers().frameOptions().sameOrigin() // 동일 출처로부터 들어오는 request만 페이지 렌더링을 허용 (H2 웹 콘솔(개발단계용으로) 쓰기 위해 추가한거)
+//                .and()
                 .csrf().disable()        // CSRF공격에 대한 Spring Security에 대한 설정을 비활성화
                 .cors(withDefaults())    // CORS 설정 추가 (corsConfigurationSource라는 이름으로 등록된 Bean을 이용)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)  // 세션을 생성하지 않도록 설정
@@ -64,7 +61,10 @@ public class SecurityConfiguration {
 //                                .antMatchers(HttpMethod.GET, "/*/members/**").hasAnyRole("USER", "ADMIN")
 //                                .antMatchers(HttpMethod.DELETE, "/*/members/**").hasRole("USER")
 //                                .anyRequest().permitAll() // 위에 설정한 요청 외의 모든 요청 허용
-                ).oauth2Login(withDefaults());
+                );
+//                .oauth2Login(oauth2 -> oauth2
+//                        .successHandler(new OAuth2MemberSuccessHandler(jwtTokenizer, authorityUtils, memberService))  // OAuth 2 인증이 성공한 뒤 실행되는 핸들러를 추가
+//                );
         return http.build();
     }
 
@@ -101,7 +101,8 @@ public class SecurityConfiguration {
             JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, authorityUtils);  // JwtVerificationFilter의 인스턴스를 생성하면서 JwtVerificationFilter에서 사용되는 객체들을 생성자로 DI
 
             builder.addFilter(jwtAuthenticationFilter)  // addFilter() 메서드를 통해 JwtAuthenticationFilter를 Spring Security Filter Chain에 추가
-                    .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);   // JwtVerificationFilter는 JwtAuthenticationFilter에서 로그인 인증에 성공한 후 발급 받은 JWT가 클라이언트의 request header(Authorization 헤더)에 포함되어 있을 경우에만 동작한다.
+                    .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class)   // JwtVerificationFilter는 JwtAuthenticationFilter에서 로그인 인증에 성공한 후 발급 받은 JWT가 클라이언트의 request header(Authorization 헤더)에 포함되어 있을 경우에만 동작한다.
+                    .addFilterAfter(jwtVerificationFilter, OAuth2LoginAuthenticationFilter.class); // OAuth2로그인 성공 시 jwtVerificationFilter 호출
         }
     }
 }

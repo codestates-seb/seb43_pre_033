@@ -27,8 +27,14 @@ public class Member extends Auditable {
     private String profileImage;
     private String password;
 
-    public Member(Long memberId, String memberNickName, String email, String profileImage) {
+    public Member(Long memberId, String memberNickName, String email, String profileImage) { // 테스트코드 작성용 생성자
         this.memberId = memberId;
+        this.memberNickName = memberNickName;
+        this.email = email;
+        this.profileImage = profileImage;
+    }
+
+    public Member(String memberNickName, String email, String profileImage) { // OAuth2 로그인용 생성자
         this.memberNickName = memberNickName;
         this.email = email;
         this.profileImage = profileImage;
