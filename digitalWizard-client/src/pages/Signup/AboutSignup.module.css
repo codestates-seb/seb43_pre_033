@@ -1,11 +1,12 @@
 .signupContainer {
+  padding-bottom: 60px;
   margin-right: 50px;
   display: flex;
   flex-direction: column;
   width: 421px;
   height: 300px;
   text-align: left;
-  border: 1px solid red;
+  /* position: absolute; */
 }
 
 h1 {
@@ -21,4 +22,9 @@ h1 {
   display: flex;
   padding: 5px;
   margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.underText > p {
+  margin-bottom: 10px;
 }

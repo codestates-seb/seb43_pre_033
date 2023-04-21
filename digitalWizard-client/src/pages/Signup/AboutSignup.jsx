@@ -37,13 +37,18 @@ function AboutSignup() {
         </svg>
         <p>Earn reputation and badges</p>
       </div>
-
-      <p style={{ color: "var(--black-500)", fontSize: "13px" }}>
-        Collaborate and share knowledge with a private group for FREE.
-      </p>
-      <p style={{ color: "var(--btn-primary-bg-color)", fontSize: "13px" }}>
-        Get Stack Overflow for Teams free for up to 50 users.
-      </p>
+      <div className={styles.underText}>
+        <p
+          style={{
+            color: "var(--black-500)",
+            fontSize: "13px",
+          }}>
+          Collaborate and share knowledge with a private group for FREE.
+        </p>
+        <p style={{ color: "var(--blue-500)", fontSize: "13px" }}>
+          Get Stack Overflow for Teams free for up to 50 users.
+        </p>
+      </div>
     </div>
   );
 }
