@@ -5,7 +5,7 @@ import { ImCheckmark } from "react-icons/im";
 import { RxCounterClockwiseClock } from "react-icons/rx";
 import { useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useModal from "../../hooks/useMdoal";
 import Comment from "../Comment/Comment.jsx";
 
