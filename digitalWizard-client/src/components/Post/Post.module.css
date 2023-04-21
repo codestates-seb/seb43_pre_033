@@ -244,6 +244,36 @@
   font-size: 0.81rem;
 }
 
+/* 반응형 추가 */
+@media screen and (min-width: 416px) and (max-width: 780px) {
+  .bottom {
+    display: block;
+    position: relative;
+    padding-bottom: 130px;
+  }
+  .bottom:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    clear: both;
+  }
+  .bottom > * {
+    float: left;
+  }
+  .share {
+    width: calc(100% - 210px);
+  }
+  .edtied {
+    width: 210px;
+    text-align: left;
+  }
+  .profile {
+    position: absolute;
+    top: 3rem;
+    right: 0;
+  }
+}
+
 @media screen and (max-width: 640px) {
   .modalContent {
     max-width: 375px;
@@ -256,3 +286,21 @@
     font-size: 0.7rem;
   }
 }
+
+@media screen and (max-width: 415px) {
+  .bottom {
+    flex-direction: column;
+  }
+  .share {
+    margin-bottom: 20px;
+  }
+  .edtied {
+    width: 205px;
+    margin: 0 0 30px auto;
+  }
+  .profile {
+    width: 200px;
+    padding: 0px 6px 3px 6px;
+  }
+}
+/* 반응형 추가 */

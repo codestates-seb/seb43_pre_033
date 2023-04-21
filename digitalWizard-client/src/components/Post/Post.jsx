@@ -129,10 +129,16 @@ function Post({ data, QA }) {
         <div className={styles.bottom}>
           <div className={styles.share}>
             <div>Share</div>
-            <div>Edit</div>
+            <div onClick={handleEdit} role="none">
+                  Edit
+                </div>
             <div onClick={openModal} role="none">
               Delete
             </div>
+            {QA === "A" && create !== edited && (
+                <div className={styles.edtied}>edited {edited}</div>
+                // 답변이 수정 되었을 때만 렌더링
+              )}
           </div>
           {/* 삭제 확인 모달 */}
           {modal ? (
@@ -192,6 +198,56 @@ function Post({ data, QA }) {
         </div>
       </div>
     </div>
+            {QA === "A" && data.accepted ? (
+              <ImCheckmark className={styles.checkin} />
+            ) : null}
+            <RxCounterClockwiseClock className={styles.clock} />
+          </div>
+          <div className={styles.detail}>
+            <div className={styles.content}>{data.body}</div>
+            <div className={styles.bottom}>
+              <div className={styles.share}>
+                <div>Share</div>
+                <div onClick={handleEdit} role="none">
+                  Edit
+                </div>
+                <div>Follow</div>
+              </div>
+              {QA === "A" && create !== edited && (
+                <div className={styles.edtied}>edited {edited}</div>
+                // 답변이 수정 되었을 때만 렌더링
+              )}
+              <div
+                className={`${QA === "Q" && styles.hasBg} ${styles.profile}`}>
+                {/* 작성자 프로필 배경색 추가 class */}
+                <div className={styles.create}>
+                  {QA === "A" ? "answered " + create : "aked " + create}
+                </div>
+                <div className={styles.user}>
+                  <img
+                    src={data.member.profileImage}
+                    alt="아바타이미지"
+                    className={styles.img}
+                  />
+                  <div className={styles.userDetail}>
+                    <div className={styles.name}>
+                      {data.member.memberNickName}
+                    </div>
+                    <div>
+                      <span className={styles.userScore}>1,463</span>
+                      <span className={styles.silver}>8</span>
+                      <span className={styles.bronze}>8</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <Comment id={data.id} />
+        {/* 댓글 컴포넌트 추가, 답변만 border 추가 */}
+      </div>
+    </>
   );
 }
 
