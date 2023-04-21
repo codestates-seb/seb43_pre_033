@@ -196,6 +196,11 @@
   color: var(--text-content-color);
   font-size: 15px;
 }
+.tags {
+  display: flex;
+  gap: 0.4rem;
+  margin: 1rem 0;
+}
 
 /* 모달 css */
 
