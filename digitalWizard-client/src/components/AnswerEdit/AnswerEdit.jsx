@@ -23,6 +23,7 @@ function AnswerEdit() {
       .catch(error => console.log(error));
   }, []);
 
+  console.log(value.value);
   return (
     <div className={styles.answerEdit}>
       <div className={styles.content}>
@@ -45,8 +46,8 @@ function AnswerEdit() {
           </div>
         </div>
         <h2 className={styles.answer}>Answer</h2>
-        <Editor vaule={value} setFocus={setFocus} />
-        <div>미리보기</div>
+        <Editor value={value} setFocus={setFocus} />
+        <div className={styles.view}>{value.value}</div>
         <h2 className={styles.summary}>Edit Summary</h2>
         <input
           className={styles.input}
