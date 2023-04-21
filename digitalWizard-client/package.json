@@ -19,6 +19,7 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
     "styled-components": "^5.3.9",
+    "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4",
     "zustand": "^4.3.7"
   },
@@ -57,5 +58,4 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0"
   }
-
 }
