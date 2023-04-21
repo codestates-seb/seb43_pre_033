@@ -7,8 +7,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import useModal from "../../hooks/useMdoal";
+import Comment from "../Comment/Comment.jsx";
 
-//
 function Post({ data, QA }) {
   // 날짜 계산
   const edited = day(new Date(data.modifiedAt));
@@ -87,91 +87,122 @@ function Post({ data, QA }) {
     axios.delete("http://localhost:4001/answer/" + data.id);
   }
 
-  return (
-    <div className={styles.post}>
-      <div className={styles.vote}>
-        <AiFillCaretUp className={styles.up} />
-        <div>{result}</div>
-        <AiFillCaretDown className={styles.down} />
-        {bookmark ? (
-          <FaBookmark className={styles.checkMark} />
-        ) : (
-          <FaRegBookmark className={styles.mark} />
-        )}
+  // Edit Routing
+  const navigate = useNavigate();
+  const handleEdit = () => {
+    QA === "Q" &&
+      navigate(`/question/${data.id}/questionEdit`, { state: data });
+    QA === "A" && navigate(`/question/:questionId/answerEdit/:answerId`);
+    // 영은님 나중에 서버 연결되면 경로에 맞게 수정하세요 :)
+  };
 
-        {QA === "A" && data.accepted ? (
-          <ImCheckmark className={styles.checkin} />
-        ) : null}
-        <RxCounterClockwiseClock className={styles.clock} />
-      </div>
-      <div className={styles.detail}>
-        <div className={styles.content}>{data.body}</div>
-        <div className={styles.bottom}>
-          <div className={styles.share}>
-            <div>Share</div>
-            <div>Edit</div>
-            <div onClick={openModal} role="none">
-              Delete
-            </div>
+  return (
+    <>
+      <div className={`${QA === "A" && styles.border} ${styles.postWrap}`}>
+        <div className={styles.post}>
+          <div className={styles.vote}>
+            <AiFillCaretUp className={styles.up} />
+            <div>{result}</div>
+            <AiFillCaretDown className={styles.down} />
+            {bookmark ? (
+              <FaBookmark
+                onClick={() => setBookmark(prev => !prev)}
+                className={styles.checkMark}
+              />
+            ) : (
+              <FaRegBookmark
+                onClick={() => setBookmark(prev => !prev)}
+                className={styles.mark}
+              />
+              // bookmark click event 추가
+            )}
+
+            {QA === "A" && data.accepted ? (
+              <ImCheckmark className={styles.checkin} />
+            ) : null}
+            <RxCounterClockwiseClock className={styles.clock} />
           </div>
-          {/* 삭제 확인 모달 */}
-          {modal ? (
-            <div
-              className={`close ${styles.modal}`}
-              // onClick={handleModal}
-              role="none">
-              <div className={styles.modalContent}>
-                <button className={styles.btnClose}>
-                  <AiOutlineClose onClick={closeModal} role="none" />
-                </button>
-                <dl className={styles.modalMsg}>
-                  <dt className={styles.msgHead}>
-                    {QA === "A" ? "Discard Answer" : "Discard Question"}
-                  </dt>
-                  <dd className={styles.msgBody}>
-                    {QA === "A"
-                      ? "Are you sure you want to discard this Answer? This cannot be undone."
-                      : "Are you sure you want to discard this Question? This cannot be undone."}
-                  </dd>
-                </dl>
-                <div>
-                  <button
-                    className="btn btnDanger"
-                    onClick={() => deletePost()}>
-                    {QA === "A" ? "Discard Answer" : "Discard Question"}
-                  </button>
-                  <button className="btn btnNormal" onClick={closeModal}>
-                    Cancel
-                  </button>
+          <div className={styles.detail}>
+            <div className={styles.content}>{data.body}</div>
+            <div className={styles.bottom}>
+              <div className={styles.share}>
+                <div>Share</div>
+                <div onClick={handleEdit} role="none">
+                  Edit
+                </div>
+                <div onClick={openModal} role="none">
+                  Delete
                 </div>
               </div>
-            </div>
-          ) : null}
-          <div className={styles.edtied}>edited {edited}</div>
-          {/* 사람프로필 */}
-          <div className={styles.profile}>
-            <div className={styles.create}>
-              {QA === "A" ? "answered " + create : "aked " + create}
-            </div>
-            <div className={styles.user}>
-              <img
-                src={data.member.profileImage}
-                alt="아바타이미지"
-                className={styles.img}
-              />
-              <div className={styles.userDetail}>
-                <div className={styles.name}>{data.member.memberNickName}</div>
-                <div>
-                  <span className={styles.userScore}>1,463</span>
-                  <span className={styles.silver}>8</span>
-                  <span className={styles.bronze}>8</span>
+              {/* 삭제 확인 모달 */}
+              {modal ? (
+                <div
+                  className={`close ${styles.modal}`}
+                  // onClick={handleModal}
+                  role="none">
+                  <div className={styles.modalContent}>
+                    <button className={styles.btnClose}>
+                      <AiOutlineClose onClick={closeModal} role="none" />
+                    </button>
+                    <dl className={styles.modalMsg}>
+                      <dt className={styles.msgHead}>
+                        {QA === "A" ? "Discard Answer" : "Discard Question"}
+                      </dt>
+                      <dd className={styles.msgBody}>
+                        {QA === "A"
+                          ? "Are you sure you want to discard this Answer? This cannot be undone."
+                          : "Are you sure you want to discard this Question? This cannot be undone."}
+                      </dd>
+                    </dl>
+                    <div>
+                      <button
+                        className="btn btnDanger"
+                        onClick={() => deletePost()}>
+                        {QA === "A" ? "Discard Answer" : "Discard Question"}
+                      </button>
+                      <button className="btn btnNormal" onClick={closeModal}>
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+              {QA === "A" && create !== edited && (
+                <div className={styles.edtied}>edited {edited}</div>
+                // 답변이 수정 되었을 때만 렌더링
+              )}
+              {/* 사람프로필 */}
+              <div
+                className={`${QA === "Q" && styles.hasBg} ${styles.profile}`}>
+                {/* 작성자 프로필 배경색 추가 class */}
+                <div className={styles.create}>
+                  {QA === "A" ? "answered " + create : "aked " + create}
+                </div>
+                <div className={styles.user}>
+                  <img
+                    src={data.member.profileImage}
+                    alt="아바타이미지"
+                    className={styles.img}
+                  />
+                  <div className={styles.userDetail}>
+                    <div className={styles.name}>
+                      {data.member.memberNickName}
+                    </div>
+                    <div>
+                      <span className={styles.userScore}>1,463</span>
+                      <span className={styles.silver}>8</span>
+                      <span className={styles.bronze}>8</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <Comment id={data.id} />
+        {/* 댓글 컴포넌트 추가, 답변만 border 추가 */}
       </div>
-    </div>
+    </>
   );
 }
 
