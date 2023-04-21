@@ -5,21 +5,20 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function AnswerEdit() {
-  const [value, reset] = useInput("", true);
   const [focus, setFocus] = useState(false);
   const [dataQ, setDataQ] = useState([]);
   const [dataA, setDataA] = useState([]);
+  const [value] = useInput("", true);
 
+  // 실제 url로 변경하고 토큰으로 유저정보도 확인해야함
   useEffect(() => {
     axios
       .get("http://localhost:4001/question/1")
       .then(res => setDataQ(res.data))
       .catch(error => console.log(error));
-  }, []);
 
-  useEffect(() => {
     axios
-      .get("http://localhost:4001/answer/1")
+      .get("http://localhost:4001/answer/1001")
       .then(res => setDataA(res.data))
       .catch(error => console.log(error));
   }, []);
