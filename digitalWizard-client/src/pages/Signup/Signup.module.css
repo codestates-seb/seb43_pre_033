@@ -16,13 +16,10 @@
 
 .signuptextFrom {
   padding: 0;
-  width: 180px;
-
+  width: 316px;
   padding: 20px;
-
   justify-content: center;
-
-  height: auto;
+  height: 658px;
   margin: 50 0px;
   background-color: var(--white);
 }
@@ -37,28 +34,44 @@
 .textMessageOne {
   font-size: 0.5rem;
   color: var(--black-500);
-  border: 1px solid red;
+}
+
+.rc-anchor-normal {
+  border: 5px solid green;
+  width: 100px;
+}
+.recap {
+  width: 100%;
+  height: 100%;
+}
+
+.recaptcha {
+  width: 100%;
 }
 
 .checkbox {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 .checkBoxIcon {
   font-size: 5px;
-  border: 1px solid blue;
+  display: flex;
+  margin: 0 !important;
+  height: unset !important;
 }
 
 .svgIcon {
   fill: var(--black-500);
-  size: 7px;
+  width: 20px;
+  height: 20px;
+  margin: 0 !important;
+  height: unset !important;
 }
 
 .textMessageTwo {
   font-size: 0.7rem;
   color: var(--black-800);
-  border: 1px solid red;
 }
 
 .signupGoolglebtn {
@@ -74,10 +87,6 @@
 .signupGiHubbtn {
   margin-top: 12px;
   margin-bottom: 12px;
-}
-
-.checkboxIcon {
-  display: flex;
 }
 
 .signupFacebookbtn {
