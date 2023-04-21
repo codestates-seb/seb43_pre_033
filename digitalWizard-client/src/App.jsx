@@ -8,6 +8,7 @@ import QuestionSection from "./pages/QuestionSection/QuestionSection.jsx";
 import AskQuestionEdit from "./pages/AskQuestionEdit/AskQuestionEdit.jsx";
 import QuestionSection from "./components/QuestionSection/QuestionSection.jsx";
 import Login from "./pages/Login/Login.jsx";
+import AskQuestionEdit from "./pages/AskQuestionEdit/AskQuestionEdit.jsx";
 
 function App() {
   return (
