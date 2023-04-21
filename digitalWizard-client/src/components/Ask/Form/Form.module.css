@@ -1,7 +1,7 @@
 .inputWrap {
   display: flex;
 }
-.inputBox {
+.inputBox:not(.editVer) {
   padding: 1.5rem;
   background-color: var(--bg-color);
   margin-top: 1rem;
