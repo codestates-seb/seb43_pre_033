@@ -4,11 +4,11 @@ import useInput from "../../hooks/useInput.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import parse from "html-react-parser";
 
 function AnswerEdit() {
   const [focus, setFocus] = useState(false);
   const [dataQ, setDataQ] = useState([]);
-  const [dataA, setDataA] = useState([]);
   const location = useLocation();
   const body = location.state?.body; //?을 붙이면 location.state 없을때 에러없이 undefined반환
   const [value] = useInput(body, true);
@@ -19,14 +19,8 @@ function AnswerEdit() {
       .get("http://localhost:4001/question/1")
       .then(res => setDataQ(res.data))
       .catch(error => console.log(error));
-
-    axios
-      .get("http://localhost:4001/answer/1001")
-      .then(res => setDataA(res.data))
-      .catch(error => console.log(error));
   }, []);
 
-  console.log(value.value);
   return (
     <div className={styles.answerEdit}>
       <div className={styles.content}>
@@ -50,7 +44,7 @@ function AnswerEdit() {
         </div>
         <h2 className={styles.answer}>Answer</h2>
         <Editor value={value} setFocus={setFocus} />
-        <div className={styles.view}>{value.value}</div>
+        <div className={styles.view}>{parse(value.value)}</div>
         <h2 className={styles.summary}>Edit Summary</h2>
         <input
           className={styles.input}
