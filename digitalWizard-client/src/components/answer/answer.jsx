@@ -35,7 +35,24 @@ function Answer() {
     <div className={styles.answer}>
       <div className={styles.header}>
         <h2 className={styles.title}>{data.length + " Answers"}</h2>
-        <div>sort</div>
+        <div className={styles.sort}>
+          <label className={styles.sortLabel} htmlFor="sortAnswer">
+            Sorted by:
+          </label>
+          <select className={styles.sortInput} name="sorted" id="sortAnswer">
+            <option value="scoredDesc">Highest score &#40;default&#41;</option>
+            <option value="trending">
+              Trending &#40;recent votes count more&#41;
+            </option>
+            <option value="modifiedDesc">
+              Date modified &#40;newest first&#41;
+            </option>
+            <option value="createDesc">
+              Date created &#40;oldest first&#41;
+            </option>
+          </select>
+          {/* sorted by 추가 */}
+        </div>
       </div>
       {data.map(data => (
         <Post
