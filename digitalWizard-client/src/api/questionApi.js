@@ -1,18 +1,20 @@
 import request from "./core";
 
 // get
-const getQuestion = () => {
-  return request({ url: "/question" });
+const getQuestion = url => {
+  return request({ url });
 };
 
 // post
-const postQuestion = data => {
+const postQuestion = (data, url) => {
   return request({
     method: "post",
-    url: "/question",
+    url,
     data,
     headers: {
       "Content-Type": "application/json",
+      // Authorization:
+      //   "WishJWT token",
     },
   });
 };

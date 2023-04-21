@@ -1,0 +1,132 @@
+.question {
+  display: flex;
+  padding: 1rem 1rem 0rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.summary {
+  gap: 0.8rem;
+  font-size: 0.81rem;
+}
+.vote {
+  color: var(--text-active-color);
+}
+.answers,
+.views {
+  color: var(--text-sub-color);
+}
+
+.postWrap {
+  flex-grow: 1;
+}
+.post {
+  margin-bottom: 0.5rem;
+}
+.title {
+  margin-bottom: 0.4rem;
+}
+.title * {
+  font-size: 1.1rem;
+  line-height: 1.2rem;
+  color: var(--text-link-color);
+}
+.title *:hover {
+  color: var(--text-link-hover);
+}
+
+.summaryBottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.tags {
+  margin-bottom: 1rem;
+}
+.tags button:not(:first-of-type) {
+  margin-left: 0.3rem;
+}
+
+.user {
+  margin-bottom: 1rem;
+}
+.user,
+.profile {
+  display: flex;
+  align-items: center;
+}
+.img {
+  display: block;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 0.2rem;
+}
+.img img {
+  width: 100%;
+  border-radius: inherit;
+}
+.name {
+  color: var(--text-link-color);
+}
+.name:hover {
+  color: var(--text-link-hover);
+}
+.name,
+.answer,
+.date {
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+.date {
+  color: var(--text-sub-color);
+}
+
+@media screen and (min-width: 1101px) {
+  .summary {
+    display: grid;
+    align-content: start;
+    text-align: right;
+    min-width: 110px;
+  }
+  .postWrap {
+    margin-left: 1rem;
+  }
+  .body {
+    font-size: 0.81rem;
+    line-height: 1.1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
+@media screen and (min-width: 641px) and (max-width: 1100px) {
+  .question {
+    flex-direction: column;
+  }
+  .summary {
+    display: flex;
+    margin-bottom: 0.5rem;
+  }
+  .body {
+    display: none;
+  }
+}
+@media screen and (max-width: 640px) {
+  .question {
+    flex-direction: column;
+  }
+  .summary {
+    display: flex;
+    margin-bottom: 0.5rem;
+  }
+  .title * {
+    font-size: 0.88rem;
+    line-height: 1rem;
+  }
+  .body {
+    display: none;
+  }
+  .user {
+    margin: 0 0 1rem auto;
+  }
+}
