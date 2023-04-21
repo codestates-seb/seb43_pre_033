@@ -3,12 +3,15 @@ import styles from "./AnswerEdit.module.css";
 import useInput from "../../hooks/useInput.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 function AnswerEdit() {
   const [focus, setFocus] = useState(false);
   const [dataQ, setDataQ] = useState([]);
   const [dataA, setDataA] = useState([]);
-  const [value] = useInput("", true);
+  const location = useLocation();
+  const body = location.state?.body; //?을 붙이면 location.state 없을때 에러없이 undefined반환
+  const [value] = useInput(body, true);
 
   // 실제 url로 변경하고 토큰으로 유저정보도 확인해야함
   useEffect(() => {
