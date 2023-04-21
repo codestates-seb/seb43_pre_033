@@ -9,7 +9,7 @@ function Answer() {
   // 실제 url http://localhost:8080/question/1/answers
   // /question/{questionId}/answers
   const [data, setData] = useState([]);
-  const [value, reset] = useInput("", true);
+  const [value] = useInput("", true);
   const [focus, setFocus] = useState(false);
 
   useEffect(() => {
@@ -19,13 +19,24 @@ function Answer() {
       .catch(error => console.log(error));
   }, []);
 
+  console.log(value.value);
   function answerAdd(data) {
     //http://{{BaseUrl}}/question/{questionId}/answers
     axios
       .post("http://localhost:4001/answer", {
+        // body: data,
+        // headers: {
+        //   Authorization: "token",
+        // },
         body: data,
-        headers: {
-          Authorization: "token",
+        vote: 0,
+        createdAt: "2023-04-17T14:51:42.576425",
+        modifiedAt: "2023-04-17T14:51:42.576425",
+        member: {
+          memberId: 1,
+          email: "test1@gmail.com",
+          profileImage: "https://avatars.githubusercontent.com/u/120456261?v=4",
+          memberNickName: "김아무개",
         },
       })
       .catch(error => console.log(error));
@@ -46,7 +57,7 @@ function Answer() {
           QA={"A"}></Post>
       ))}
       <h2 className={styles.title}>Your Answer</h2>
-      <Editor vaule={value} setFocus={setFocus} />
+      <Editor value={value} setFocus={setFocus} />
       <button
         className={`btnPrimary btn ${styles.btn}`}
         onClick={() => answerAdd(value.value)}>
