@@ -1,4 +1,5 @@
 .signupAuth {
+  /* position: relative; */
   min-height: 100vh;
   margin: 0% auto;
   background-color: var(--black-050);
@@ -19,9 +20,11 @@
   width: 316px;
   padding: 20px;
   justify-content: center;
-  height: 658px;
+  height: 360px;
   margin: 50 0px;
   background-color: var(--white);
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .signupBar input {
@@ -68,6 +71,16 @@
   margin: 0 !important;
   height: unset !important;
 }
+.textMessageOne {
+  margin-bottom: 20px;
+}
+
+.recap {
+  margin-bottom: 20px;
+}
+.recaptcha {
+  margin-bottom: 20px;
+}
 
 .textMessageTwo {
   font-size: 0.7rem;
@@ -96,5 +109,22 @@
 .under {
   margin-top: 5px;
   color: var(--black-700);
+  font-size: 12px;
+}
+
+.contentLogin {
+  margin-left: 5px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  color: var(--blue);
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.contentSignup {
+  margin-left: 5px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  color: var(--blue);
   font-size: 12px;
 }

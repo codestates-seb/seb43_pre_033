@@ -18,7 +18,7 @@ const Login = () => {
 
   // 로그인 요청 처리
   const loginRequestHandler = () => {
-    const BASE_URL = "https://8abf-121-133-205-229.ngrok-free.app";
+    const BASE_URL = "http://13.124.42.111:8080";
     const { email, password } = loginInfo;
     if (!email || !password) {
       setErrorMessage("아이디와 비밀번호를 입력하세요");
@@ -172,10 +172,12 @@ const Login = () => {
                 id="email"
                 onChange={handleInputValue("email")}
               />
-              <label htmlFor="password" className={styles.label}>
-                Password
-              </label>
-              <div className={styles.aTag}>Forgot password?</div>
+              <div className={styles.labelForm}>
+                <label htmlFor="password" className={styles.label}>
+                  Password
+                </label>
+                <div className={styles.aTag}>Forgot password?</div>
+              </div>
               <input
                 type="password"
                 name="password"
@@ -189,7 +191,7 @@ const Login = () => {
                   }}
                   text="Log in"
                   addStyle={{
-                    width: "219px",
+                    width: "100%",
                     height: "40px",
                     textColor: "var(--white)",
                   }}

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -20,7 +21,7 @@ function Signup() {
     setRecaptchaState({ isVerified: true });
   };
 
-  const BASE_URL = "https://8abf-121-133-205-229.ngrok-free.app";
+  const BASE_URL = "http://13.124.42.111:8080";
   const register = () => {
     axios
       .post(
@@ -162,7 +163,7 @@ function Signup() {
             <div className={styles.signupBar}>
               <form onSubmit={onStop}>
                 <label htmlFor="name" className={styles.label}>
-                  Display Name
+                  Display name
                 </label>
                 <input
                   type="text"
@@ -211,7 +212,7 @@ function Signup() {
                 <div className={styles.up}>
                   <div className={styles.checkbox}>
                     <input
-                      style={{ width: "8px" }}
+                      style={{ width: "12px" }}
                       type="checkbox"
                       className={styles.checkBoxIcon}
                     />
@@ -233,7 +234,7 @@ function Signup() {
                   <Button
                     text="Sign up"
                     addStyle={{
-                      width: "316px",
+                      width: "320px",
                     }}
                   />
                 </div>
@@ -246,6 +247,18 @@ function Signup() {
               policy and cookie policy
             </div>
           </div>
+        </div>
+        <div className={styles.underLogin}>
+          Already have an account?
+          <Link to={"/users/login"} className={styles.contentLogin}>
+            Login up
+          </Link>
+        </div>
+        <div className={styles.underSignup}>
+          Are you an employer?
+          <Link to={"/users/signup"} className={styles.contentSignup}>
+            Sign up on Talent
+          </Link>
         </div>
       </div>
     </div>
