@@ -6,12 +6,14 @@ export default function Dialog({
   tagReset,
   bodyReset,
   closeModal,
+  setHashtags,
 }) {
   const handleReset = () => {
     titleReset();
     tagReset();
     bodyReset();
     closeModal();
+    setHashtags([]);
   };
 
   const handleModal = e => e.target.classList.contains("close") && closeModal();
