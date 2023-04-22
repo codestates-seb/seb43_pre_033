@@ -13,10 +13,11 @@ function AnswerEdit() {
   const body = location.state?.body; //?을 붙이면 location.state 없을때 에러없이 undefined반환
   const [value] = useInput(body, true);
 
-  // 실제 url로 변경하고 토큰으로 유저정보도 확인해야함
+  // 실제 url로 변경하고 토큰으로 유저정보도 확인해야함(상태내려주는게 좋을지?)
+  const questionId = location.pathname.split("/");
   useEffect(() => {
     axios
-      .get("http://localhost:4001/question/1")
+      .get(`http://localhost:4001/question/${questionId[2]}`)
       .then(res => setDataQ(res.data))
       .catch(error => console.log(error));
   }, []);
