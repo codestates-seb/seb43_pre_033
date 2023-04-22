@@ -9,16 +9,16 @@ logging:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/pre033?serverTimezone=Asia/Seoul
-    username: root
-    password: ${localDBPassword}
+    url : ${RDS_DATABASE_URL}
+    username: ${RDS_DATABASE_USERNAME}
+    password: ${RDS_DATABASE_PASSWORD}
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
     log-request-details: true
   jpa:
     defer-datasource-initialization: true
-    hibernate.ddl-auto: create-drop
+    hibernate.ddl-auto: update
     open-in-view: false
     show-sql: true
     properties:
@@ -37,11 +37,8 @@ spring:
 #  sql.init.mode: always
 mail:
   address:
-    admin: admin@gmail.com
+    admin: ${ADMIN_MAIL}
 jwt:
   key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 420
-
-server:
-  port: 8080
