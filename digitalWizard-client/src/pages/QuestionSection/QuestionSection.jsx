@@ -5,6 +5,7 @@ import QuestionList from "../../components/QeustionList/QuestionList.jsx";
 import { useEffect, useState } from "react";
 import { getQuestion } from "../../api/questionApi.js";
 import { RiFolderWarningLine } from "react-icons/ri";
+import SidebarR from "../../components/Sidebar/SidebarR/SidebarR.jsx";
 
 export default function QuestionSection() {
   const [questions, setQuestions] = useState(null);
@@ -14,12 +15,12 @@ export default function QuestionSection() {
       // getQuestion("/question?size=20&page=0").then(data => {
       // setQuestions(data.result.content);
       setQuestions(data);
-      console.log(data);
+      // console.log(data);
     });
   }, []);
 
   return (
-    <section className={styles.section}>
+    <section className="section">
       <div className={styles.mainbar}>
         <div className={styles.titleWrap}>
           <Headline h2={"Top Questions"} />
@@ -37,7 +38,7 @@ export default function QuestionSection() {
           </div>
         )}
       </div>
-      {/* 오른쪽 사이드바 aside compo */}
+      <SidebarR />
     </section>
   );
 }
