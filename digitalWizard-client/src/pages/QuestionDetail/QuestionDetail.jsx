@@ -35,7 +35,7 @@ export default function QuestionDetail() {
         <div className={styles.felxBox}>
           <div className={styles.bodyWrap}>
             <Post className={styles.body} data={post} QA={"Q"} />
-            <Answer className={styles.answer} />
+            <Answer className={styles.answer} id={post.id} />
           </div>
           {/* 오른쪽 side bar */}
         </div>
