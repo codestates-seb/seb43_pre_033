@@ -6,18 +6,32 @@ import { useEffect, useState } from "react";
 import { getQuestion } from "../../api/questionApi.js";
 import { RiFolderWarningLine } from "react-icons/ri";
 import SidebarR from "../../components/Sidebar/SidebarR/SidebarR.jsx";
+import Pagination from "../../common/Pagination/Pagination.jsx";
 
 export default function QuestionSection() {
+  const [isEmpty, setisEmpty] = useState(true);
   const [questions, setQuestions] = useState(null);
+  const [pageNum, setPageNum] = useState(0);
+  const [totalPage, setTotalPage] = useState(2);
 
   useEffect(() => {
+    // getQuestion(`/question?size=20&page=${pageNum}`).then(data => {
+    //   setisEmpty(data.result.empty);
+    //   setQuestions(data.result.content);
+    //   setPageNum(data.result.pageable.pageNumber);
+    //   setTotalPage(data.result.pageable.totalPages);
+    // });
+
+    // json-server
     getQuestion("/question").then(data => {
-      // getQuestion("/question?size=20&page=0").then(data => {
-      // setQuestions(data.result.content);
       setQuestions(data);
-      // console.log(data);
+      setisEmpty(false);
     });
-  }, []);
+    // json-server (pager test)
+    getQuestion("/pageable").then(data => {
+      setPageNum(data.pageNumber);
+    });
+  }, [pageNum]);
 
   return (
     <section className="section">
@@ -26,10 +40,15 @@ export default function QuestionSection() {
           <Headline h2={"Top Questions"} />
           <Filters />
         </div>
-        {questions ? (
+        {/* result.empty 여부로 변경하기 */}
+        {!isEmpty ? (
           <div className={styles.questionsWrap}>
             <QuestionList questions={questions} />
-            {/* pager */}
+            <Pagination
+              pageNum={pageNum}
+              setPageNum={setPageNum}
+              totalPage={totalPage}
+            />
           </div>
         ) : (
           <div className={styles.empty}>
