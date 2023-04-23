@@ -4,9 +4,11 @@ import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.utils.CustomAuthorityUtils;
 import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.member.service.MemberService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 //  OAuth 2 인증 후, Frontend 애플리케이션 쪽으로 JWT를 전송하는 역할
+@Service
 public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
@@ -104,5 +107,4 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                 .build()
                 .toUri();
     }
-
 }
