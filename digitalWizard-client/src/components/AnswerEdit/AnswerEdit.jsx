@@ -4,8 +4,7 @@ import useInput from "../../hooks/useInput.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import parse from "html-react-parser";
-import { patch } from "semver";
+import Preview from "../Preview/Preview.jsx";
 
 function AnswerEdit() {
   const [focus, setFocus] = useState(false);
@@ -57,7 +56,7 @@ function AnswerEdit() {
         </div>
         <h2 className={styles.answer}>Answer</h2>
         <Editor value={value} setFocus={setFocus} />
-        <div className={styles.view}>{parse(value.value)}</div>
+        <Preview className={styles.view} body={value.value} />
         <h2 className={styles.summary}>Edit Summary</h2>
         <input
           className={styles.input}
