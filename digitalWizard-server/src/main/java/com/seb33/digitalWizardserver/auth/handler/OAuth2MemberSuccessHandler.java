@@ -59,7 +59,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
 
     private Member saveMember(String email, String nickname, String profileImage) {
         memberRepository.findByEmail(email).ifPresent(it ->
-        {throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS, String.format("%s is duplicated", email));
+        {throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS, String.format("%s is duplicated 버그발생! OAuth2 핸들러 검사하시오.", email));
         });
         Member member = new Member();
         member.setEmail(email);

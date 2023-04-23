@@ -3,6 +3,8 @@ package com.seb33.digitalWizardserver.auth.filter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.dto.LoginDto;
+import com.seb33.digitalWizardserver.exception.BusinessLogicException;
+import com.seb33.digitalWizardserver.exception.ExceptionCode;
 import com.seb33.digitalWizardserver.member.entity.Member;
 import lombok.SneakyThrows;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,9 +36,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @SneakyThrows
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) { // 인증을 시도하는 로직을 구현
-
         ObjectMapper objectMapper = new ObjectMapper();
         LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class); // 역직렬화(Deserialization)
+
+        if (loginDto.getPassword() == null) { // 구글 계정은 비밀번호 null이니까 일반 로그인 못하도록 막음
+            throw new BusinessLogicException(ExceptionCode.IS_GOOGLE_USER);
+        }
 
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()); // Username과 Password 정보를 포함한 UsernamePasswordAuthenticationToken 생성
