@@ -7,6 +7,7 @@ import com.seb33.digitalWizardserver.exception.ExceptionCode;
 import com.seb33.digitalWizardserver.member.dto.CustomMemberDto;
 import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.member.repository.MemberRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -23,6 +24,7 @@ import java.net.URI;
 import java.util.*;
 
 //  OAuth 2 인증 후, Frontend 애플리케이션 쪽으로 JWT를 전송하는 역할
+@Slf4j
 public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
@@ -80,6 +82,13 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
 
         String uri = createURI(accessToken, refreshToken).toString();   // Access Token과 Refresh Token을 포함한 URL을 생성
         getRedirectStrategy().sendRedirect(request, response, uri);   // Frontend 애플리케이션 쪽으로 리다이렉트
+
+        log.info("# Authenticated successfully!");
+
+        // response 헤더 정보 로그 출력
+        for (String headerName : response.getHeaderNames()) {
+            log.info(headerName + ": " + response.getHeader(headerName));
+        }
     }
 
     private String delegateAccessToken(Member member, List<String> authorities) {
