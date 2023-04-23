@@ -5,6 +5,7 @@ import com.seb33.digitalWizardserver.auth.filter.JwtVerificationFilter;
 import com.seb33.digitalWizardserver.auth.handler.*;
 import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.utils.CustomAuthorityUtils;
+import com.seb33.digitalWizardserver.member.repository.MemberRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,10 +32,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
+    private final MemberRepository memberRepository;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils) {
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, MemberRepository memberRepository) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
+        this.memberRepository = memberRepository;
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -61,10 +64,10 @@ public class SecurityConfiguration {
 //                                .antMatchers(HttpMethod.GET, "/*/members/**").hasAnyRole("USER", "ADMIN")
 //                                .antMatchers(HttpMethod.DELETE, "/*/members/**").hasRole("USER")
 //                                .anyRequest().permitAll() // 위에 설정한 요청 외의 모든 요청 허용
+                )
+                .oauth2Login(oauth2 -> oauth2
+                        .successHandler(new OAuth2MemberSuccessHandler(jwtTokenizer, authorityUtils, memberRepository))  // OAuth 2 인증이 성공한 뒤 실행되는 핸들러를 추가
                 );
-//                .oauth2Login(oauth2 -> oauth2
-//                        .successHandler(new OAuth2MemberSuccessHandler(jwtTokenizer, authorityUtils, memberService))  // OAuth 2 인증이 성공한 뒤 실행되는 핸들러를 추가
-//                );
         return http.build();
     }
 
