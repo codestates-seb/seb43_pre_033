@@ -127,7 +127,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                 .newInstance()
                 .scheme("http")
                 .host("localhost") // Todo 리액트 서버 도메인 주소 입력
-                .port(8080) // Todo 포트번호 변경 주의
+                .port(3000) // Todo 포트번호 변경 주의
                 .queryParams(queryParams)
                 .build()
                 .toUri();
