@@ -5,6 +5,7 @@ import { AiTwotoneTrophy, AiFillQuestionCircle } from "react-icons/ai";
 import { FaStackExchange } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
+import SidebarL from "../Sidebar/SidebarL/SidebarL.jsx";
 
 const Header = () => {
   // const [isLogin, setIsLogin] = useState(false);
@@ -16,6 +17,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.wrap}>
+        <SidebarL />
         <div className={styles.logoWrap}>
           <Link to="/" className={styles.logo}>
             <img src={logo} alt="logo" className={styles.logoImg}></img>
