@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 public class MemberDto {
     @Getter
@@ -13,6 +14,7 @@ public class MemberDto {
     public static class PostMember{
         @Email
         private String email;
+        @NotNull
         private String password;
         private String memberNickName;
     }

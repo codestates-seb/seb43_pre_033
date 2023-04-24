@@ -39,7 +39,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         ObjectMapper objectMapper = new ObjectMapper();
         LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class); // 역직렬화(Deserialization)
 
-        if (loginDto.getPassword() == null) { // 구글 계정은 비밀번호 null이니까 일반 로그인 못하도록 막음
+        if (loginDto.getPassword() == "") { // 구글 계정은 비밀번호 null이니까 일반 로그인 못하도록 막음
             throw new BusinessLogicException(ExceptionCode.IS_GOOGLE_USER);
         }
 
