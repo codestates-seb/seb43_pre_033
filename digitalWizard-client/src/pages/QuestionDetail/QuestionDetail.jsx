@@ -34,7 +34,7 @@ export default function QuestionDetail() {
       <div className={styles.flexBox}>
         <div className={styles.bodyWrap}>
           <Post data={post} QA={"Q"} />
-          <Answer />
+          <Answer id={post.questionId} />
         </div>
         <SidebarR />
       </div>

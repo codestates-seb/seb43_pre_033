@@ -11,32 +11,21 @@ function Answer({ id }) {
   const [data, setData] = useState([]);
   const [value] = useInput("", true);
   const [focus, setFocus] = useState(false);
+  const baseURL = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/answer")
-      .then(res => setData(res.data))
+      .get(`${baseURL}/question/${id}/answers`)
+      .then(res => setData(res.data.result.content))
       .catch(error => console.log(error));
   }, []);
 
-  console.log(value.value);
   function answerAdd(data) {
-    //http://{{BaseUrl}}/question/{questionId}/answers
     axios
-      .post("http://localhost:4001/answer", {
-        // body: data,
-        // headers: {
-        //   Authorization: "token",
-        // },
+      .post(`${baseURL}/question/${id}/answers`, {
         body: data,
-        vote: 0,
-        createdAt: "2023-04-17T14:51:42.576425",
-        modifiedAt: "2023-04-17T14:51:42.576425",
-        member: {
-          memberId: 1,
-          email: "test1@gmail.com",
-          profileImage: "https://avatars.githubusercontent.com/u/120456261?v=4",
-          memberNickName: "김아무개",
+        headers: {
+          Authorization: "token",
         },
       })
       .catch(error => console.log(error));
@@ -68,7 +57,7 @@ function Answer({ id }) {
       {data.map(data => (
         <Post
           className={styles.post}
-          key={data.id}
+          key={data.answerId}
           data={data}
           // 질문은 Q로 수정
           QA={"A"}></Post>
