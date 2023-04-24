@@ -6,5 +6,4 @@ import lombok.Getter;
 public class QuestionUpdateRequest {
     private String title;
     private String body;
-    private String tags;
 }
