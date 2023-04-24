@@ -3,8 +3,16 @@ import styles from "./QuestionItem.module.css";
 import { Link } from "react-router-dom";
 
 export default function QuestionItem({ question }) {
-  const { id, title, body, vote, view, answerCount, hashtags, createdAt } =
-    question;
+  const {
+    questionId,
+    title,
+    body,
+    vote,
+    view,
+    answerCount,
+    hashtags,
+    createdAt,
+  } = question;
   const { profileImage, memberNickName } = question.member;
 
   return (
@@ -23,7 +31,7 @@ export default function QuestionItem({ question }) {
       <div className={styles.postWrap}>
         <dl className={styles.post}>
           <dt className={styles.title}>
-            <Link to={`/question/${id}`} state={{ post: question }}>
+            <Link to={`/question/${questionId}`} state={{ post: question }}>
               {title}
             </Link>
           </dt>

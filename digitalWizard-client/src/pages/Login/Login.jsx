@@ -1,21 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../common/Button.jsx";
 import styles from "./Login.module.css";
-import axios from "axios";
 import { useState } from "react";
 import { useIsLoginStore, useLoginInfoStore } from "../../stores/loginStore.js";
+import { postLogin } from "../../api/questionApi.js";
 
 const Login = () => {
   const navigate = useNavigate();
   const { loginInfo, setLoginInfo } = useLoginInfoStore(state => state);
   const { setIsLogin } = useIsLoginStore(state => state);
-  const [setErrorMessage] = useState("");
+  const [, setErrorMessage] = useState("");
 
   // Input 정보 처리
   const handleInputValue = key => e => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
-
   // 로그인 요청 처리
   const loginRequestHandler = () => {
     const { email, password } = loginInfo;
@@ -23,30 +22,12 @@ const Login = () => {
       setErrorMessage("아이디와 비밀번호를 입력하세요");
       return;
     }
-
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/members/login`, loginInfo, {
-        withCredentials: true,
-      })
-      .then(res => {
-        setIsLogin(true);
-        // data 확인
-        console.log(res);
-        // local storage에 token 저장
-        // localStorage.setItem('token', res.data.jwt);
-        // 로그인 성공시 홈페이지 이동
-        // axios.defaults.headers.common.Authorization = `Bearer ${res.data.jwt}`;
-        navigate("/");
-        setErrorMessage("");
-        // window.location.reload();
-      })
-      .catch(err => {
-        console.log("########", err);
-        if (err.response.status === 401) {
-          setErrorMessage("로그인에 실패했습니다.");
-          navigate("/404");
-        }
-      });
+    postLogin(loginInfo, "/members/login").then(res => {
+      console.log("로그인 성공");
+      setIsLogin(true);
+      setErrorMessage("");
+      navigate("/question");
+    });
   };
 
   const onStop = e => {
