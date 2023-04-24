@@ -22,7 +22,7 @@
 <tbody>
 <tr>
 <td align="center"><a href="https://github.com/wish9"><img src="https://avatars.githubusercontent.com/u/120456261?v=4" alt="프로필 이미지1" style="max-width: 100%;"></a></td>
-<td align="center"><a href="https://github.com/Gonue"><img src="https://avatars.githubusercontent.com/u/109960034?v=4" alt="프로필 이미지2" style="max-width: 60%;"></a></td>
+<td align="center"><a href="https://github.com/Gonue"><img src="https://avatars.githubusercontent.com/u/109960034?v=4" alt="프로필 이미지2" style="max-width: 40%;"></a></td>
 <td align="center"><a href="https://github.com/jhm6650"><img src="https://your-image-url2.png" alt="프로필 이미지2" style="max-width: 100%;"></a></td>
 <td align="center"><a href="https://github.com/ychae1997"><img src="https://your-image-url2.png" alt="프로필 이미지2" style="max-width: 100%;"></a></td>
 <td align="center"><a href="https://github.com/hazellee0914"><img src="https://your-image-url2.png" alt="프로필 이미지2" style="max-width: 100%;"></a></td>
