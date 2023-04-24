@@ -9,13 +9,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useModal from "../../hooks/useMdoal";
 import Comment from "../Comment/Comment.jsx";
 
-function Post({ data, QA }) {
+function Post({ data, QA, email }) {
   // 날짜 계산
   const edited = day(new Date(data.modifiedAt));
   const create = day(new Date(data.createdAt));
   const [bookmark, setBookmark] = useState(false);
   const [result, setResult] = useState(data.vote);
   const [modal, openModal, closeModal] = useModal(false);
+  const Authorization = localStorage.getItem("accessToken");
+  const [accept, setAccept] = useState(false);
 
   function day(date) {
     const months = [
@@ -42,18 +44,17 @@ function Post({ data, QA }) {
   }
 
   // 좋아요, 싫어요 함수
-  const baseUrl = "base";
+  const baseUrl = process.env.REACT_APP_BASE_URL;
   const url =
     QA === "Q"
-      ? baseUrl + "/question/" + data.id
-      : baseUrl + "/answer/" + data.id;
+      ? baseUrl + "/question/" + data.questionId
+      : baseUrl + "/answer/" + data.answerId;
 
   function like() {
     axios
       .post(url + "/likes", {
-        data: "",
         headers: {
-          Authorization: "token",
+          Authorization,
         },
       })
       .get(url + "/results")
@@ -63,9 +64,8 @@ function Post({ data, QA }) {
   function hate() {
     axios
       .post(url + "/hates", {
-        data: "",
         headers: {
-          Authorization: "token",
+          Authorization,
         },
       })
       .get(url + "/results")
@@ -75,16 +75,25 @@ function Post({ data, QA }) {
   // 삭제 함수
   const location = useLocation();
   const currentPath = location.pathname;
-  const delURL = QA === "Q" ? currentPath : currentPath + "/answers/" + data.id;
+  const delURL =
+    QA === "Q" ? currentPath : currentPath + "/answers/" + data.answerId;
   function deletePost() {
-    // axios.delete(delURL, {
-    //   headers: {
-    //     Authorization: "token",
-    //   },
-    // });
+    axios.delete(baseUrl + delURL, {
+      headers: {
+        Authorization,
+      },
+    });
+  }
 
-    // json 서버 테스트용
-    axios.delete("http://localhost:4001/answer/" + data.id);
+  // 답변 채택
+  function answerAccept() {
+    axios
+      .patch(baseUrl + delURL + "/accept", {
+        headers: {
+          Authorization,
+        },
+      })
+      .then(res => (res.resultCode === "SUCCESS" ? setAccept(true) : null));
   }
 
   // Edit Routing
@@ -93,7 +102,7 @@ function Post({ data, QA }) {
     QA === "Q" &&
       navigate(`/question/${data.id}/questionEdit`, { state: data });
     QA === "A" &&
-      navigate(`${currentPath}/answerEdit/${data.id}`, { state: data });
+      navigate(`${currentPath}/answerEdit/${data.answerId}`, { state: data });
     // 영은님 나중에 서버 연결되면 경로에 맞게 수정하세요 :)
   };
 
@@ -102,9 +111,13 @@ function Post({ data, QA }) {
       <div className={`${QA === "A" && styles.border} ${styles.postWrap}`}>
         <div className={styles.post}>
           <div className={styles.vote}>
-            <AiFillCaretUp className={styles.up} />
+            <AiFillCaretUp className={styles.up} onClick={like} role="none" />
             <div>{result}</div>
-            <AiFillCaretDown className={styles.down} />
+            <AiFillCaretDown
+              className={styles.down}
+              onClick={hate}
+              role="none"
+            />
             {bookmark ? (
               <FaBookmark
                 onClick={() => setBookmark(prev => !prev)}
@@ -118,9 +131,14 @@ function Post({ data, QA }) {
               // bookmark click event 추가
             )}
 
-            {QA === "A" && data.accepted ? (
+            {QA === "A" && (data.accepted || accept) ? (
               <ImCheckmark className={styles.checkin} />
-            ) : null}
+            ) : (
+              <ImCheckmark
+                className={email ? styles.check : styles.none}
+                onClick={answerAccept}
+              />
+            )}
             <RxCounterClockwiseClock className={styles.clock} />
           </div>
           <div className={styles.detail}>

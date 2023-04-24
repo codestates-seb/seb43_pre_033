@@ -4,28 +4,31 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Editor from "../Editor.jsx";
 import useInput from "../../hooks/useInput.js";
+import { useLoginInfoStore } from "../../stores/loginStore.js";
 
-function Answer({ id }) {
-  // 실제 url http://localhost:8080/question/1/answers
-  // /question/{questionId}/answers
+function Answer({ id, qemail }) {
   const [data, setData] = useState([]);
   const [value] = useInput("", true);
   const [focus, setFocus] = useState(false);
-  const baseURL = process.env.REACT_APP_BASE_URL;
+  const Authorization = localStorage.getItem("accessToken");
+  const { loginInfo } = useLoginInfoStore(state => state);
+  const [email, setEmail] = useState(loginInfo.email === qemail);
 
   useEffect(() => {
     axios
-      .get(`${baseURL}/question/${id}/answers`)
+      .get(`${process.env.REACT_APP_BASE_URL}/question/${id}/answers`)
       .then(res => setData(res.data.result.content))
       .catch(error => console.log(error));
   }, []);
 
   function answerAdd(data) {
     axios
-      .post(`${baseURL}/question/${id}/answers`, {
+      .post(`${process.env.REACT_APP_BASE_URL}/question/${id}/answers`, {
         body: data,
         headers: {
-          Authorization: "token",
+          "Content-Type": "application/json",
+          Authorization,
+          withCredentials: true,
         },
       })
       .catch(error => console.log(error));
@@ -60,7 +63,8 @@ function Answer({ id }) {
           key={data.answerId}
           data={data}
           // 질문은 Q로 수정
-          QA={"A"}></Post>
+          QA={"A"}
+          email={email}></Post>
       ))}
       <h2 className={styles.title}>Your Answer</h2>
       <Editor value={value} setFocus={setFocus} />

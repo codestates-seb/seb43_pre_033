@@ -72,6 +72,10 @@
   color: rgb(74, 111, 68);
 }
 
+.none {
+  display: none;
+}
+
 .mark {
   width: 18px;
   height: 18px;
