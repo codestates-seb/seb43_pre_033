@@ -24,7 +24,7 @@ public class MemberAuthenticationFailureHandler implements AuthenticationFailure
         sendErrorResponse(response);  // 출력 스트림에 Error 정보 담기
     }
 
-    private void sendErrorResponse(HttpServletResponse response) throws IOException {
+    public void sendErrorResponse(HttpServletResponse response) throws IOException {
         Gson gson = new Gson();     // Error 정보가 담긴 객체(ErrorResponse)를 JSON 문자열로 변환하기 위해 생성
         ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.UNAUTHORIZED); // HttpStatus.UNAUTHORIZED(401) = 인증 실패 HTTP status
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);    // response의 Content Type이 “application/json” 이라고 클라이언트한테 알려주기
