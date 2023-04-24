@@ -21,7 +21,35 @@ function Signup() {
     setRecaptchaState({ isVerified: true });
   };
 
+  // 유효성 검사 함수
+  const isValidPassword = str => {
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+    return regex.test(str);
+  };
+
+  const isValidEmail = str => {
+    const regex =
+      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+    return regex.test(str);
+  };
+
   const register = () => {
+    if (!username || !email || !password) {
+      setErrorMessage("아이디와 비밀번호를 입력하세요");
+      return;
+    }
+    if (!isValidEmail(email)) {
+      setErrorMessage("Email 형식에 맞게 입력해주세요");
+      return;
+    }
+    if (!isValidPassword(password)) {
+      setErrorMessage(
+        "최소 8글자, 문자 1개, 숫자 1개가 들어간 비밀번호를 입력해주세요"
+      );
+      return;
+    }
     axios
       .post(
         `${process.env.REACT_APP_BASE_URL}/members`,
@@ -38,30 +66,15 @@ function Signup() {
         console.log(response);
         // Handle success.
         console.log("Well done!");
-        // console.log("User profile", response.data.user);
-        // console.log('User token', response.data.jwt);
-        // localStorage.setItem('token', response.data.jwt);
+        console.log("User profile", response.data.user);
+        console.log("User token", response.data.jwt);
+        localStorage.setItem("token", response.data.jwt);
         navigate("/");
       })
       .catch(error => {
         // Handle error.
         console.log("An error occurred:", error);
       });
-
-    // if (!username || !email || !password) {
-    //   setErrorMessage('아이디와 비밀번호를 입력하세요');
-    //   return;
-    // }
-    // if (!isValidEmail(email)) {
-    //   setErrorMessage('Email 형식에 맞게 입력해주세요');
-    //   return;
-    // }
-    // if (!isValidPassword(password)) {
-    //   setErrorMessage(
-    //     '최소 8글자, 문자 1개, 숫자 1개가 들어간 비밀번호를 입력해주세요'
-    //   );
-    //   return;
-    // }
   };
 
   const onStop = e => {
@@ -198,16 +211,16 @@ function Signup() {
                   least 1 letter and 1 number.
                 </p>
                 <div className={styles.recap}>
-                  {/* <ReCAPTCHA
+                  <ReCAPTCHA
                     className={styles.recaptcha}
                     sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                     onChange={() => recaptchaOnChange()}
-                  /> */}
-                  {/* {errorMessage ? (
+                  />
+                  {errorMessage ? (
                     <p className=" mb-4 font-medium text-xs text-red-600">
                       {errorMessage}
                     </p>
-                  ) : null} */}
+                  ) : null}
                 </div>
 
                 <div className={styles.up}>
@@ -250,17 +263,19 @@ function Signup() {
             </div>
           </div>
         </div>
-        <div className={styles.underLogin}>
-          Already have an account?
-          <Link to={"/users/login"} className={styles.contentLogin}>
-            Login up
-          </Link>
-        </div>
-        <div className={styles.underSignup}>
-          Are you an employer?
-          <Link to={"/users/signup"} className={styles.contentSignup}>
-            Sign up on Talent
-          </Link>
+        <div className={styles.underContainer}>
+          <div className={styles.underLogin}>
+            Already have an account?
+            <Link to={"/users/login"} className={styles.contentLogin}>
+              Login up
+            </Link>
+          </div>
+          <div className={styles.underSignup}>
+            Are you an employer?
+            <Link to={"/users/signup"} className={styles.contentSignup}>
+              Sign up on Talent
+            </Link>
+          </div>
         </div>
       </div>
     </div>

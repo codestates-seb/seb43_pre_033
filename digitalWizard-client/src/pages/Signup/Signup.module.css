@@ -20,7 +20,7 @@
   width: 316px;
   padding: 20px;
   justify-content: center;
-  height: 360px;
+  height: 450px;
   margin: 50 0px;
   background-color: var(--white);
   border-radius: 5px;
@@ -112,19 +112,27 @@
   font-size: 12px;
 }
 
+.underContainer > div {
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 20px;
+  font-display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
 .contentLogin {
   margin-left: 5px;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
+  /* margin-bottom: 10px; */
   color: var(--blue);
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   font-size: 12px;
 }
 
 .contentSignup {
   margin-left: 5px;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
+  /* margin-bottom: 20px; */
   color: var(--blue);
   font-size: 12px;
 }
