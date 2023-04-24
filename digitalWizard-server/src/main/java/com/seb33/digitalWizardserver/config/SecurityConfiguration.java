@@ -76,18 +76,6 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder(); // PasswordEncoder Bean 객체 생성
     }
 
-    @Configuration
-    public class WebMvcConfig implements WebMvcConfigurer {
-
-        @Value("${image.upload.dir}")
-        private String imageUploadDir;
-        @Override
-        public void addResourceHandlers(ResourceHandlerRegistry registry) {
-            registry
-              .addResourceHandler("/images/**")
-              .addResourceLocations("file:" + imageUploadDir + "/");
-        }
-    }
 
     // CORS 정책 설정하는 방법
     @Bean
@@ -119,6 +107,19 @@ public class SecurityConfiguration {
             builder.addFilter(jwtAuthenticationFilter)  // addFilter() 메서드를 통해 JwtAuthenticationFilter를 Spring Security Filter Chain에 추가
                     .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class)   // JwtVerificationFilter는 JwtAuthenticationFilter에서 로그인 인증에 성공한 후 발급 받은 JWT가 클라이언트의 request header(Authorization 헤더)에 포함되어 있을 경우에만 동작한다.
                     .addFilterAfter(jwtVerificationFilter, OAuth2LoginAuthenticationFilter.class); // OAuth2로그인 성공 시 jwtVerificationFilter 호출
+        }
+    }
+
+    @Configuration
+    public class WebMvcConfig implements WebMvcConfigurer {
+
+        @Value("${image.upload.dir}")
+        private String imageUploadDir;
+        @Override
+        public void addResourceHandlers(ResourceHandlerRegistry registry) {
+            registry
+              .addResourceHandler("/images/**")
+              .addResourceLocations("file:" + imageUploadDir + "/");
         }
     }
 }
