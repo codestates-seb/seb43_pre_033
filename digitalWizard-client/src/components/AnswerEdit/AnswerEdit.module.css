@@ -2,6 +2,8 @@
   color: var(--text-content-color);
   font-size: 15px;
   line-height: 1.5;
+  padding: 24px;
+  width: calc(100% - 164px);
 }
 
 .memo {
@@ -76,7 +78,7 @@
 }
 
 .summary {
-  margin: 10px 0px;
+  margin: 20px 0px 10px 0px;
 }
 
 .input {
