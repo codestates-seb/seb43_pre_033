@@ -14,22 +14,28 @@ function AnswerEdit() {
   const questionId = location.pathname.split("/");
   const body = location.state?.body; //?을 붙이면 location.state 없을때 에러없이 undefined반환
   const [value] = useInput(body, true);
+  const Authorization = localStorage.getItem("accessToken");
 
-  // 실제 url로 변경하고 토큰으로 유저정보도 확인해야함(상태내려주는게 좋을지?)
   useEffect(() => {
     axios
-      .get(`http://localhost:4001/question/${questionId[2]}`)
-      .then(res => setDataQ(res.data))
+      .get(`${process.env.REACT_APP_BASE_URL}/question/${questionId[2]}`)
+      .then(res => setDataQ(res.data.result))
       .catch(error => console.log(error));
   }, []);
 
-  // `http://{{BaseUrl}}/question/${questionId[2]}/answers/${questionId[4]}`
-  // 토큰 추가필요
   function patchAnswer(data) {
     axios
-      .patch(`http://localhost:4001/answer/${questionId[4]}`, {
-        body: data,
-      })
+      .patch(
+        `${process.env.REACT_APP_BASE_URL}/question/${questionId[2]}/answers/${questionId[4]}`,
+        {
+          body: data,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization,
+            withCredentials: true,
+          },
+        }
+      )
       .catch(error => console.log(error));
   }
 

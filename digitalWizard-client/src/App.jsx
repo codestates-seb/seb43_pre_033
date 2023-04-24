@@ -11,6 +11,7 @@ import useInput from "./hooks/useInput.js";
 import SidebarL from "./components/Sidebar/SidebarL/SidebarL.jsx";
 import { useState } from "react";
 import styles from "./App.module.css";
+import AnswerEdit from "./components/AnswerEdit/AnswerEdit.jsx";
 
 function App() {
   const [search, searchReset] = useInput("");
@@ -59,7 +60,10 @@ function App() {
             path="/question/:questionId/questionEdit"
             element={<AskQuestionEdit />}
           />
-          <Route path="/question/:questionId/answerEdit/:answerId" />
+          <Route
+            path="/question/:questionId/answerEdit/:answerId"
+            element={<AnswerEdit />}
+          />
           <Route path="/users/signup" element={<Signup />} />
           <Route path="/users/login" element={<Login />} />
         </Routes>
