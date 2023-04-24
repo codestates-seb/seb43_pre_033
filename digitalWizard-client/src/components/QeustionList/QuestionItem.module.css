@@ -61,6 +61,7 @@
 }
 .img img {
   width: 100%;
+  height: 100%;
   border-radius: inherit;
 }
 .name {
@@ -79,7 +80,7 @@
   color: var(--text-sub-color);
 }
 
-@media screen and (min-width: 1101px) {
+@media screen and (min-width: 981px) {
   .summary {
     display: grid;
     align-content: start;
@@ -99,7 +100,7 @@
     -webkit-box-orient: vertical;
   }
 }
-@media screen and (min-width: 641px) and (max-width: 1100px) {
+@media screen and (min-width: 641px) and (max-width: 980px) {
   .question {
     flex-direction: column;
   }
@@ -109,6 +110,9 @@
   }
   .body {
     display: none;
+  }
+  .user {
+    margin: 0 0 1rem auto;
   }
 }
 @media screen and (max-width: 640px) {

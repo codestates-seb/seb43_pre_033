@@ -5,11 +5,10 @@ import { AiTwotoneTrophy, AiFillQuestionCircle } from "react-icons/ai";
 import { FaStackExchange } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
+import { useIsLoginStore } from "../../stores/loginStore";
 
-const Header = () => {
-  // const [isLogin, setIsLogin] = useState(false);
-  // 경고뜨는 게 보기 안좋아서 주석처리 했습니다
-  const isLogin = false;
+const Header = ({ onSearch, search }) => {
+  const { isLogin } = useIsLoginStore(state => state);
   const dummyImg =
     "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80";
 
@@ -38,10 +37,14 @@ const Header = () => {
             </li>
           </ul>
         </div>
-
         <form className={styles.searchBar}>
           <HiOutlineSearch className={styles.searchIco} />
-          <input className={styles.search} placeholder="Search..." />
+          <input
+            {...search}
+            className={styles.search}
+            placeholder="Search..."
+            onKeyDown={e => onSearch(e)}
+          />
         </form>
         {isLogin ? (
           <div className={styles.loginBox}>

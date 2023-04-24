@@ -60,3 +60,14 @@
   flex: 0 0 22px;
   height: 13px;
 }
+@media screen and (min-width: 981px) {
+  .sidebarR {
+    margin-left: 25px;
+  }
+}
+@media screen and (max-width: 980px) {
+  .sidebarR {
+    width: calc(100% - 2rem);
+    margin: 1.3rem auto 0 auto;
+  }
+}
