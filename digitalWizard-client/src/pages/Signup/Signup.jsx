@@ -21,11 +21,10 @@ function Signup() {
     setRecaptchaState({ isVerified: true });
   };
 
-  const BASE_URL = "http://13.124.42.111:8080";
   const register = () => {
     axios
       .post(
-        "/members",
+        `${process.env.REACT_APP_BASE_URL}/members`,
         {
           memberNickName: username,
           email: email,
@@ -39,8 +38,10 @@ function Signup() {
         console.log(response);
         // Handle success.
         console.log("Well done!");
-        console.log("User profile", response.data.user);
+        // console.log("User profile", response.data.user);
         // console.log('User token', response.data.jwt);
+        // localStorage.setItem('token', response.data.jwt);
+        navigate("/");
       })
       .catch(error => {
         // Handle error.
@@ -197,11 +198,11 @@ function Signup() {
                   least 1 letter and 1 number.
                 </p>
                 <div className={styles.recap}>
-                  <ReCAPTCHA
+                  {/* <ReCAPTCHA
                     className={styles.recaptcha}
                     sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                     onChange={() => recaptchaOnChange()}
-                  />
+                  /> */}
                   {/* {errorMessage ? (
                     <p className=" mb-4 font-medium text-xs text-red-600">
                       {errorMessage}
@@ -232,6 +233,7 @@ function Signup() {
                 </div>
                 <div className={styles.signupbtn}>
                   <Button
+                    onClick={() => register()}
                     text="Sign up"
                     addStyle={{
                       width: "320px",
