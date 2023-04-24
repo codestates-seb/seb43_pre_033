@@ -3,20 +3,45 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { BsFillInboxFill } from "react-icons/bs";
 import { AiTwotoneTrophy, AiFillQuestionCircle } from "react-icons/ai";
 import { FaStackExchange } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import { useIsLoginStore } from "../../stores/loginStore";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { useEffect } from "react";
 
-const Header = ({ onSearch, search }) => {
+const Header = ({ onSearch, search, modal, setModal, hide, setHide }) => {
   const { isLogin } = useIsLoginStore(state => state);
   const dummyImg =
     "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80";
+
+  const location = useLocation();
+  const path = location.pathname;
+  useEffect(() => {
+    switch (path) {
+      case "/users/login":
+        setHide(true);
+        break;
+      case "/users/signup":
+        setHide(true);
+        break;
+      case "/question/ask":
+        setHide(true);
+        break;
+      default:
+        setHide(false);
+    }
+    setModal(false);
+  }, [path]);
 
   const handleSearch = e => onSearch(e);
 
   return (
     <header className={styles.header}>
       <div className={styles.wrap}>
+        <RxHamburgerMenu
+          className={hide ? styles.menuIcon : styles.menuIconBlock}
+          onClick={() => setModal(!modal)}
+        />
         <div className={styles.logoWrap}>
           <Link to="/" className={styles.logo}>
             <img src={logo} alt="logo" className={styles.logoImg}></img>

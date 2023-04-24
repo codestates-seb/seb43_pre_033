@@ -3,23 +3,30 @@ import styles from "./SidebarL.module.css";
 import { ImEarth } from "react-icons/im";
 import { useState } from "react";
 
-function SidebarL() {
+function SidebarL({ modal, setModal }) {
   const [tap, setTap] = useState(0);
+
   return (
     <div className={styles.sidebarL}>
       <ul className={styles.ul}>
         <li
           className={tap === 0 ? styles.select : styles.link}
-          onClick={() => setTap(0)}
+          onClick={() => {
+            setTap(0);
+            setModal(!modal);
+          }}
           role="none">
           <Link to="/">Home</Link>
         </li>
         <li>PUBLIC</li>
         <li
           className={tap === 1 ? styles.select : styles.link}
-          onClick={() => setTap(1)}
+          onClick={() => {
+            setTap(1);
+            setModal(!modal);
+          }}
           role="none">
-          <Link to="/" className={styles.iconLink}>
+          <Link to="/question" className={styles.iconLink}>
             <ImEarth className={styles.icon} />
             Questions
           </Link>

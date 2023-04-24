@@ -133,3 +133,22 @@
     display: none;
   }
 }
+
+/* 햄버거 아이콘 */
+.menuIcon,
+.menuIconBlock {
+  margin-right: 16px;
+  flex: 0 0 20px;
+}
+
+@media (min-width: 640px) {
+  .menuIconBlock {
+    flex: 0 0 0;
+  }
+}
+
+@media (min-width: 640px) {
+  .menuIconBlock {
+    display: none;
+  }
+}
