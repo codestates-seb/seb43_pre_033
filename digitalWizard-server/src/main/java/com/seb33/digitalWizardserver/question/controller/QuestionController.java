@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/question")
@@ -31,16 +32,16 @@ public class QuestionController {
                                  Authentication authentication) throws IOException {
         String title = request.getTitle();
         String body = request.getBody();
-        questionService.create(title, body, authentication.getName());
+        List<String> tags = request.getTags();
+        questionService.create(title, body, tags, authentication.getName());
         return Response.success();
     }
-
 
     @PatchMapping("/{questionId}")
     public Response<QuestionResponse> update(@PathVariable Long questionId,
                                              @RequestBody QuestionUpdateRequest request,
                                              Authentication authentication) {
-        QuestionDto questionDto = questionService.update(request.getTitle(), request.getBody(), authentication.getName(), questionId);
+        QuestionDto questionDto = questionService.update(request.getTitle(), request.getBody(), request.getTags(), authentication.getName(), questionId);
         return Response.success(QuestionResponse.from(questionDto));
     }
 
@@ -52,7 +53,7 @@ public class QuestionController {
     }
 
     @GetMapping("/search")
-    public Response<Page<QuestionResponse>> search(@RequestParam String keyword, Pageable pageable) {
+    public Response<Page<QuestionResponse>> search(@RequestParam String keyword, @PageableDefault(sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
         return Response.success(questionService.search(keyword, pageable).map(QuestionResponse::from));
     }
 
