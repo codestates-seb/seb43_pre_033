@@ -5,6 +5,8 @@ import com.seb33.digitalWizardserver.exception.ExceptionCode;
 import com.seb33.digitalWizardserver.member.entity.Member;
 import com.seb33.digitalWizardserver.member.repository.MemberRepository;
 import com.seb33.digitalWizardserver.question.dto.QuestionDto;
+import com.seb33.digitalWizardserver.question.dto.request.QuestionCreateRequest;
+import com.seb33.digitalWizardserver.question.dto.response.QuestionResponse;
 import com.seb33.digitalWizardserver.question.entity.Hashtag;
 import com.seb33.digitalWizardserver.question.entity.ImageUrl;
 import com.seb33.digitalWizardserver.question.entity.Question;
@@ -23,8 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 public class QuestionService {
@@ -42,39 +42,18 @@ public class QuestionService {
     }
 
     @Transactional
-    public void create(String title, String body, String email) throws IOException {
+    public void create(String title, String body, List<String> tags, String email) throws IOException {
         Member member = getMemberOrException(email);
-        List<String> hashtagNames = extractHashtagNames(body);
         List<Hashtag> hashtags = new ArrayList<>();
-        for(String hashtagName : hashtagNames){
-            Hashtag hashtag = hashtagRepository.findByName(hashtagName)
-                    .orElseGet(() -> hashtagRepository.save(Hashtag.of(hashtagName)));
+        for(String tag : tags){
+            Hashtag hashtag = hashtagRepository.findByName(tag)
+                    .orElseGet(() -> hashtagRepository.save(Hashtag.of(tag)));
             hashtags.add(hashtag);
         }
-
         // 이미지 추출
-        List<String> imageList = new ArrayList<>();
-        Document doc = Jsoup.parse(body);
-        Elements images = doc.select("img[src]");
-        for (Element image : images) {
-            String imageData = image.attr("src");
-            if (imageData.startsWith("data:image/")) {
-                int pos = imageData.indexOf(",");
-                if (pos != -1) {
-                    String base64Data = imageData.substring(pos + 1);
-                    imageList.add(base64Data);
-                }
-            }
-        }
-
+        List<String> imageList = extractImagesFromHtml(body);
         // 이미지 저장
-        List<String> savedImageUrlList = new ArrayList<>();
-        for (String image : imageList) {
-            byte[] decodedImage = Base64.getDecoder().decode(image);
-            String savedImageUrl = imageService.saveImage(decodedImage);
-            savedImageUrlList.add(savedImageUrl);
-        }
-
+        List<String> savedImageUrlList = saveImages(imageList);
         // 질문 객체 생성
         List<ImageUrl> imageUrlList = new ArrayList<>();
         for (String imageUrl : savedImageUrlList) {
@@ -88,23 +67,22 @@ public class QuestionService {
         for (String imageUrl : savedImageUrlList) {
             body = body.replaceFirst("data:image/[^;]*;base64[^'\"]+", imageUrl);
         }
-
         // 질문 저장
         questionRepository.save(question);
     }
 
 
     @Transactional
-    public QuestionDto update(String title, String body, String email, Long questionId) {
+    public QuestionDto update(String title, String body, List<String> tags, String email, Long questionId) {
         Member member = getMemberOrException(email);
         Question question = getQuestionOrException(questionId);
         if (question.getMember() != member) {
             throw new BusinessLogicException(ExceptionCode.INVALID_PERMISSION, String.format("%s 작성 유저가 권한을 가지고 있지 않습니다.", email));
         }
-        List<String> hashtagNames = extractHashtagNames(body);
         List<Hashtag> hashtags = new ArrayList<>();
-        for (String hashtagName : hashtagNames) {
-            Hashtag hashtag = hashtagRepository.findByName(hashtagName).orElseGet(() -> hashtagRepository.save(Hashtag.of(hashtagName)));
+        for(String tag : tags){
+            Hashtag hashtag = hashtagRepository.findByName(tag)
+                    .orElseGet(() -> hashtagRepository.save(Hashtag.of(tag)));
             hashtags.add(hashtag);
         }
         question.setTitle(title);
@@ -165,15 +143,42 @@ public class QuestionService {
         return memberRepository.findByEmail(email).orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND, String.format("%s 멤버를 찾을 수 없습니다.", email)));
     }
-
-    public List<String> extractHashtagNames(String tags) {
-        List<String> hashtags = new ArrayList<>();
-        Pattern pattern = Pattern.compile("#([\\p{L}\\d_ㄱ-ㅎㅏ-ㅣ가-힣]+)");
-        Matcher matcher = pattern.matcher(tags);
-        while (matcher.find()) {
-            String hashtag = matcher.group().substring(1);
-            hashtags.add(hashtag);
+    private List<String> extractImagesFromHtml(String html) {
+        List<String> imageList = new ArrayList<>();
+        Document doc = Jsoup.parse(html);
+        Elements images = doc.select("img[src]");
+        for (Element image : images) {
+            String imageData = image.attr("src");
+            if (imageData.startsWith("data:image/")) {
+                int pos = imageData.indexOf(",");
+                if (pos != -1) {
+                    String base64Data = imageData.substring(pos + 1);
+                    imageList.add(base64Data);
+                }
+            }
         }
-        return hashtags;
+        return imageList;
     }
+
+    private List<String> saveImages(List<String> images) throws IOException {
+        List<String> savedImageUrlList = new ArrayList<>();
+        for (String image : images) {
+            byte[] decodedImage = Base64.getDecoder().decode(image);
+            String savedImageUrl = imageService.saveImage(decodedImage);
+            savedImageUrlList.add(savedImageUrl);
+        }
+        return savedImageUrlList;
+    }
+
+
+//    public List<String> extractHashtagNames(String tags) {
+//        List<String> hashtags = new ArrayList<>();
+//        Pattern pattern = Pattern.compile("#([\\p{L}\\d_ㄱ-ㅎㅏ-ㅣ가-힣]+)");
+//        Matcher matcher = pattern.matcher(tags);
+//        while (matcher.find()) {
+//            String hashtag = matcher.group().substring(1);
+//            hashtags.add(hashtag);
+//        }
+//        return hashtags;
+//    }
 }
