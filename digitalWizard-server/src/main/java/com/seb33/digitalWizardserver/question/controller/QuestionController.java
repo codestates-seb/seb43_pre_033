@@ -6,8 +6,6 @@ import com.seb33.digitalWizardserver.question.dto.request.QuestionCreateRequest;
 import com.seb33.digitalWizardserver.question.dto.request.QuestionUpdateRequest;
 import com.seb33.digitalWizardserver.question.dto.response.QuestionResponse;
 import com.seb33.digitalWizardserver.question.service.QuestionService;
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Safelist;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +13,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/question")
@@ -28,11 +28,13 @@ public class QuestionController {
 
     @PostMapping
     public Response<Void> create(@RequestBody QuestionCreateRequest request,
-                                 Authentication authentication) {
-        String bodyRemoveTag = Jsoup.clean(request.getBody(), Safelist.none());
-        questionService.create(request.getTitle(), bodyRemoveTag, authentication.getName());
+                                 Authentication authentication) throws IOException {
+        String title = request.getTitle();
+        String body = request.getBody();
+        questionService.create(title, body, authentication.getName());
         return Response.success();
     }
+
 
     @PatchMapping("/{questionId}")
     public Response<QuestionResponse> update(@PathVariable Long questionId,

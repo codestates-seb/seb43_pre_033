@@ -5,6 +5,7 @@ import com.seb33.digitalWizardserver.auth.filter.JwtVerificationFilter;
 import com.seb33.digitalWizardserver.auth.handler.*;
 import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.utils.CustomAuthorityUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +21,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
 
@@ -71,6 +74,19 @@ public class SecurityConfiguration {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder(); // PasswordEncoder Bean 객체 생성
+    }
+
+    @Configuration
+    public class WebMvcConfig implements WebMvcConfigurer {
+
+        @Value("${image.upload.dir}")
+        private String imageUploadDir;
+        @Override
+        public void addResourceHandlers(ResourceHandlerRegistry registry) {
+            registry
+              .addResourceHandler("/images/**")
+              .addResourceLocations("file:" + imageUploadDir + "/");
+        }
     }
 
     // CORS 정책 설정하는 방법
