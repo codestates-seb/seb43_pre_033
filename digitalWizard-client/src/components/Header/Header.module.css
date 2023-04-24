@@ -134,8 +134,59 @@
   }
 }
 
+/* 햄버거 아이콘 */
 .menuIcon,
 .menuIconBlock {
   margin-right: 16px;
   flex: 0 0 20px;
+}
+
+@media (min-width: 640px) {
+  .menuIconBlock {
+    flex: 0 0 0;
+  }
+}
+
+/* 사이드바 */
+.sidebar,
+.sidebarNone,
+.sidebarHide {
+  color: var(--text-sub-color);
+  padding-top: 30px;
+  position: sticky;
+  font-size: 13px;
+  top: 49px;
+  left: 0px;
+  width: 240px;
+  height: 220px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0px 0px 6px var(--border-color);
+  background-color: white;
+}
+
+@media (min-width: 640px) {
+  .menuIconBlock {
+    display: none;
+  }
+  .sidebar,
+  .sidebarNone {
+    background-color: rgba(255, 255, 255, 0);
+    width: 164px;
+    height: 100vh;
+    position: sticky;
+    top: 49px;
+    left: 0px;
+    border-top: 0px;
+    box-shadow: 0px 0px 0px var(--border-color);
+  }
+}
+
+.sidebarHideNone {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .sidebarNone {
+    display: none;
+  }
 }
