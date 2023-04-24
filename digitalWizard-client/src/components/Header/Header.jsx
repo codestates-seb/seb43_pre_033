@@ -5,8 +5,8 @@ import { AiTwotoneTrophy, AiFillQuestionCircle } from "react-icons/ai";
 import { FaStackExchange } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
-import SidebarL from "../Sidebar/SidebarL/SidebarL.jsx";
 import { useIsLoginStore } from "../../stores/loginStore";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Header = ({ onSearch, search }) => {
   const { isLogin } = useIsLoginStore(state => state);
@@ -16,7 +16,7 @@ const Header = ({ onSearch, search }) => {
   return (
     <header className={styles.header}>
       <div className={styles.wrap}>
-        <SidebarL />
+        <RxHamburgerMenu className={styles.menuIcon} />
         <div className={styles.logoWrap}>
           <Link to="/" className={styles.logo}>
             <img src={logo} alt="logo" className={styles.logoImg}></img>

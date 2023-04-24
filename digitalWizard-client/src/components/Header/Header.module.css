@@ -133,3 +133,9 @@
     display: none;
   }
 }
+
+.menuIcon,
+.menuIconBlock {
+  margin-right: 16px;
+  flex: 0 0 20px;
+}
