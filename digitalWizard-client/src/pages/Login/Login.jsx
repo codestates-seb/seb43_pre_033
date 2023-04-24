@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../common/Button.jsx";
 import styles from "./Login.module.css";
-import axios from "axios";
 import { useState } from "react";
 import { useIsLoginStore, useLoginInfoStore } from "../../stores/loginStore.js";
+import { postLogin } from "../../api/questionApi.js";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,7 +15,6 @@ const Login = () => {
   const handleInputValue = key => e => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
-
   // 로그인 요청 처리
   const loginRequestHandler = () => {
     const { email, password } = loginInfo;
@@ -23,72 +22,12 @@ const Login = () => {
       setErrorMessage("아이디와 비밀번호를 입력하세요");
       return;
     }
-    axios.interceptors.response.use(
-      function (response) {
-        // Any status code that lie within the range of 2xx cause this function to trigger
-        // Do something with response data
-        console.log("get response", response);
-        return response;
-      },
-      async error => {
-        const {
-          config,
-          response: { status },
-        } = error;
-        if (status === 401) {
-          if (error.response.data.message === "expired") {
-            const originalRequest = config;
-            const refreshToken = await localStorage.getItem("refreshToken");
-            // token refresh 요청
-            const { data } = await axios.post(
-              `${process.env.REACT_APP_BASE_URL}/refreshToken`, // token refresh api
-              {},
-              { headers: { authorization: `Bearer ${refreshToken}` } }
-            );
-            // 새로운 토큰 저장
-            // dispatch(userSlice.actions.setAccessToken(data.data.accessToken)); store에 저장
-            const {
-              accessToken: newAccessToken,
-              refreshToken: newRefreshToken,
-            } = data;
-            await localStorage.multiSet([
-              ["accessToken", newAccessToken],
-              ["refreshToken", newRefreshToken],
-            ]);
-            originalRequest.headers.authorization = `Bearer ${newAccessToken}`;
-            // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
-            return axios(originalRequest);
-          }
-        }
-        // Any status codes that falls outside the range of 2xx cause this function to trigger
-        // Do something with response error
-        console.log("response error", error);
-        return Promise.reject(error);
-      }
-    );
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/members/login`, loginInfo, {
-        withCredentials: true,
-      })
-      .then(res => {
-        setIsLogin(true);
-        // data 확인
-        console.log(res);
-        // local storage에 token 저장
-        // localStorage.setItem("token", res.data.jwt);
-        // 로그인 성공시 홈페이지 이동
-        // axios.defaults.headers.common.Authorization = `Bearer ${res.data.jwt}`;
-        navigate("/");
-        setErrorMessage("");
-        window.location.reload();
-      })
-      .catch(err => {
-        // console.log("########", err);
-        if (err.response.status === 401) {
-          setErrorMessage("로그인에 실패했습니다.");
-          navigate("/404");
-        }
-      });
+    postLogin(loginInfo, "/members/login").then(res => {
+      console.log("로그인 성공");
+      setIsLogin(true);
+      setErrorMessage("");
+      navigate("/question");
+    });
   };
 
   const onStop = e => {

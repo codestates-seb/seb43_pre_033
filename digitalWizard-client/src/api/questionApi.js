@@ -1,10 +1,12 @@
 import request from "./core";
+import getRequest from "./core/getIndex";
 
 // get
 const getQuestion = url => {
-  return request({ url });
+  return getRequest({ url });
 };
 
+const Authorization = localStorage.getItem("accessToken");
 // post, patch
 const postQuestion = (data, url, method = "post") => {
   return request({
@@ -13,10 +15,18 @@ const postQuestion = (data, url, method = "post") => {
     data,
     headers: {
       "Content-Type": "application/json",
-      // Authorization:
-      //   "WishJWT eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sIm1lbWJlckVtYWlsIjoidGVzdDFAZ21haWwuY29tIiwic3ViIjoidGVzdDFAZ21haWwuY29tIiwiaWF0IjoxNjgxOTIzMTcyLCJleHAiOjE2ODE5MjQ5NzJ9.tKVCqyW6TUj-OV6Zr2Kamb6EqA2KuJ6QEG2bfOThlJY",
+      withCredentials: true,
+      Authorization: Authorization,
     },
+  }).then(res => console.log(res));
+};
+
+const postLogin = (data, url, method = "post") => {
+  return request({
+    method,
+    url,
+    data,
   });
 };
 
-export { getQuestion, postQuestion };
+export { getQuestion, postQuestion, postLogin };

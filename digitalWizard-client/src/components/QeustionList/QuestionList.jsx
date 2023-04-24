@@ -4,7 +4,7 @@ export default function QuestionList({ questions }) {
   return (
     <div>
       {questions &&
-        questions.map(q => <QuestionItem question={q} key={q.id} />)}
+        questions.map(q => <QuestionItem question={q} key={q.questionId} />)}
     </div>
   );
 }

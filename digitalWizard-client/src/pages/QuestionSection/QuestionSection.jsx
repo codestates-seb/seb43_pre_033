@@ -12,24 +12,14 @@ export default function QuestionSection() {
   const [isEmpty, setisEmpty] = useState(true);
   const [questions, setQuestions] = useState(null);
   const [pageNum, setPageNum] = useState(0);
-  const [totalPage, setTotalPage] = useState(2);
+  const [totalPage, setTotalPage] = useState(1);
 
   useEffect(() => {
-    // getQuestion(`/question?size=20&page=${pageNum}`).then(data => {
-    //   setisEmpty(data.result.empty);
-    //   setQuestions(data.result.content);
-    //   setPageNum(data.result.pageable.pageNumber);
-    //   setTotalPage(data.result.pageable.totalPages);
-    // });
-
-    // json-server
-    getQuestion("/question").then(data => {
-      setQuestions(data);
-      setisEmpty(false);
-    });
-    // json-server (pager test)
-    getQuestion("/pageable").then(data => {
-      setPageNum(data.pageNumber);
+    getQuestion(`/question?size=20&page=${pageNum}`).then(data => {
+      setisEmpty(data.result.empty);
+      setQuestions(data.result.content);
+      setPageNum(data.result.pageable.pageNumber);
+      setTotalPage(data.result.totalPages);
     });
   }, [pageNum]);
 
