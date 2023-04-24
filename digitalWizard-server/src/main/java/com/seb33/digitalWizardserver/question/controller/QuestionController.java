@@ -31,8 +31,7 @@ public class QuestionController {
                                  Authentication authentication) throws IOException {
         String title = request.getTitle();
         String body = request.getBody();
-        String tags = request.getTags();
-        questionService.create(title, body, tags, authentication.getName());
+        questionService.create(title, body, authentication.getName());
         return Response.success();
     }
 
@@ -41,7 +40,7 @@ public class QuestionController {
     public Response<QuestionResponse> update(@PathVariable Long questionId,
                                              @RequestBody QuestionUpdateRequest request,
                                              Authentication authentication) {
-        QuestionDto questionDto = questionService.update(request.getTitle(), request.getBody(), request.getTags(), authentication.getName(), questionId);
+        QuestionDto questionDto = questionService.update(request.getTitle(), request.getBody(), authentication.getName(), questionId);
         return Response.success(QuestionResponse.from(questionDto));
     }
 
