@@ -9,6 +9,7 @@ public enum ExceptionCode {
     MEMBER_EXISTS(409, "이메일이 이미 존재"),
     MEMBER_NOT_FOUND(404, "멤버를 찾을수 없습니다."),
     INTERNAL_SERVER_ERROR(500, "내부 서버 오류"),
+    IS_GOOGLE_USER(403, "google계정입니다."),
 
     QUESTION_NOT_FOUND(404, "질문을 찾을 수 없습니다."),
     ANSWER_NOT_FOUND(404,"답변을 찾을 수 없습니다."),
