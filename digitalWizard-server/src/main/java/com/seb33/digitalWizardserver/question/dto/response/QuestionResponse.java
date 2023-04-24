@@ -20,6 +20,7 @@ public class QuestionResponse {
     private int view;
     private int answerCount;
     private List<String> hashtags;
+    private List<String> imageUrl;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private CustomMemberResponse member;
@@ -33,7 +34,8 @@ public class QuestionResponse {
                 dto.getView(),
                 dto.getAnswerCount(),
                 dto.getHashtags(),
-                dto.getCreateAt(),
+                dto.getImageUrl(),
+                dto.getCreatedAt(),
                 dto.getModifiedAt(),
                 CustomMemberResponse.from(dto.getMember()));
     }

@@ -5,6 +5,7 @@ import com.seb33.digitalWizardserver.auth.filter.JwtVerificationFilter;
 import com.seb33.digitalWizardserver.auth.handler.*;
 import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.utils.CustomAuthorityUtils;
+import org.springframework.beans.factory.annotation.Value;
 import com.seb33.digitalWizardserver.member.repository.MemberRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
 
@@ -76,6 +79,7 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder(); // PasswordEncoder Bean 객체 생성
     }
 
+
     // CORS 정책 설정하는 방법
     @Bean
     CorsConfigurationSource corsConfigurationSource() { // CorsConfigurationSource Bean 생성을 통해 구체적인 CORS 정책을 설정
@@ -110,6 +114,19 @@ public class SecurityConfiguration {
             builder.addFilter(jwtAuthenticationFilter)  // addFilter() 메서드를 통해 JwtAuthenticationFilter를 Spring Security Filter Chain에 추가
                     .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class)   // JwtVerificationFilter는 JwtAuthenticationFilter에서 로그인 인증에 성공한 후 발급 받은 JWT가 클라이언트의 request header(Authorization 헤더)에 포함되어 있을 경우에만 동작한다.
                     .addFilterAfter(jwtVerificationFilter, OAuth2LoginAuthenticationFilter.class); // OAuth2로그인 성공 시 jwtVerificationFilter 호출
+        }
+    }
+
+    @Configuration
+    public class WebMvcConfig implements WebMvcConfigurer {
+
+        @Value("${image.upload.dir}")
+        private String imageUploadDir;
+        @Override
+        public void addResourceHandlers(ResourceHandlerRegistry registry) {
+            registry
+              .addResourceHandler("/images/**")
+              .addResourceLocations("file:" + imageUploadDir + "/");
         }
     }
 }
