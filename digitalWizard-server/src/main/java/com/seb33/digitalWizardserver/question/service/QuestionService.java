@@ -72,24 +72,43 @@ public class QuestionService {
     }
 
 
-    @Transactional
-    public QuestionDto update(String title, String body, List<String> tags, String email, Long questionId) {
-        Member member = getMemberOrException(email);
-        Question question = getQuestionOrException(questionId);
-        if (question.getMember() != member) {
-            throw new BusinessLogicException(ExceptionCode.INVALID_PERMISSION, String.format("%s 작성 유저가 권한을 가지고 있지 않습니다.", email));
-        }
-        List<Hashtag> hashtags = new ArrayList<>();
-        for(String tag : tags){
-            Hashtag hashtag = hashtagRepository.findByName(tag)
-                    .orElseGet(() -> hashtagRepository.save(Hashtag.of(tag)));
-            hashtags.add(hashtag);
-        }
-        question.setTitle(title);
-        question.setBody(body);
-        question.setHashtags(hashtags);
-        return QuestionDto.from(questionRepository.save(question));
-    }
+@Transactional
+   public QuestionDto update(String title, String body, List<String> tags, String email, Long questionId) throws IOException {
+       Member member = getMemberOrException(email);
+       Question question = getQuestionOrException(questionId);
+       if (!question.getMember().equals(member)) {  // 수정
+           throw new BusinessLogicException(ExceptionCode.INVALID_PERMISSION, String.format("%s 작성 유저가 권한을 가지고 있지 않습니다.", email));
+       }
+       List<Hashtag> hashtags = new ArrayList<>();
+       for(String tag : tags){
+           Hashtag hashtag = hashtagRepository.findByName(tag)
+                   .orElseGet(() -> hashtagRepository.save(Hashtag.of(tag)));
+           hashtags.add(hashtag);
+       }
+       question.setTitle(title);
+       question.setHashtags(hashtags);  // 수정
+
+       // 이미지 추출
+       List<String> imageList = extractImagesFromHtml(body);
+       // 이미지 저장
+       List<String> savedImageUrlList = saveImages(imageList);
+       // 질문 객체 생성
+       List<ImageUrl> imageUrlList = new ArrayList<>();
+       for (String imageUrl : savedImageUrlList) {
+           ImageUrl image = new ImageUrl(imageUrl);
+           imageUrlList.add(image);
+       }
+       String bodyRemoveTag = Jsoup.clean(body, Safelist.none());
+       question.setBody(bodyRemoveTag);  // 수정
+       question.setImageUrls(imageUrlList);  // 추가
+
+       // 이미지 URL 삽입
+       for (String imageUrl : savedImageUrlList) {
+           body = body.replaceFirst("data:image/[^;]*;base64[^'\"]+", imageUrl);
+       }
+       // 질문 저장
+       return QuestionDto.from(questionRepository.save(question));
+   }
 
     public void delete(String email, Long questionId) {
         Member member = getMemberOrException(email);

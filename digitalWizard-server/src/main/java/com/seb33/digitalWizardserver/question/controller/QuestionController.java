@@ -40,7 +40,7 @@ public class QuestionController {
     @PatchMapping("/{questionId}")
     public Response<QuestionResponse> update(@PathVariable Long questionId,
                                              @RequestBody QuestionUpdateRequest request,
-                                             Authentication authentication) {
+                                             Authentication authentication) throws IOException {
         QuestionDto questionDto = questionService.update(request.getTitle(), request.getBody(), request.getTags(), authentication.getName(), questionId);
         return Response.success(QuestionResponse.from(questionDto));
     }
