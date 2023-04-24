@@ -3,27 +3,36 @@ import styles from "./AnswerEdit.module.css";
 import useInput from "../../hooks/useInput.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Preview from "../Preview/Preview.jsx";
 
 function AnswerEdit() {
   const [focus, setFocus] = useState(false);
   const [dataQ, setDataQ] = useState([]);
-  const [dataA, setDataA] = useState([]);
-  const [value] = useInput("", true);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const questionId = location.pathname.split("/");
+  const body = location.state?.body; //?을 붙이면 location.state 없을때 에러없이 undefined반환
+  const [value] = useInput(body, true);
 
-  // 실제 url로 변경하고 토큰으로 유저정보도 확인해야함
+  // 실제 url로 변경하고 토큰으로 유저정보도 확인해야함(상태내려주는게 좋을지?)
   useEffect(() => {
     axios
-      .get("http://localhost:4001/question/1")
+      .get(`http://localhost:4001/question/${questionId[2]}`)
       .then(res => setDataQ(res.data))
-      .catch(error => console.log(error));
-
-    axios
-      .get("http://localhost:4001/answer/1001")
-      .then(res => setDataA(res.data))
       .catch(error => console.log(error));
   }, []);
 
-  console.log(value.value);
+  // `http://{{BaseUrl}}/question/${questionId[2]}/answers/${questionId[4]}`
+  // 토큰 추가필요
+  function patchAnswer(data) {
+    axios
+      .patch(`http://localhost:4001/answer/${questionId[4]}`, {
+        body: data,
+      })
+      .catch(error => console.log(error));
+  }
+
   return (
     <div className={styles.answerEdit}>
       <div className={styles.content}>
@@ -47,13 +56,24 @@ function AnswerEdit() {
         </div>
         <h2 className={styles.answer}>Answer</h2>
         <Editor value={value} setFocus={setFocus} />
-        <div className={styles.view}>{value.value}</div>
+        <Preview className={styles.view} body={value.value} />
         <h2 className={styles.summary}>Edit Summary</h2>
         <input
           className={styles.input}
           placeholder="briefly explain your changes (corrected spelling, fixed grammar, improved formatting)"></input>
-        <button className={`btnPrimary btn ${styles.btn}`}>Save edits</button>
-        <button className={`btn ${styles.cancelBt}`}>Cancel</button>
+        <button
+          className={`btnPrimary btn ${styles.btn}`}
+          onClick={() => {
+            patchAnswer(value.value);
+            navigate(-1);
+          }}>
+          Save edits
+        </button>
+        <button
+          className={`btn ${styles.cancelBt}`}
+          onClick={() => navigate(-1)}>
+          Cancel
+        </button>
       </div>
       <div className={styles.modal}>
         <div className={styles.shadow}>

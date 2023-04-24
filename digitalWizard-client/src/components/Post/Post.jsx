@@ -92,7 +92,8 @@ function Post({ data, QA }) {
   const handleEdit = () => {
     QA === "Q" &&
       navigate(`/question/${data.id}/questionEdit`, { state: data });
-    QA === "A" && navigate(`/question/:questionId/answerEdit/:answerId`);
+    QA === "A" &&
+      navigate(`${currentPath}/answerEdit/${data.id}`, { state: data });
     // 영은님 나중에 서버 연결되면 경로에 맞게 수정하세요 :)
   };
 

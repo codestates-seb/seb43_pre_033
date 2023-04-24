@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Editor from "../Editor.jsx";
 import useInput from "../../hooks/useInput.js";
 
-function Answer() {
+function Answer({ id }) {
   // 실제 url http://localhost:8080/question/1/answers
   // /question/{questionId}/answers
   const [data, setData] = useState([]);

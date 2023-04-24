@@ -181,3 +181,16 @@ pre {
 li {
   list-style: none;
 }
+
+/* 미리보기 */
+p.ql-align-center {
+  text-align: center;
+}
+
+p.ql-align-right {
+  text-align: right;
+}
+
+p.ql-align-justfy {
+  text-align: justify;
+}
