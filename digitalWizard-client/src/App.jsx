@@ -8,6 +8,9 @@ import Login from "./pages/Login/Login.jsx";
 import AskQuestionEdit from "./pages/AskQuestionEdit/AskQuestionEdit.jsx";
 import SearchPage from "./pages/QuestionSection/SearchPage.jsx";
 import useInput from "./hooks/useInput.js";
+import SidebarL from "./components/Sidebar/SidebarL/SidebarL.jsx";
+import { useState } from "react";
+import styles from "./App.module.css";
 
 function App() {
   const [search, searchReset] = useInput("");
@@ -20,23 +23,47 @@ function App() {
     }
   };
 
+  const [modal, setModal] = useState(false); // 메뉴 열고닫기
+  const [hide, setHide] = useState(false); // url에 따른 메뉴 숨김
+
   return (
     <div className="App">
-      <Header onSearch={handleSearch} search={search} />
-      <Routes>
-        <Route path="/" />
-        <Route path="/question" element={<QuestionSection />} />
-        <Route path="/question/search" element={<SearchPage />} />
-        <Route path="/question/ask" element={<AskQuestion />} />
-        <Route path="/question/:questionId" element={<QuestionDetail />} />
-        <Route
-          path="/question/:questionId/questionEdit"
-          element={<AskQuestionEdit />}
-        />
-        <Route path="/question/:questionId/answerEdit/:answerId" />
-        <Route path="/users/signup" element={<Signup />} />
-        <Route path="/users/login" element={<Login />} />
-      </Routes>
+      <Header
+        onSearch={handleSearch}
+        search={search}
+        modal={modal}
+        setModal={setModal}
+        hide={hide}
+        setHide={setHide}
+      />
+      <div className={styles.flex}>
+        <nav
+          className={
+            hide
+              ? modal
+                ? styles.sidebarHide
+                : styles.sidebarHideNone
+              : modal
+              ? styles.sidebar
+              : styles.sidebarNone
+          }>
+          <SidebarL modal={modal} setModal={setModal} />
+        </nav>
+        <Routes>
+          <Route path="/" />
+          <Route path="/question" element={<QuestionSection />} />
+          <Route path="/question/search" element={<SearchPage />} />
+          <Route path="/question/ask" element={<AskQuestion />} />
+          <Route path="/question/:questionId" element={<QuestionDetail />} />
+          <Route
+            path="/question/:questionId/questionEdit"
+            element={<AskQuestionEdit />}
+          />
+          <Route path="/question/:questionId/answerEdit/:answerId" />
+          <Route path="/users/signup" element={<Signup />} />
+          <Route path="/users/login" element={<Login />} />
+        </Routes>
+      </div>
     </div>
   );
 }
