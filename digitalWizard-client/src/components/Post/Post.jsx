@@ -55,6 +55,7 @@ function Post({ data, QA, email }) {
       .post(url + "/likes", {
         headers: {
           Authorization,
+          withCredentials: true,
         },
       })
       .get(url + "/results")
@@ -66,6 +67,7 @@ function Post({ data, QA, email }) {
       .post(url + "/hates", {
         headers: {
           Authorization,
+          withCredentials: true,
         },
       })
       .get(url + "/results")
@@ -81,6 +83,7 @@ function Post({ data, QA, email }) {
     axios.delete(baseUrl + delURL, {
       headers: {
         Authorization,
+        withCredentials: true,
       },
     });
   }
@@ -91,6 +94,7 @@ function Post({ data, QA, email }) {
       .patch(baseUrl + delURL + "/accept", {
         headers: {
           Authorization,
+          withCredentials: true,
         },
       })
       .then(res => (res.resultCode === "SUCCESS" ? setAccept(true) : null));
