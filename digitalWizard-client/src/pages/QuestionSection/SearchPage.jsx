@@ -1,29 +1,73 @@
 import styles from "./QuestionSection.module.css";
 import Headline from "../../components/Headline/Headline.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
+import { useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getQuestion } from "../../api/questionApi";
+import { RiFolderWarningLine } from "react-icons/ri";
 import QuestionList from "../../components/QeustionList/QuestionList.jsx";
 import Pagination from "../../common/Pagination/Pagination.jsx";
-import SidebarR from "../../components/Sidebar/SidebarR/SidebarR.jsx";
-import { RiFolderWarningLine } from "react-icons/ri";
 
-export default function SearchPage({
-  isEmpty,
-  questions,
-  pageNum,
-  setPageNum,
-  totalPage,
-}) {
+export default function SearchPage({ pageNum, setPageNum }) {
+  const sorted = ["Relevance", "Newest", "More"];
+  const { keyword } = useParams();
+  const [isEmpty, setisEmpty] = useState(true);
+  const [questions, setQuestions] = useState(null);
+
+  const [totalPage, setTotalPage] = useState(1);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    setPageNum(0); // keyword가 변경될 때마다 pageNum을 0으로 초기화
+  }, [keyword]);
+
+  useEffect(() => {
+    if (keyword.trim() !== "") {
+      getQuestion(
+        `/question/search?keyword=${keyword}&page=${pageNum}&size=2`
+      ).then(data => {
+        setisEmpty(data.result.empty);
+        setQuestions(data.result.content);
+        setPageNum(data.result.pageable.pageNumber);
+        setTotalPage(data.result.totalPages);
+        setTotal(data.result.totalElements);
+      });
+    }
+  }, [keyword, pageNum]);
+
   return (
     <section className="section">
       <div className={styles.mainbar}>
         <div className={styles.titleWrap}>
           <Headline h2={"Search Results"} />
-          <div>
-            <p>Results for react</p>
-            <p>Search options not deleted</p>
+          <ul>
+            <li>
+              Results for <strong>{keyword}</strong>
+            </li>
+            <li>
+              Search options not <strong>deleted</strong>
+            </li>
+          </ul>
+          <div className={styles.flexBox}>
+            <p>{total} results</p>
+            <Filters sorted={sorted} />
           </div>
-          <Filters />
         </div>
+        {!isEmpty ? (
+          <div className={styles.questionsWrap}>
+            <QuestionList questions={questions} />
+            <Pagination
+              pageNum={pageNum}
+              setPageNum={setPageNum}
+              totalPage={totalPage}
+            />
+          </div>
+        ) : (
+          <div className={styles.empty}>
+            <RiFolderWarningLine className={styles.emptyIco} />
+            <p className={styles.emptyMent}>질문 목록이 없습니다.</p>
+          </div>
+        )}
       </div>
     </section>
   );
