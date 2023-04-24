@@ -3,20 +3,17 @@ import styles from "./Form.module.css";
 import AskTip from "../AskTip/AskTip.jsx";
 import Editor from "../../Editor.jsx";
 
-export default function TextEditor({ value }) {
+export default function TextEditor({ type, value, para, edit = false }) {
   const [focus, setFocus] = useState(false);
 
   return (
     <div className={styles.inputWrap}>
-      {focus && <AskTip type="text" />}
-      <div className={styles.inputBox}>
+      {!edit && focus && <AskTip type={type} />}
+      <div className={edit ? styles.editBox : styles.inputBox}>
         <label className={styles.title} htmlFor="body">
-          What are the details of your problem?
+          {type}
         </label>
-        <p className={styles.para}>
-          Introduce the problem and expand on what you put in the title. Minimum
-          20 characters.
-        </p>
+        <p className={styles.para}>{para}</p>
         <Editor value={value} setFocus={setFocus} />
       </div>
     </div>

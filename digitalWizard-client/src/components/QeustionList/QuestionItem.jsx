@@ -3,7 +3,8 @@ import styles from "./QuestionItem.module.css";
 import { Link } from "react-router-dom";
 
 export default function QuestionItem({ question }) {
-  const { id, title, body, vote, view, answerCount, createdAt } = question;
+  const { id, title, body, vote, view, answerCount, hashtags, createdAt } =
+    question;
   const { profileImage, memberNickName } = question.member;
 
   return (
@@ -30,8 +31,12 @@ export default function QuestionItem({ question }) {
         </dl>
         <div className={styles.summaryBottom}>
           <div className={styles.tags}>
-            <button className="btnSub tag">angular</button>
-            <button className="btnSub tag">angular</button>
+            {hashtags &&
+              hashtags.map((tag, i) => (
+                <button key={i} className="btnSub tag">
+                  {tag}
+                </button>
+              ))}
           </div>
           <div className={styles.user}>
             <a className={styles.profile} href="#!">

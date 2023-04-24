@@ -125,6 +125,14 @@ function Post({ data, QA }) {
           </div>
           <div className={styles.detail}>
             <div className={styles.content}>{data.body}</div>
+            <div className={styles.tags}>
+              {data.hashtags &&
+                data.hashtags.map((tag, i) => (
+                  <button key={i} className="btnSub tag">
+                    {tag}
+                  </button>
+                ))}
+            </div>
             <div className={styles.bottom}>
               <div className={styles.share}>
                 <div>Share</div>

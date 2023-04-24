@@ -18,7 +18,6 @@ const Login = () => {
 
   // 로그인 요청 처리
   const loginRequestHandler = () => {
-    const BASE_URL = "http://13.124.42.111:8080";
     const { email, password } = loginInfo;
     if (!email || !password) {
       setErrorMessage("아이디와 비밀번호를 입력하세요");
@@ -26,7 +25,7 @@ const Login = () => {
     }
 
     axios
-      .post("/members/login", loginInfo, {
+      .post(`${process.env.REACT_APP_BASE_URL}/members/login`, loginInfo, {
         withCredentials: true,
       })
       .then(res => {
@@ -42,6 +41,7 @@ const Login = () => {
         // window.location.reload();
       })
       .catch(err => {
+        console.log("########", err);
         if (err.response.status === 401) {
           setErrorMessage("로그인에 실패했습니다.");
           navigate("/404");
@@ -57,7 +57,7 @@ const Login = () => {
   // * oauth - google
   const handleRequestSignupGoogle = () => {
     // return window.location.assign(
-    //   "https://dev.qushe8r.shop/oauth2/authorization/google"
+    //   "https://8ccd-121-133-205-229.ngrok-free.app/oauth2/authorization/google"
     // );
   };
 

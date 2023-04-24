@@ -1,0 +1,40 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+}
+
+.pagination button {
+  border-radius: 0.2rem;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+}
+
+.pagination button:disabled {
+  cursor: default;
+  color: var(--border-color);
+}
+
+.pagination button:not(:disabled):not(.active):hover {
+  background-color: var(--black-100);
+}
+
+.prev,
+.next {
+  font-size: 0.8rem;
+}
+
+.pageNumber {
+  display: flex;
+  gap: 0.3rem;
+}
+.page {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.pagination .active {
+  background-color: var(--brand-color);
+  border-color: var(--brand-color);
+  color: var(--bg-color);
+}
