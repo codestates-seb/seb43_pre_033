@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class MemberDto {
     @Getter
@@ -13,6 +15,7 @@ public class MemberDto {
     public static class PostMember{
         @Email
         private String email;
+        @NotBlank(message = "비밀번호는 공백이 아니어야 합니다.")
         private String password;
         private String memberNickName;
     }
