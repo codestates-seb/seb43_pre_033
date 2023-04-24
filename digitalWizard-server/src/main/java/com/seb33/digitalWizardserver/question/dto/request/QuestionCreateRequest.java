@@ -9,5 +9,4 @@ import lombok.Getter;
 public class QuestionCreateRequest {
     private String title;
     private String body;
-    private String tags;
 }

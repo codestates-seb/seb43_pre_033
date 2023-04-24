@@ -42,9 +42,9 @@ public class QuestionService {
     }
 
     @Transactional
-    public void create(String title, String body, String tags, String email) throws IOException {
+    public void create(String title, String body, String email) throws IOException {
         Member member = getMemberOrException(email);
-        List<String> hashtagNames = extractHashtagNames(tags);
+        List<String> hashtagNames = extractHashtagNames(body);
         List<Hashtag> hashtags = new ArrayList<>();
         for(String hashtagName : hashtagNames){
             Hashtag hashtag = hashtagRepository.findByName(hashtagName)
@@ -95,13 +95,13 @@ public class QuestionService {
 
 
     @Transactional
-    public QuestionDto update(String title, String body, String tags, String email, Long questionId) {
+    public QuestionDto update(String title, String body, String email, Long questionId) {
         Member member = getMemberOrException(email);
         Question question = getQuestionOrException(questionId);
         if (question.getMember() != member) {
             throw new BusinessLogicException(ExceptionCode.INVALID_PERMISSION, String.format("%s 작성 유저가 권한을 가지고 있지 않습니다.", email));
         }
-        List<String> hashtagNames = extractHashtagNames(tags);
+        List<String> hashtagNames = extractHashtagNames(body);
         List<Hashtag> hashtags = new ArrayList<>();
         for (String hashtagName : hashtagNames) {
             Hashtag hashtag = hashtagRepository.findByName(hashtagName).orElseGet(() -> hashtagRepository.save(Hashtag.of(hashtagName)));
