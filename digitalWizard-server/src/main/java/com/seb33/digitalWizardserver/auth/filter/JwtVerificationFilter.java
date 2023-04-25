@@ -4,6 +4,7 @@ import com.seb33.digitalWizardserver.auth.jwt.JwtTokenizer;
 import com.seb33.digitalWizardserver.auth.utils.CustomAuthorityUtils;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException; //주의 - org.security에 똑같은 SignatureException 있음
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import static com.seb33.digitalWizardserver.audit.utils.ErrorResponder.sendErrorResponse;
 
 // JWT 검증 필터 구현 클래스
 // 클라이언트 측에서 전송된 request header에 포함된 JWT에 대해 검증 작업을 수행하는 코드
@@ -37,18 +40,20 @@ public class JwtVerificationFilter extends OncePerRequestFilter {  // OncePerReq
 //
 //        filterChain.doFilter(request, response); // 인증 끝났으니 다음 작업하도록 다음 필터 호출
 
-        try { // 예외처리 로직 추가
+        try {
             Map<String, Object> claims = verifyJws(request);
             setAuthenticationToContext(claims);
-        } catch (SignatureException se) { // 토큰 정보가 잘못되었을 경우 발생하는 Exception이 catch 되면
-            request.setAttribute("exception", se); // 해당 Exception을 HttpServletRequest의 애트리뷰트(Attribute)로 추가
+            filterChain.doFilter(request, response); // 인증이 성공한 경우 다음 필터 호출
+        } catch (SignatureException se) {
+            sendErrorResponse(response, HttpStatus.valueOf(401)); // 토큰 정보가 잘못되었을 경우 401 응답 반환
         } catch (ExpiredJwtException ee) {
-            request.setAttribute("exception", ee); // JWT가 만료된 경우 발생하는 Exception
+            sendErrorResponse(response, HttpStatus.valueOf(401)); // JWT가 만료된 경우 401 응답 반환
         } catch (Exception e) {
             request.setAttribute("exception", e);
+            filterChain.doFilter(request, response);
         }
 
-        filterChain.doFilter(request, response);
+//        filterChain.doFilter(request, response);
     }
 
     // 특정 조건에 부합하면(true이면) 해당 Filter의 동작을 수행하지 않고 다음 Filter로 건너뛰도록 해주는 메서드인 OncePerRequestFilter의 shouldNotFilter()를 오버라이드
@@ -74,4 +79,5 @@ public class JwtVerificationFilter extends OncePerRequestFilter {  // OncePerReq
         Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);  // 이미 앞에서 인증된 Authentication객체를 생성하는데 비밀번호는 불필요하니까 null입력
         SecurityContextHolder.getContext().setAuthentication(authentication); //  SecurityContext에 Authentication 객체를 저장
     }
+
 }
