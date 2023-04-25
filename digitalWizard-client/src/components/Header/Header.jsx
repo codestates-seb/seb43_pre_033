@@ -33,6 +33,8 @@ const Header = ({ onSearch, search, modal, setModal, hide, setHide }) => {
     setModal(false);
   }, [path]);
 
+  const handleSearch = e => onSearch(e);
+
   return (
     <header className={styles.header}>
       <div className={styles.wrap}>
@@ -62,14 +64,15 @@ const Header = ({ onSearch, search, modal, setModal, hide, setHide }) => {
             </li>
           </ul>
         </div>
-        <form className={styles.searchBar}>
+        <form className={styles.searchBar} onSubmit={handleSearch}>
           <HiOutlineSearch className={styles.searchIco} />
           <input
+            type="text"
             {...search}
             className={styles.search}
             placeholder="Search..."
-            onKeyDown={e => onSearch(e)}
           />
+          <button type="submit">Search</button>
         </form>
         {isLogin ? (
           <div className={styles.loginBox}>
