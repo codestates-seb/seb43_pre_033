@@ -45,3 +45,8 @@ jwt:
 
 server:
   port: 8080
+
+image:
+  upload:
+    dir : classpath:/static/images/
+    

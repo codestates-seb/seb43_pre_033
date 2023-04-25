@@ -1,10 +1,7 @@
 package com.seb33.digitalWizardserver.question.dto;
 
 import com.seb33.digitalWizardserver.member.dto.CustomMemberDto;
-import com.seb33.digitalWizardserver.question.entity.Hashtag;
-import com.seb33.digitalWizardserver.question.entity.Question;
-import com.seb33.digitalWizardserver.question.entity.View;
-import com.seb33.digitalWizardserver.question.entity.Vote;
+import com.seb33.digitalWizardserver.question.entity.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +21,8 @@ public class QuestionDto {
     private int view;
     private int answerCount;
     private List<String> hashtags;
-    private LocalDateTime createAt;
+    private List<String> imageUrl;
+    private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private CustomMemberDto member;
 
@@ -37,6 +35,7 @@ public class QuestionDto {
                 entity.getView().stream().mapToInt(View::getCount).sum(),
                 entity.getAnswers().size(),
                 entity.getHashtags().stream().map(Hashtag::getName).collect(Collectors.toList()),
+                entity.getImageUrls().stream().map(ImageUrl::getImageUrl).collect(Collectors.toList()),
                 entity.getCreatedAt(),
                 entity.getModifiedAt(),
                 CustomMemberDto.from(entity.getMember())

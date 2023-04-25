@@ -25,6 +25,9 @@ public class Question extends Auditable {
     @Column(columnDefinition = "TEXT", length = 10000)
     private String body;
 
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private List<ImageUrl> imageUrls = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
@@ -46,12 +49,17 @@ public class Question extends Auditable {
             inverseJoinColumns = @JoinColumn(name = "hashtag_id"))
     private List<Hashtag> hashtags = new ArrayList<>();
 
-    public static Question of(String title, String body, Member member, List<Hashtag> hashtags){
+    public static Question of(String title, String body, Member member, List<Hashtag> hashtags, List<ImageUrl> imageUrls){
         Question question = new Question();
         question.setTitle(title);
         question.setBody(body);
         question.setMember(member);
         question.setHashtags(hashtags);
+
+        for(ImageUrl imageUrl : imageUrls){
+            imageUrl.setQuestion(question);
+        }
+        question.setImageUrls(imageUrls);
         return question;
     }
 }
