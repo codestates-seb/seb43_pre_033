@@ -27,6 +27,7 @@ const Login = () => {
       setIsLogin(true);
       setErrorMessage("");
       navigate("/question");
+      console.log(res);
     });
   };
 
