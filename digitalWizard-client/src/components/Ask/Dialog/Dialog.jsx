@@ -24,8 +24,9 @@ export default function Dialog({
 
     // log out
     if (e.target.textContent === "Log out") {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
+      // localStorage.removeItem("accessToken");
+      // localStorage.removeItem("refreshToken");
+      localStorage.removeItem("email");
       setIsLogin(false);
       navigate("/");
     }
