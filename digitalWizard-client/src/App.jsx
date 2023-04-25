@@ -14,6 +14,8 @@ import SidebarL from "./components/Sidebar/SidebarL/SidebarL.jsx";
 import styles from "./App.module.css";
 import Footer from "./components/Footer/Footer.jsx";
 import AnswerEdit from "./components/AnswerEdit/AnswerEdit.jsx";
+import PrivateRoute from "./hoc/PrivateRoute.jsx";
+import PublicRoute from "./hoc/PublicRoute.jsx";
 
 function App() {
   const navigate = useNavigate();
@@ -65,18 +67,26 @@ function App() {
             path="/question/search/:keyword"
             element={<SearchPage pageNum={pageNum} setPageNum={setPageNum} />}
           />
-          <Route path="/question/ask" element={<AskQuestion />} />
           <Route path="/question/:questionId" element={<QuestionDetail />} />
-          <Route
-            path="/question/:questionId/questionEdit"
-            element={<AskQuestionEdit />}
-          />
-          <Route
-            path="/question/:questionId/answerEdit/:answerId"
-            element={<AnswerEdit />}
-          />
-          <Route path="/users/signup" element={<Signup />} />
-          <Route path="/users/login" element={<Login />} />
+
+          {/* ** // 로그인 유저만 접근 가능 && 비로그인 유저 접근 불가 라우터 설정*/}
+          <Route element={<PrivateRoute />}>
+            <Route
+              path="/question/:questionId/questionEdit"
+              element={<AskQuestionEdit />}
+            />
+            <Route
+              path="/question/:questionId/answerEdit/:answerId"
+              element={<AnswerEdit />}
+            />
+            <Route path="/question/ask" element={<AskQuestion />} />
+          </Route>
+
+          {/* ** // 로그인 유저만 접근 불가능 && 비로그인 유저 접근 가능 라우터 설정*/}
+          <Route element={<PublicRoute />}>
+            <Route path="/users/signup" element={<Signup />} />
+            <Route path="/users/login" element={<Login />} />
+          </Route>
         </Routes>
       </div>
 
