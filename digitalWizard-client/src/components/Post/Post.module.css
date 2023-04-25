@@ -1,3 +1,6 @@
+.bodyimg {
+  max-width: 100%;
+}
 .postWrap {
   padding: 1rem 0;
 }
@@ -41,7 +44,8 @@
   height: 32px;
 }
 
-.up:active {
+.up:active,
+.up.active {
   color: var(--brand-color);
 }
 
@@ -50,7 +54,8 @@
   height: 32px;
 }
 
-.down:active {
+.down:active,
+.down.active {
   color: var(--brand-color);
 }
 
