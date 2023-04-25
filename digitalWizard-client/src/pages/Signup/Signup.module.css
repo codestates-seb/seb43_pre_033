@@ -53,6 +53,12 @@
   width: 100%;
 }
 
+.errormessage {
+  font-size: 12px;
+  font-size: x-small;
+  color: red;
+}
+
 .checkbox {
   display: flex;
   justify-content: center;

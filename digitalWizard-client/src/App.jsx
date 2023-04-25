@@ -11,6 +11,7 @@ import useInput from "./hooks/useInput.js";
 import SidebarL from "./components/Sidebar/SidebarL/SidebarL.jsx";
 import { useState } from "react";
 import styles from "./App.module.css";
+import Home from "./pages/Home/Home.jsx";
 
 function App() {
   const [search, searchReset] = useInput("");
@@ -50,7 +51,7 @@ function App() {
           <SidebarL modal={modal} setModal={setModal} />
         </nav>
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<Home />} />
           <Route path="/question" element={<QuestionSection />} />
           <Route path="/question/search" element={<SearchPage />} />
           <Route path="/question/ask" element={<AskQuestion />} />

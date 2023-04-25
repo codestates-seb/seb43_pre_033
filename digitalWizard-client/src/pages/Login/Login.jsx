@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { loginInfo, setLoginInfo } = useLoginInfoStore(state => state);
   const { setIsLogin } = useIsLoginStore(state => state);
-  const [, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Input 정보 처리
   const handleInputValue = key => e => {
@@ -166,11 +166,12 @@ const Login = () => {
                 id="password"
                 onChange={handleInputValue("password")}
               />
+              {errorMessage ? (
+                <p className={styles.errormessage}>{errorMessage}</p>
+              ) : null}
               <div className={styles.loginbtn}>
                 <Button
-                  onclick={() => {
-                    loginRequestHandler();
-                  }}
+                  handleClick={() => loginRequestHandler()}
                   text="Log in"
                   addStyle={{
                     width: "100%",

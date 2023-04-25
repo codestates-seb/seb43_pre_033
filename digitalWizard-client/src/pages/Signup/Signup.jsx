@@ -186,6 +186,7 @@ function Signup() {
                   // maxLength={16}
                   onChange={e => setUsername(e.target.value)}
                 />
+
                 <label htmlFor="email" className={styles.label}>
                   Email
                 </label>
@@ -217,9 +218,7 @@ function Signup() {
                     onChange={() => recaptchaOnChange()}
                   />
                   {errorMessage ? (
-                    <p className=" mb-4 font-medium text-xs text-red-600">
-                      {errorMessage}
-                    </p>
+                    <p className={styles.errormessage}>{errorMessage}</p>
                   ) : null}
                 </div>
 
