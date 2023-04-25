@@ -31,6 +31,7 @@ const Login = () => {
       // console.log("로그인 성공");
       setIsLogin(true);
       navigate("/question");
+      console.log(res);
     });
   };
 
