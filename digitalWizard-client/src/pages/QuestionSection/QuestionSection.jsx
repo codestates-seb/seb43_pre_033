@@ -7,6 +7,7 @@ import { getQuestion } from "../../api/questionApi.js";
 import { RiFolderWarningLine } from "react-icons/ri";
 import SidebarR from "../../components/Sidebar/SidebarR/SidebarR.jsx";
 import Pagination from "../../common/Pagination/Pagination.jsx";
+import useScrollTop from "../../hooks/useScrollTop.js";
 
 export default function QuestionSection() {
   const [isEmpty, setisEmpty] = useState(true);
@@ -17,6 +18,7 @@ export default function QuestionSection() {
 
   useEffect(() => {
     getQuestion(`/question?size=20&page=${pageNum}`).then(data => {
+      useScrollTop();
       setisEmpty(data.result.empty);
       setQuestions(data.result.content);
       setPageNum(data.result.pageable.pageNumber);
