@@ -41,7 +41,8 @@ public class AnswerController {
                                            @PathVariable Long answerId,
                                            @RequestBody AnswerRequest request,
                                            Authentication authentication){
-        AnswerDto answerDto = answerService.update(request.getBody(), authentication.getName(),questionId, answerId);
+        String bodyRemoveTag = Jsoup.clean(request.getBody(), Safelist.none());
+        AnswerDto answerDto = answerService.update(bodyRemoveTag, authentication.getName(),questionId, answerId);
         return Response.success(AnswerResponse.from(answerDto));
     }
 
