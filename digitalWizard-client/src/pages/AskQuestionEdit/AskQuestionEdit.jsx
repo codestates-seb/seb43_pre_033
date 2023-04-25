@@ -19,9 +19,9 @@ export default function AskQuestionEdit() {
     const payload = {
       title: titleValue.value,
       body: bodyValue.value,
-      hashtags,
+      // hashtags,
     };
-    postQuestion(payload, `/question/${question.id}`, "patch");
+    postQuestion(payload, `/question/${question.questionId}`, "patch");
     navigate(`/question`);
   };
 

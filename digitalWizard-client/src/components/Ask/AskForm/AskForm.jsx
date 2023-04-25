@@ -19,10 +19,10 @@ export default function AskForm() {
     const payload = {
       title: titleValue.value,
       body: bodyValue.value,
-      // tags: hashtags,
+      tags: hashtags,
     };
-    postQuestion(payload, "/questio");
-    // navigate("/question");
+    postQuestion(payload, "/question");
+    navigate("/question");
   };
 
   return (
