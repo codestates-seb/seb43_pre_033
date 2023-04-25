@@ -21,7 +21,7 @@ public class RefreshController {
     private final JwtTokenizer jwtTokenizer;
 
     @PostMapping
-    public ResponseEntity<String> refreshAccessToken(HttpServletRequest request) {
+    public ResponseEntity<String> refreshAccessToken(HttpServletRequest request) { // 리프레쉬 토큰 받으면 엑세스 토큰 재발급
         String refreshToken = request.getHeader("Refresh");
         if (refreshToken != null) { // && refreshTokenHeader.startsWith("WishJWT ") 나중에 추가
 //            String refreshToken = refreshTokenHeader.substring(8);
@@ -33,7 +33,7 @@ public class RefreshController {
                 String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
 
                 String accessToken = jwtTokenizer.generateAccessToken(claims.getBody(), email, expiration, base64EncodedSecretKey);
-                return ResponseEntity.ok().header("Refresh", accessToken).body("Access token refreshed"); // "WishJWT " +  나중에 추가
+                return ResponseEntity.ok().header("Authorization", "WishJWT " + accessToken).body("Access token refreshed");
             } catch (JwtException e) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid refresh token");
             }
@@ -41,4 +41,4 @@ public class RefreshController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing refresh token");
         }
     }
-}
+} // 나중에 리플래쉬 토큰도 같이 재발급해줄까?..상의해보자
