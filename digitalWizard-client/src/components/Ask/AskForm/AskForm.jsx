@@ -19,29 +19,9 @@ export default function AskForm() {
     const payload = {
       title: titleValue.value,
       body: bodyValue.value,
-      hashtags,
+      tags: hashtags,
     };
-
-    // json-server
-    // const payload = {
-    //   title: titleValue.value,
-    //   body: bodyValue.value,
-    //   vote: 0,
-    //   view: 0,
-    //   answerCount: 0,
-    //   hashtags,
-    //   createdAt: new Date(),
-    //   modifiedAt: new Date(),
-    //   member: {
-    //     memberId: 1,
-    //     email: "test1@gmail.com",
-    //     profileImage:
-    //       "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-    //     memberNickName: "김야옹",
-    //   },
-    // };
-    // console.log(payload);
-    postQuestion(payload, "/question").then(data => console.log(data));
+    postQuestion(payload, "/question");
     navigate("/question");
   };
 
