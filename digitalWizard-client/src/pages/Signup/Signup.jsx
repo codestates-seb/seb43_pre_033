@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -20,11 +21,38 @@ function Signup() {
     setRecaptchaState({ isVerified: true });
   };
 
-  const BASE_URL = "https://8abf-121-133-205-229.ngrok-free.app";
+  // 유효성 검사 함수
+  const isValidPassword = str => {
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+    return regex.test(str);
+  };
+
+  const isValidEmail = str => {
+    const regex =
+      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+    return regex.test(str);
+  };
+
   const register = () => {
+    if (!username || !email || !password) {
+      setErrorMessage("아이디와 비밀번호를 입력하세요");
+      return;
+    }
+    if (!isValidEmail(email)) {
+      setErrorMessage("Email 형식에 맞게 입력해주세요");
+      return;
+    }
+    if (!isValidPassword(password)) {
+      setErrorMessage(
+        "최소 8글자, 문자 1개, 숫자 1개가 들어간 비밀번호를 입력해주세요"
+      );
+      return;
+    }
     axios
       .post(
-        "/members",
+        `${process.env.REACT_APP_BASE_URL}/members`,
         {
           memberNickName: username,
           email: email,
@@ -39,27 +67,14 @@ function Signup() {
         // Handle success.
         console.log("Well done!");
         console.log("User profile", response.data.user);
-        // console.log('User token', response.data.jwt);
+        console.log("User token", response.data.jwt);
+        localStorage.setItem("token", response.data.jwt);
+        navigate("/");
       })
       .catch(error => {
         // Handle error.
         console.log("An error occurred:", error);
       });
-
-    // if (!username || !email || !password) {
-    //   setErrorMessage('아이디와 비밀번호를 입력하세요');
-    //   return;
-    // }
-    // if (!isValidEmail(email)) {
-    //   setErrorMessage('Email 형식에 맞게 입력해주세요');
-    //   return;
-    // }
-    // if (!isValidPassword(password)) {
-    //   setErrorMessage(
-    //     '최소 8글자, 문자 1개, 숫자 1개가 들어간 비밀번호를 입력해주세요'
-    //   );
-    //   return;
-    // }
   };
 
   const onStop = e => {
@@ -162,7 +177,7 @@ function Signup() {
             <div className={styles.signupBar}>
               <form onSubmit={onStop}>
                 <label htmlFor="name" className={styles.label}>
-                  Display Name
+                  Display name
                 </label>
                 <input
                   type="text"
@@ -171,6 +186,7 @@ function Signup() {
                   // maxLength={16}
                   onChange={e => setUsername(e.target.value)}
                 />
+
                 <label htmlFor="email" className={styles.label}>
                   Email
                 </label>
@@ -201,17 +217,15 @@ function Signup() {
                     sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                     onChange={() => recaptchaOnChange()}
                   />
-                  {/* {errorMessage ? (
-                    <p className=" mb-4 font-medium text-xs text-red-600">
-                      {errorMessage}
-                    </p>
-                  ) : null} */}
+                  {errorMessage ? (
+                    <p className={styles.errormessage}>{errorMessage}</p>
+                  ) : null}
                 </div>
 
                 <div className={styles.up}>
                   <div className={styles.checkbox}>
                     <input
-                      style={{ width: "8px" }}
+                      style={{ width: "12px" }}
                       type="checkbox"
                       className={styles.checkBoxIcon}
                     />
@@ -231,9 +245,10 @@ function Signup() {
                 </div>
                 <div className={styles.signupbtn}>
                   <Button
+                    onClick={() => register()}
                     text="Sign up"
                     addStyle={{
-                      width: "316px",
+                      width: "320px",
                     }}
                   />
                 </div>
@@ -245,6 +260,20 @@ function Signup() {
               By clicking “Sign up”, you agree to our terms of service, privacy
               policy and cookie policy
             </div>
+          </div>
+        </div>
+        <div className={styles.underContainer}>
+          <div className={styles.underLogin}>
+            Already have an account?
+            <Link to={"/users/login"} className={styles.contentLogin}>
+              Login up
+            </Link>
+          </div>
+          <div className={styles.underSignup}>
+            Are you an employer?
+            <Link to={"/users/signup"} className={styles.contentSignup}>
+              Sign up on Talent
+            </Link>
           </div>
         </div>
       </div>

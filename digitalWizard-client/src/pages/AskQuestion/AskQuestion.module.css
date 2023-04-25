@@ -1,5 +1,6 @@
 .container {
   background-color: var(--header-bg-color);
+  flex: 1;
 }
 .container section {
   padding-left: 1.5rem;
@@ -45,6 +46,11 @@
 }
 
 @media screen and (min-width: 1101px) {
+  .content {
+    max-width: 1216px;
+    margin: 0 auto;
+    padding-bottom: 7rem;
+  }
   .titleWrap {
     background: url("../../images/background.svg") no-repeat right;
   }
@@ -65,7 +71,7 @@
   }
 }
 @media screen and (max-width: 640px) {
-  .container section {
+  .content {
     padding-left: 1rem;
     padding-right: 1rem;
   }

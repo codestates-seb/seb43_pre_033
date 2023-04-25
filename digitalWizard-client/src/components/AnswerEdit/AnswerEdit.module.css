@@ -1,5 +1,9 @@
 .answerEdit {
   color: var(--text-content-color);
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 24px;
+  width: calc(100% - 164px);
 }
 
 .memo {
@@ -58,7 +62,7 @@
 }
 
 .title {
-  font-size: 20px;
+  font-size: 17px;
   color: var(--blue);
   margin: 16px 0px;
 }
@@ -68,13 +72,13 @@
 }
 
 .answer {
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 400;
   margin: 16px 0px;
 }
 
 .summary {
-  margin: 10px 0px;
+  margin: 20px 0px 10px 0px;
 }
 
 .input {
@@ -93,9 +97,13 @@
   box-shadow: 0 0 5px hsla(206, 100%, 40%, 15);
 }
 
+.view {
+  margin: 10px 0px;
+}
+
 @media (max-width: 640px) {
   .title {
-    font-size: 17px;
+    font-size: 14.3px;
   }
 }
 

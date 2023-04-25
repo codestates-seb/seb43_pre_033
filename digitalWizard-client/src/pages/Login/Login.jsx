@@ -1,52 +1,38 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../common/Button.jsx";
 import styles from "./Login.module.css";
-import axios from "axios";
 import { useState } from "react";
 import { useIsLoginStore, useLoginInfoStore } from "../../stores/loginStore.js";
+import { postLogin } from "../../api/questionApi.js";
 
 const Login = () => {
   const navigate = useNavigate();
   const { loginInfo, setLoginInfo } = useLoginInfoStore(state => state);
   const { setIsLogin } = useIsLoginStore(state => state);
-  const [setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Input 정보 처리
   const handleInputValue = key => e => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
-
   // 로그인 요청 처리
   const loginRequestHandler = () => {
-    const BASE_URL = "https://8abf-121-133-205-229.ngrok-free.app";
     const { email, password } = loginInfo;
     if (!email || !password) {
       setErrorMessage("아이디와 비밀번호를 입력하세요");
       return;
     }
-
-    axios
-      .post("/members/login", loginInfo, {
-        withCredentials: true,
-      })
-      .then(res => {
-        setIsLogin(true);
-        // data 확인
-        console.log(res);
-        // local storage에 token 저장
-        // localStorage.setItem('token', res.data.jwt);
-        // 로그인 성공시 홈페이지 이동
-        // axios.defaults.headers.common.Authorization = `Bearer ${res.data.jwt}`;
-        navigate("/");
-        setErrorMessage("");
-        // window.location.reload();
-      })
-      .catch(err => {
-        if (err.response.status === 401) {
-          setErrorMessage("로그인에 실패했습니다.");
-          navigate("/404");
-        }
-      });
+    postLogin(loginInfo, "/members/login").then(res => {
+      // 토큰 정보 추출
+      const { authorization, refresh } = res;
+      // 토큰 저장
+      authorization && localStorage.setItem("accessToken", authorization);
+      refresh && localStorage.setItem("refreshToken", refresh);
+      // console.log("로그인 성공");
+      setIsLogin(true);
+      navigate("/question");
+      console.log(res);
+    });
   };
 
   const onStop = e => {
@@ -57,7 +43,7 @@ const Login = () => {
   // * oauth - google
   const handleRequestSignupGoogle = () => {
     // return window.location.assign(
-    //   "https://dev.qushe8r.shop/oauth2/authorization/google"
+    //   "https://8ccd-121-133-205-229.ngrok-free.app/oauth2/authorization/google"
     // );
   };
 
@@ -172,24 +158,27 @@ const Login = () => {
                 id="email"
                 onChange={handleInputValue("email")}
               />
-              <label htmlFor="password" className={styles.label}>
-                Password
-              </label>
-              <div className={styles.aTag}>Forgot password?</div>
+              <div className={styles.labelForm}>
+                <label htmlFor="password" className={styles.label}>
+                  Password
+                </label>
+                <div className={styles.aTag}>Forgot password?</div>
+              </div>
               <input
                 type="password"
                 name="password"
                 id="password"
                 onChange={handleInputValue("password")}
               />
+              {errorMessage ? (
+                <p className={styles.errormessage}>{errorMessage}</p>
+              ) : null}
               <div className={styles.loginbtn}>
                 <Button
-                  onclick={() => {
-                    loginRequestHandler();
-                  }}
+                  handleClick={() => loginRequestHandler()}
                   text="Log in"
                   addStyle={{
-                    width: "219px",
+                    width: "100%",
                     height: "40px",
                     textColor: "var(--white)",
                   }}

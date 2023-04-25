@@ -4,7 +4,7 @@ import AskForm from "../../components/Ask/AskForm/AskForm.jsx";
 export default function AskQuestion() {
   return (
     <main className={styles.container}>
-      <section className="content">
+      <section className={styles.content}>
         <div className={styles.titleWrap}>
           <h2 className={styles.title}>Ask a public question</h2>
         </div>

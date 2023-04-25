@@ -1,8 +1,18 @@
+.postWrap {
+  padding: 1rem 0;
+}
+.postWrap.border {
+  border-bottom: 1px solid var(--border-color);
+}
+/* 답변 목록에만 border-bottom 적용 */
+
 .post {
   display: flex;
-  padding-top: 16px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #dbdbdb;
+}
+.post,
+.post > * {
+  line-height: 1.3rem;
+  /* post 줄간격 */
 }
 
 .vote {
@@ -16,6 +26,14 @@
 
 .vote > * {
   margin-bottom: 10px;
+}
+
+.up,
+.down,
+.share > *,
+.checkMark,
+.mark {
+  cursor: pointer;
 }
 
 .up {
@@ -37,8 +55,10 @@
 }
 
 .detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   flex: 1 1 auto;
-  padding-right: 16px;
 }
 
 .check {
@@ -50,6 +70,10 @@
   width: 24px;
   height: 24px;
   color: rgb(74, 111, 68);
+}
+
+.none {
+  display: none;
 }
 
 .mark {
@@ -80,6 +104,7 @@
   justify-content: space-between;
   font-size: 11px;
   color: var(--text-sub-color);
+  margin-top: 1rem;
 }
 
 .share {
@@ -107,8 +132,15 @@
 }
 
 .profile {
-  flex: 1;
+  margin: 0 0 0 auto;
+  min-width: 200px;
+  padding: 0.3rem 0.7rem 0.6rem 0.7rem;
+  /* profile layout 수정 */
 }
+.hasBg {
+  background-color: var(--btn-sub-bg-color);
+}
+/* 작성자 프로필 배경색 추가 */
 
 .user {
   display: flex;
@@ -163,12 +195,15 @@
   margin: auto 4px 1px 3px;
 }
 
-/* 내용이 없어서 임시로 height 지정 */
 .content {
-  min-height: 230px;
   padding: 10px 0px 10px 0px;
   color: var(--text-content-color);
   font-size: 15px;
+}
+.tags {
+  display: flex;
+  gap: 0.4rem;
+  margin: 1rem 0;
 }
 
 /* 모달 css */
@@ -215,6 +250,36 @@
   font-size: 0.81rem;
 }
 
+/* 반응형 추가 */
+@media screen and (min-width: 416px) and (max-width: 780px) {
+  .bottom {
+    display: block;
+    position: relative;
+    padding-bottom: 130px;
+  }
+  .bottom:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    clear: both;
+  }
+  .bottom > * {
+    float: left;
+  }
+  .share {
+    width: calc(100% - 210px);
+  }
+  .edtied {
+    width: 210px;
+    text-align: left;
+  }
+  .profile {
+    position: absolute;
+    top: 3rem;
+    right: 0;
+  }
+}
+
 @media screen and (max-width: 640px) {
   .modalContent {
     max-width: 375px;
@@ -227,3 +292,21 @@
     font-size: 0.7rem;
   }
 }
+
+@media screen and (max-width: 415px) {
+  .bottom {
+    flex-direction: column;
+  }
+  .share {
+    margin-bottom: 20px;
+  }
+  .edtied {
+    width: 205px;
+    margin: 0 0 30px auto;
+  }
+  .profile {
+    width: 200px;
+    padding: 0px 6px 3px 6px;
+  }
+}
+/* 반응형 추가 */

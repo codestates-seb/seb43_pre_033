@@ -1,10 +1,12 @@
 .signupAuth {
+  /* position: relative; */
   min-height: 100vh;
   margin: 0% auto;
   background-color: var(--black-050);
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
 }
 
 .label {
@@ -19,9 +21,11 @@
   width: 316px;
   padding: 20px;
   justify-content: center;
-  height: 658px;
+  height: 450px;
   margin: 50 0px;
   background-color: var(--white);
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .signupBar input {
@@ -49,6 +53,12 @@
   width: 100%;
 }
 
+.errormessage {
+  font-size: 12px;
+  font-size: x-small;
+  color: red;
+}
+
 .checkbox {
   display: flex;
   justify-content: center;
@@ -67,6 +77,16 @@
   height: 20px;
   margin: 0 !important;
   height: unset !important;
+}
+.textMessageOne {
+  margin-bottom: 20px;
+}
+
+.recap {
+  margin-bottom: 20px;
+}
+.recaptcha {
+  margin-bottom: 20px;
 }
 
 .textMessageTwo {
@@ -96,5 +116,26 @@
 .under {
   margin-top: 5px;
   color: var(--black-700);
+  font-size: 12px;
+}
+
+.underContainer > div {
+  display: flex;
+  margin-top: 5px;
+  margin-left: 20px;
+  font-display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentLogin {
+  margin-left: 5px;
+  color: var(--blue);
+  font-size: 12px;
+}
+
+.contentSignup {
+  margin-left: 5px;
+  color: var(--blue);
   font-size: 12px;
 }

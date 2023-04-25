@@ -45,7 +45,7 @@ export const text = [
     },
   },
   {
-    type: "text",
+    type: "What are the details of your problem?",
     title: "Introduce the problem",
     body: {
       p: [
