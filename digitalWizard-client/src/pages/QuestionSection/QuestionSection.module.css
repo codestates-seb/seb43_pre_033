@@ -4,6 +4,20 @@
 .titleWrap {
   border-bottom: 1px solid var(--black-150);
 }
+.searchInfo {
+  margin-top: 1rem;
+  flex-direction: column;
+  font-size: 0.78rem;
+  color: var(--black-400);
+}
+.searchInfo li:not(:last-of-type) {
+  margin-bottom: 0.6rem;
+}
+.flexBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .empty {
   text-align: center;
   padding: 5rem 0;
