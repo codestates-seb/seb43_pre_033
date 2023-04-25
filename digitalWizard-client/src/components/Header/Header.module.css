@@ -2,6 +2,10 @@
 .list {
   font-size: 0.8rem;
 }
+.btnSubmit,
+.btnSubmit * {
+  display: none;
+}
 /* -- common -- */
 
 .header {
@@ -39,6 +43,9 @@
 }
 .logoImg {
   width: 100%;
+}
+.logoImg2 {
+  display: none;
 }
 .menuList {
   display: flex;
@@ -117,38 +124,59 @@
   .searchBar {
     margin-left: 1.3rem;
   }
+  .menuIcon {
+    display: none;
+  }
 }
 
-@media screen and (min-width: 815px) and (max-width: 1100px) {
+@media screen and (min-width: 641px) and (max-width: 1100px) {
   .menu,
   .searchBar {
     margin-left: 0.7rem;
   }
-  .none {
+  .none,
+  .menuIcon {
     display: none;
   }
 }
 @media screen and (max-width: 640px) {
-  .none {
+  .logoWrap {
+    flex: 1;
+    justify-content: flex-start;
+  }
+  .logo {
+    width: 2.5rem;
+    margin: 0 0.3rem 0 0.3rem;
+    justify-self: flex-start;
+  }
+  .menuList {
+    margin: 0 auto 0 0;
+  }
+  .none,
+  .menu {
     display: none;
+  }
+  .logoImg {
+    display: none;
+  }
+  .logoImg2 {
+    display: block;
+    width: 2.5rem;
+  }
+  .searchBar {
+    margin-left: 0.2rem;
   }
 }
 
 /* 햄버거 아이콘 */
 .menuIcon,
 .menuIconBlock {
-  margin-right: 16px;
+  /* margin-right: 16px; */
   flex: 0 0 20px;
 }
 
 @media (min-width: 640px) {
   .menuIconBlock {
     flex: 0 0 0;
-  }
-}
-
-@media (min-width: 640px) {
-  .menuIconBlock {
-    display: none;
   }
 }
