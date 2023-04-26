@@ -1,0 +1,102 @@
+.inputWrap {
+  display: flex;
+}
+.inputBox {
+  padding: 1.5rem;
+  background-color: var(--bg-color);
+  margin-top: 1rem;
+  border: 1px solid var(--sort-bg-active);
+  box-sizing: border-box;
+}
+.editBox {
+  flex: 1;
+  margin-bottom: 1rem;
+}
+.title {
+  text-transform: capitalize;
+  font-weight: 700;
+  font-size: 0.93rem;
+}
+.para {
+  margin: 0.3rem 0 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* tag 추가 */
+.position {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  border: 1px solid var(--border-color);
+  border-radius: 0.2rem;
+}
+.position:focus-within {
+  outline: none;
+  border-color: var(--btn-primary-bg-color);
+  box-shadow: 0 0 4px var(--btn-sub-bg-hover);
+}
+.hashTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0.5rem 0 0.5rem 0.5rem;
+}
+.tag {
+  display: flex;
+  padding: 0.4rem;
+  cursor: default;
+}
+.btnDel {
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.input {
+  flex-grow: 1;
+  padding: 0.6rem 0.5rem;
+  box-sizing: border-box;
+  border: none;
+}
+.input:focus {
+  outline: none;
+}
+.input::placeholder {
+  color: var(--border-color);
+}
+
+@media screen and (min-width: 1101px) {
+  .inputWrap {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+  .inputBox {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 641px) and (max-width: 1100px) {
+  .inputWrap {
+    flex-direction: column;
+  }
+  .inputBox {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 640px) {
+  .inputWrap {
+    flex-direction: column;
+  }
+  .inputBox {
+    width: 100%;
+  }
+  .title {
+    font-size: 0.75rem;
+  }
+  .para {
+    margin: 0.5rem 0 0.8rem;
+    font-size: 0.75rem;
+    line-height: 0.9rem;
+  }
+}
