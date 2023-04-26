@@ -6,7 +6,6 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import logo2 from "../../images/logo2.png";
-import { useIsLoginStore, useLoginInfoStore } from "../../stores/loginStore";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useEffect, useState } from "react";
 import Dialog from "../Ask/Dialog/Dialog.jsx";
@@ -14,19 +13,23 @@ import useModal from "../../hooks/useMdoal";
 import { getQuestion } from "../../api/questionApi";
 
 const Header = ({ onSearch, search, modal, setModal, hide, setHide }) => {
-  const { isLogin } = useIsLoginStore(state => state);
-  const { email } = useLoginInfoStore(state => state).loginInfo;
-  // const [user, setUser] = useState();
-  const profileImage =
-    "https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80";
+  const isLogin = () => {
+    const email = localStorage.getItem("email");
+    return !!email;
+  };
+  const [user, setUser] = useState();
+  const email = localStorage.getItem("email");
+  const [profileImage, setProfileImage] = useState("");
 
-  // useEffect(() => {
-  //   getQuestion("members?page=1&size=9999").then(res => {
-  //     const data = res.data.filter(el => el.email === email);
-  //     setUser(...data);
-  //     setProfileImage(user.profileImage);
-  //   });
-  // }, [isLogin]);
+  useEffect(() => {
+    getQuestion("members?page=1&size=9999").then(res => {
+      const data = res.data.filter(el => el.email === email);
+      setUser(...data);
+    });
+  }, []);
+  useEffect(() => {
+    if (user && user.profileImage) setProfileImage(user.profileImage);
+  }, [user]);
   // user Profile Img
 
   const location = useLocation();
@@ -64,7 +67,7 @@ const Header = ({ onSearch, search, modal, setModal, hide, setHide }) => {
               <img src={logo} alt="logo" className={styles.logoImg}></img>
               <img src={logo2} alt="logo2" className={styles.logoImg2}></img>
             </Link>
-            <ul className={`${styles.menuList} ${isLogin && styles.login}`}>
+            <ul className={`${styles.menuList} ${isLogin() && styles.login}`}>
               <li className={styles.menu}>
                 <Link className={styles.none} to="#">
                   About
@@ -94,7 +97,7 @@ const Header = ({ onSearch, search, modal, setModal, hide, setHide }) => {
               검색
             </button>
           </form>
-          {isLogin ? (
+          {isLogin() ? (
             <div className={styles.loginBox}>
               <button className={styles.profile}>
                 <img

@@ -6,7 +6,6 @@ const getQuestion = url => {
   return getRequest({ url });
 };
 
-const Authorization = localStorage.getItem("accessToken");
 // post, patch
 const postQuestion = (data, url, method = "post") => {
   return request({
@@ -16,9 +15,19 @@ const postQuestion = (data, url, method = "post") => {
     headers: {
       "Content-Type": "application/json",
       withCredentials: true,
-      Authorization: Authorization,
     },
   }).then(res => console.log(res));
+};
+
+const delQuestion = (url, method = "delete") => {
+  return request({
+    method,
+    url,
+    headers: {
+      "Content-Type": "application/json",
+      withCredentials: true,
+    },
+  });
 };
 
 const postLogin = (data, url, method = "post") => {
@@ -29,4 +38,4 @@ const postLogin = (data, url, method = "post") => {
   });
 };
 
-export { getQuestion, postQuestion, postLogin };
+export { getQuestion, postQuestion, delQuestion, postLogin };
