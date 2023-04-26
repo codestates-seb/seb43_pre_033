@@ -69,7 +69,7 @@ const Login = () => {
           </Link>
         </div>
         <div className={styles.authLogin}>
-          <div className={styles.authLoginContainer}> </div>
+          <div className={styles.authLoginContainer}></div>
         </div>
         <form>
           <div className={styles.loginGoolglebtn}>
