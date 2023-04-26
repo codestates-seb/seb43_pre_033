@@ -23,11 +23,11 @@
 <tr>
 <td align="center"><a href="https://github.com/wish9"><img src="https://avatars.githubusercontent.com/u/120456261?v=4" alt="프로필 이미지1" style="max-width: 100%;"></a></td>
 <td align="center"><a href="https://github.com/Gonue"><img src="https://avatars.githubusercontent.com/u/109960034?v=4" alt="프로필 이미지2" style="max-width: 40%;"></a></td>
-<td align="center"><a href="https://github.com/jhm6650"><img src="https://your-image-url2.png" alt="프로필 이미지2" style="max-width: 100%;"></a></td>
+<td align="center"><a href="https://github.com/jhm6650"><img src="https://avatars.githubusercontent.com/u/120019927?v=4" alt="프로필 이미지2" style="max-width: 100%;"></a></td>
 <td align="center"><a href="https://github.com/ychae1997"><img src="https://avatars.githubusercontent.com/u/77264092?v=4" alt="프로필 이미지2" style="max-width: 100%;"></a></td>
 <td align="center"><a href="https://github.com/hazellee0914"><img src="https://avatars.githubusercontent.com/u/108929456?v=4" alt="프로필 이미지2" style="max-width: 100%;"></a></td>
 <td align="center"><a href="https://github.com/lulu242"><img src="https://avatars.githubusercontent.com/u/119933024?v=4" alt="프로필 이미지2" style="max-width: 100%;"></a></td>
-<td align="center"><a href="https://github.com/CHA710617"><img src="https://your-image-url2.png" alt="프로필 이미지2" style="max-width: 100%;"></a></td>
+<td align="center"><a href="https://github.com/CHA710617"><img src="https://avatars.githubusercontent.com/u/119926151?v=4" alt="프로필 이미지2" style="max-width: 100%;"></a></td>
 </tr>
 <tr>
 <td align="center"><a href="https://velog.io/@wish17">위원종</a></td>
@@ -60,6 +60,46 @@
 </div>
 
 ✨프론트엔드 기술 스택✨
+<div align="center">
+<a href="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=black">
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=black"/>
+</a>
+<a href="https://img.shields.io/badge/CreateReactApp-09D3AC?style=flat&logo=CreateReactApp&logoColor=white">
+<img src="https://img.shields.io/badge/CreateReactApp-09D3AC?style=flat&logo=CreateReactApp&logoColor=white"/>
+<a href="https://img.shields.io/badge/ReactRouter-CA4245?style=flat&logo=ReactRouter&logoColor=white">
+</a>
+<a href="https://img.shields.io/badge/ReactRouter-CA4245?style=flat&logo=ReactRouter&logoColor=white">
+<img src="https://img.shields.io/badge/ReactRouter-CA4245?style=flat&logo=ReactRouter&logoColor=white"/>
+</a>
+<a href="https://img.shields.io/badge/Zustand-764ABC?style=flat&logo=Zustand&logoColor=white">
+<img src="https://img.shields.io/badge/Zustand-764ABC?style=flat&logo=Zustand&logoColor=white"/>
+</a>
+<a href="https://img.shields.io/badge/axios-5A29E4?style=flat&logo=axios&logoColor=white">
+<img src="https://img.shields.io/badge/axios-5A29E4?style=flat&logo=axios&logoColor=white"/>
+</a>
+<a href="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/>
+</a>
+<a href="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=black">
+</a>
+<a href="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=black">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=black"/>
+</a>
+<a href="https://img.shields.io/badge/CssModules-1572B6?style=flat&logo=css3&logoColor=white">
+<img src="https://img.shields.io/badge/CssModules-1572B6?style=flat&logo=css3&logoColor=white"/>
+</a>
+<a href="https://img.shields.io/badge/styledComponents-DB7093?style=flat&logo=styledComponents&logoColor=white">
+<img src="https://img.shields.io/badge/styledComponents-DB7093?style=flat&logo=styledComponents&logoColor=white"/>
+</a>
+<a href="https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=Prettier&logoColor=black">
+<img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=Prettier&logoColor=black"/>
+</a>
+<a href="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=ESLint&logoColor=white">
+<img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=ESLint&logoColor=white"/>
+</a>
+
+
+</div>
 
 ## Git
 
