@@ -1,0 +1,60 @@
+.answer {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-head-color);
+}
+
+.title {
+  font-weight: 400;
+  font-size: 19px;
+  padding: 20px 0px;
+}
+
+.btn {
+  margin: 25px 0px;
+}
+
+/* sorted by css */
+.sort {
+  display: flex;
+  align-items: center;
+}
+.sortLabel {
+  font-size: 0.75rem;
+}
+.sortInput {
+  font-size: 0.81rem;
+  padding: 0.4rem;
+  border: 1px solid var(--black-200);
+  border-radius: 0.25rem;
+  margin-left: 0.4rem;
+}
+/* sorted by css */
+
+.post {
+  border-bottom: 1px solid var(--black-100);
+}
+
+@media screen and (max-width: 450px) {
+  .header {
+    align-items: flex-start;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .sort {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sortLabel {
+    margin-bottom: 0.4rem;
+  }
+  .sortInput {
+    margin-left: unset;
+  }
+}
+/* 반응형 추가 */

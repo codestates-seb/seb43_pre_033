@@ -41,7 +41,7 @@ export default function Footer() {
     {
       devRole: "Front-End",
       name: "이혜나",
-      github: "https://github.com/hazellee0914",
+      github: "https://github.com/ hazellee0914",
     },
     {
       devRole: "Front-End",

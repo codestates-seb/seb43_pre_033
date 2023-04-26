@@ -21,7 +21,6 @@ module.exports = {
   },
   rules: {
     "react/react-in-jsx-scope": "off",
-    "import/no-unresolved": "off",
     "react/jsx-uses-react": "off", // import React 생략하면 error 나던 현상 제거
     "react/jsx-filename-extension": ["warn", { extensions: ["jsx", "js"] }], // react 파일 확장자 js, jsx 허용
     "react/prop-types": "off", // props type 선언 안했을 때 error 나던 현상 제거

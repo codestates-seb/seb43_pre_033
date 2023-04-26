@@ -82,7 +82,7 @@ function App() {
             <Route path="/question/ask" element={<AskQuestion />} />
           </Route>
 
-          {/* ** // 로그인 유저 접근 불가능 && 비로그인 유저 접근 가능 라우터 설정*/}
+          {/* ** // 로그인 유저만 접근 불가능 && 비로그인 유저 접근 가능 라우터 설정*/}
           <Route element={<PublicRoute />}>
             <Route path="/users/signup" element={<Signup />} />
             <Route path="/users/login" element={<Login />} />

@@ -37,17 +37,16 @@ const Login = () => {
     });
   };
 
-  const onSubmit = e => {
+  const onStop = e => {
     e.preventDefault();
     loginRequestHandler();
   };
 
   // * oauth - google
-  const handleRequestSignupGoogle = e => {
-    e.preventDefault();
-    return window.location.assign(
-      "http://ec2-13-124-229-187.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google"
-    );
+  const handleRequestSignupGoogle = () => {
+    // return window.location.assign(
+    //   "https://8ccd-121-133-205-229.ngrok-free.app/oauth2/authorization/google"
+    // );
   };
 
   return (
@@ -69,7 +68,7 @@ const Login = () => {
           </Link>
         </div>
         <div className={styles.authLogin}>
-          <div className={styles.authLoginContainer}></div>
+          <div className={styles.authLoginContainer}> </div>
         </div>
         <form>
           <div className={styles.loginGoolglebtn}>
@@ -151,7 +150,7 @@ const Login = () => {
         </form>
         <div className={styles.logintextForm}>
           <div className={styles.loginBar}>
-            <form onSubmit={onSubmit} className={styles.emailInput}>
+            <form onSubmit={onStop} className={styles.emailInput}>
               <label htmlFor="email" className={styles.label}>
                 Email
               </label>

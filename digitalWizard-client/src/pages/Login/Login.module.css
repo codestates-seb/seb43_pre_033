@@ -1,0 +1,126 @@
+.loginAuth {
+  min-height: 100vh;
+  margin: 0% auto;
+  background-color: var(--black-050);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.logotop {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.logo {
+  width: 150px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logoImg {
+  transform: scale(0.9);
+}
+
+.loginBar {
+  padding: 0;
+  width: 240px;
+  margin: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  justify-content: center;
+}
+
+.emailInput {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 194px;
+}
+
+.loginBar input {
+  /* width: 100%; */
+  height: 25px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.label {
+  font-weight: 600;
+  width: 180px;
+  /* border: 1px solid red; */
+}
+
+.labelPass {
+  color: var(--blue);
+}
+
+.labelForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nativeSvgIconGoogle,
+.svgIconGitHub,
+.svgIconFacebook {
+  margin-right: 5px;
+}
+
+.loginGoolglebtn {
+  margin-bottom: 12px;
+}
+
+.loginGiHubbtn {
+  margin-bottom: 12px;
+}
+
+.loginFacebookbtn {
+  margin-bottom: 12px;
+}
+
+.logintextForm {
+  width: 267px;
+  height: auto;
+  margin: 30 10px;
+  background-color: var(--white);
+  display: flex;
+}
+
+.aTag {
+  color: var(--blue);
+  font-size: 8px;
+  white-space: nowrap;
+}
+.loginbtn {
+  /* width: 100%; */
+
+  color: var(--white);
+}
+.errormessage {
+  font-size: 12px;
+  font-size: x-small;
+  color: red;
+}
+
+.under {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  box-sizing: border-box;
+}
+
+.under > div {
+  margin: 10px 0;
+}
+
+.contentSignup {
+  margin-left: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+  color: var(--blue);
+  font-size: 12px;
+}

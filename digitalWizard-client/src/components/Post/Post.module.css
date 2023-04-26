@@ -1,0 +1,317 @@
+.bodyimg {
+  max-width: 100%;
+}
+.postWrap {
+  padding: 1rem 0;
+}
+.postWrap.border {
+  border-bottom: 1px solid var(--border-color);
+}
+/* 답변 목록에만 border-bottom 적용 */
+
+.post {
+  display: flex;
+}
+.post,
+.post > * {
+  line-height: 1.3rem;
+  /* post 줄간격 */
+}
+
+.vote {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 36px;
+  color: rgb(186, 191, 196);
+  align-items: center;
+  padding-right: 16px;
+}
+
+.vote > * {
+  margin-bottom: 10px;
+}
+
+.up,
+.down,
+.share > *,
+.checkMark,
+.mark {
+  cursor: pointer;
+}
+
+.up {
+  width: 32px;
+  height: 32px;
+}
+
+.up:active,
+.up.active {
+  color: var(--brand-color);
+}
+
+.down {
+  width: 32px;
+  height: 32px;
+}
+
+.down:active,
+.down.active {
+  color: var(--brand-color);
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 1 1 auto;
+}
+
+.check {
+  width: 24px;
+  height: 24px;
+}
+
+.checkin {
+  width: 24px;
+  height: 24px;
+  color: rgb(74, 111, 68);
+}
+
+.none {
+  display: none;
+}
+
+.mark {
+  width: 18px;
+  height: 18px;
+}
+
+.checkMark {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-color);
+}
+
+.vote:nth-child(4) {
+  color: var(--brand-color);
+}
+
+.clock {
+  width: 18px;
+  height: 18px;
+}
+
+/* bottom */
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-sub-color);
+  margin-top: 1rem;
+}
+
+.share {
+  display: flex;
+  flex: 1;
+  height: 11px;
+}
+
+.share > * {
+  margin: 0px 4px;
+}
+
+.share > *:hover {
+  color: #8f959b;
+}
+
+.edtied {
+  color: var(--text-link-color);
+  flex: 1;
+  height: 11px;
+}
+
+.edtied:hover {
+  color: var(--text-link-hover);
+}
+
+.profile {
+  margin: 0 0 0 auto;
+  min-width: 200px;
+  padding: 0.3rem 0.7rem 0.6rem 0.7rem;
+  /* profile layout 수정 */
+}
+.hasBg {
+  background-color: var(--btn-sub-bg-color);
+}
+/* 작성자 프로필 배경색 추가 */
+
+.user {
+  display: flex;
+}
+
+.name {
+  color: var(--text-link-color);
+}
+
+.name:hover {
+  color: var(--text-link-hover);
+}
+
+.img {
+  width: 32px;
+  height: 32px;
+}
+
+.create {
+  margin: 1px 0px 4px 0px;
+}
+
+.userDetail {
+  margin-left: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.userScore {
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.silver::before {
+  content: " ";
+  display: inline-block;
+  background-color: rgb(106, 115, 124);
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  margin: auto 4px 1px 3px;
+}
+
+.bronze::before {
+  content: " ";
+  display: inline-block;
+  background-color: #cc924f;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  margin: auto 4px 1px 3px;
+}
+
+.content {
+  padding: 10px 0px 10px 0px;
+  color: var(--text-content-color);
+  font-size: 15px;
+}
+.tags {
+  display: flex;
+  gap: 0.4rem;
+  margin: 1rem 0;
+}
+
+/* 모달 css */
+
+.modal {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  background-color: var(--modal-bg);
+}
+
+.modalContent {
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  position: relative;
+  box-shadow: 0 1px 6px var(--text-content-color);
+}
+.btnClose {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  background-color: transparent;
+  border: none;
+}
+.btnClose svg {
+  font-size: 1rem;
+}
+.modalMsg {
+  margin-bottom: 1.5rem;
+}
+.msgHead {
+  font-size: 1.68rem;
+  margin-bottom: 1rem;
+  color: var(--danger-text);
+}
+.msgBody {
+  font-size: 0.81rem;
+}
+
+/* 반응형 추가 */
+@media screen and (min-width: 416px) and (max-width: 780px) {
+  .bottom {
+    display: block;
+    position: relative;
+    padding-bottom: 130px;
+  }
+  .bottom:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    clear: both;
+  }
+  .bottom > * {
+    float: left;
+  }
+  .share {
+    width: calc(100% - 210px);
+  }
+  .edtied {
+    width: 210px;
+    text-align: left;
+  }
+  .profile {
+    position: absolute;
+    top: 3rem;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .modalContent {
+    max-width: 375px;
+    width: 90%;
+  }
+  .msgHead {
+    font-size: 1.4rem;
+  }
+  .msgBody {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .bottom {
+    flex-direction: column;
+  }
+  .share {
+    margin-bottom: 20px;
+  }
+  .edtied {
+    width: 205px;
+    margin: 0 0 30px auto;
+  }
+  .profile {
+    width: 200px;
+    padding: 0px 6px 3px 6px;
+  }
+}
+/* 반응형 추가 */
