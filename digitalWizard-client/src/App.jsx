@@ -1,4 +1,10 @@
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import Header from "./components/Header/Header.jsx";
 import Signup from "./pages/Signup/Signup.jsx";
 import QuestionDetail from "./pages/QuestionDetail/QuestionDetail.jsx";
@@ -16,6 +22,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import AnswerEdit from "./components/AnswerEdit/AnswerEdit.jsx";
 import PrivateRoute from "./hoc/PrivateRoute.jsx";
 import PublicRoute from "./hoc/PublicRoute.jsx";
+import NotFound from "./pages/NotFound/NotFound.jsx";
 
 function App() {
   const navigate = useNavigate();
@@ -45,8 +52,8 @@ function App() {
         setHide={setHide}
       />
       <div className={styles.flex}>
-        {location.pathname !== "/" && (
-          // 루트 예외처리
+        {location.pathname !== "/" && location.pathname !== "/not_found" && (
+          // 루트, notfound 예외처리
           <nav
             className={
               hide
@@ -87,6 +94,8 @@ function App() {
             <Route path="/users/signup" element={<Signup />} />
             <Route path="/users/login" element={<Login />} />
           </Route>
+          <Route path="/not_found" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/not_found" />} />
         </Routes>
       </div>
 
