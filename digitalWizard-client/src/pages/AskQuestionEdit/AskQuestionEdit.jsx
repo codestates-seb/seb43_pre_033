@@ -5,7 +5,7 @@ import Input from "../../components/Ask/Form/Input.jsx";
 import TextEditor from "../../components/Ask/Form/TextEditor.jsx";
 import { useState } from "react";
 import SidebarR from "../../components/Sidebar/SidebarR/SidebarR.jsx";
-import { postQuestion } from "../../api/questionApi";
+import { getQuestion, postQuestion } from "../../api/questionApi";
 import Preview from "../../components/Preview/Preview.jsx";
 
 export default function AskQuestionEdit() {
@@ -23,6 +23,7 @@ export default function AskQuestionEdit() {
       tags: hashtags,
     };
     postQuestion(payload, `/question/${question.questionId}`, "patch");
+    getQuestion(`/question?size=20&page=0`);
     navigate(`/question`);
   };
 

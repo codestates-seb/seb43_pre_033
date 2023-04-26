@@ -86,7 +86,9 @@ function Post({ data, QA, email }) {
     QA === "Q" ? currentPath : currentPath + "/answers/" + data.answerId;
   function deletePost() {
     delQuestion(delURL);
+    getQuestion(`/question?size=20&page=0`);
     navigate("/question");
+    closeModal();
   }
 
   // 답변 채택
