@@ -23,15 +23,17 @@ const Login = () => {
       return;
     }
     postLogin(loginInfo, "/members/login").then(res => {
-      // 토큰 정보 추출
+      // save token & user info
       const { authorization, refresh } = res;
-      // 토큰 저장
       authorization && localStorage.setItem("accessToken", authorization);
       refresh && localStorage.setItem("refreshToken", refresh);
-      // console.log("로그인 성공");
-      setIsLogin(true);
+      if (refresh && authorization) {
+        localStorage.setItem("email", email);
+        setIsLogin(true);
+      }
+
+      // redirect
       navigate("/question");
-      console.log(res);
     });
   };
 

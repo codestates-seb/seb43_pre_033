@@ -8,6 +8,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import useModal from "../../hooks/useMdoal";
 import Comment from "../Comment/Comment.jsx";
+import { delQuestion, getQuestion, postQuestion } from "../../api/questionApi";
 
 function Post({ data, QA, email }) {
   // 날짜 계산
@@ -15,9 +16,16 @@ function Post({ data, QA, email }) {
   const create = day(new Date(data.createdAt));
   const [bookmark, setBookmark] = useState(false);
   const [result, setResult] = useState(data.vote);
+  const [likeStyle, setLikeStyle] = useState(false);
+  const [hateStyle, setHateStyle] = useState(false);
   const [modal, openModal, closeModal] = useModal(false);
   const Authorization = localStorage.getItem("accessToken");
   const [accept, setAccept] = useState(false);
+
+  const isLogin = () => {
+    const email = localStorage.getItem("email");
+    return email === data.member.email;
+  };
 
   function day(date) {
     const months = [
@@ -50,28 +58,25 @@ function Post({ data, QA, email }) {
       ? baseUrl + "/question/" + data.questionId
       : baseUrl + "/answer/" + data.answerId;
 
-  function like() {
-    axios
-      .post(url + "/likes", {
-        headers: {
-          Authorization,
-          withCredentials: true,
-        },
+  function vote(vote) {
+    postQuestion(null, `${url}/${vote}`)
+      .then(res => {
+        getQuestion(`${url}/results`).then(res => {
+          setResult(res.result);
+        });
       })
-      .get(url + "/results")
-      .then(res => setResult(res.result));
-  }
-
-  function hate() {
-    axios
-      .post(url + "/hates", {
-        headers: {
-          Authorization,
-          withCredentials: true,
-        },
+      .catch(err => {
+        console.log(err.message);
       })
-      .get(url + "/results")
-      .then(res => setResult(res.result));
+      .finally(res => {
+        if (vote === "likes") {
+          setLikeStyle(true);
+          setHateStyle(false);
+        } else {
+          setLikeStyle(false);
+          setHateStyle(true);
+        }
+      });
   }
 
   // 삭제 함수
@@ -80,12 +85,8 @@ function Post({ data, QA, email }) {
   const delURL =
     QA === "Q" ? currentPath : currentPath + "/answers/" + data.answerId;
   function deletePost() {
-    axios.delete(baseUrl + delURL, {
-      headers: {
-        Authorization,
-        withCredentials: true,
-      },
-    });
+    delQuestion(delURL);
+    navigate("/question");
   }
 
   // 답변 채택
@@ -115,11 +116,15 @@ function Post({ data, QA, email }) {
       <div className={`${QA === "A" && styles.border} ${styles.postWrap}`}>
         <div className={styles.post}>
           <div className={styles.vote}>
-            <AiFillCaretUp className={styles.up} onClick={like} role="none" />
+            <AiFillCaretUp
+              className={`${likeStyle && styles.active} ${styles.up}`}
+              onClick={() => vote("likes")}
+              role="none"
+            />
             <div>{result}</div>
             <AiFillCaretDown
-              className={styles.down}
-              onClick={hate}
+              className={`${hateStyle && styles.active} ${styles.down}`}
+              onClick={() => vote("hates")}
               role="none"
             />
             {bookmark ? (
@@ -146,7 +151,18 @@ function Post({ data, QA, email }) {
             <RxCounterClockwiseClock className={styles.clock} />
           </div>
           <div className={styles.detail}>
-            <div className={styles.content}>{data.body}</div>
+            <div className={styles.content}>
+              {data.imageUrl &&
+                data.imageUrl.map((img, i) => (
+                  <img
+                    className={styles.bodyimg}
+                    src={img}
+                    key={i}
+                    alt={`img${i}`}
+                  />
+                ))}
+              {data.body}
+            </div>
             <div className={styles.tags}>
               {data.hashtags &&
                 data.hashtags.map((tag, i) => (
@@ -158,12 +174,16 @@ function Post({ data, QA, email }) {
             <div className={styles.bottom}>
               <div className={styles.share}>
                 <div>Share</div>
-                <div onClick={handleEdit} role="none">
-                  Edit
-                </div>
-                <div onClick={openModal} role="none">
-                  Delete
-                </div>
+                {isLogin() && (
+                  <>
+                    <div onClick={handleEdit} role="none">
+                      Edit
+                    </div>
+                    <div onClick={openModal} role="none">
+                      Delete
+                    </div>
+                  </>
+                )}
               </div>
               {/* 삭제 확인 모달 */}
               {modal ? (

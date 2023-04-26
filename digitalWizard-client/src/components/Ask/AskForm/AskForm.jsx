@@ -13,7 +13,7 @@ export default function AskForm() {
   const [titleValue, titleReset] = useInput("");
   const [tagValue, tagReset] = useInput("");
   const [bodyValue, bodyReset] = useInput("", true);
-  const [hashtags, setHashtags] = useState(tagValue.value);
+  const [hashtags, setHashtags] = useState([]);
   const navigate = useNavigate();
   const handleSubmit = () => {
     const payload = {

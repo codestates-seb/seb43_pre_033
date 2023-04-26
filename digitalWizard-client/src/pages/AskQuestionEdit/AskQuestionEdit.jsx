@@ -1,11 +1,12 @@
 import styles from "./AskQuestionEdit.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Form, useLocation, useNavigate } from "react-router-dom";
 import useInput from "../../hooks/useInput";
 import Input from "../../components/Ask/Form/Input.jsx";
 import TextEditor from "../../components/Ask/Form/TextEditor.jsx";
 import { useState } from "react";
 import SidebarR from "../../components/Sidebar/SidebarR/SidebarR.jsx";
 import { postQuestion } from "../../api/questionApi";
+import Preview from "../../components/Preview/Preview.jsx";
 
 export default function AskQuestionEdit() {
   const { state: question } = useLocation();
@@ -19,7 +20,7 @@ export default function AskQuestionEdit() {
     const payload = {
       title: titleValue.value,
       body: bodyValue.value,
-      // hashtags,
+      tags: hashtags,
     };
     postQuestion(payload, `/question/${question.questionId}`, "patch");
     navigate(`/question`);
@@ -57,6 +58,7 @@ export default function AskQuestionEdit() {
             hashtags={hashtags}
             setHashtags={setHashtags}
           />
+          <Preview body={bodyValue.value} />
           <div className={styles.btnWrap}>
             <button
               type="button"
