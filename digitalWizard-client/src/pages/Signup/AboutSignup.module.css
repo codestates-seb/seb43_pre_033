@@ -1,0 +1,30 @@
+.signupContainer {
+  padding-bottom: 60px;
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 421px;
+  height: 300px;
+  text-align: left;
+  /* position: absolute; */
+}
+
+h1 {
+  font-size: 20px;
+}
+
+.svgIcon {
+  fill: var(--blue-500);
+  margin-right: 10px;
+}
+
+.iconContainer {
+  display: flex;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.underText > p {
+  margin-bottom: 10px;
+}
