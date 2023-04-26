@@ -33,34 +33,34 @@ request.interceptors.response.use(
   },
   error => {
     const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      // get new token from refresh token
-      const refreshToken = localStorage.getItem("refreshToken");
-      return request({
-        method: "post",
-        url: "/members/login",
-        data: { refreshToken },
-      })
-        .then(res => {
-          // save new token to localStorage
-          const accessToken = res.headers["authorization"]; // 토큰 정보 추출
-          const refreshToken = res.headers["refresh"]; // 토큰 정보 추출
-          accessToken && localStorage.setItem("accessToken", accessToken);
-          refreshToken && localStorage.setItem("refreshToken", refreshToken);
+    // if (error.response.status === 401 && !originalRequest._retry) {
+    //   originalRequest._retry = true;
+    //   // get new token from refresh token
+    //   const refreshToken = localStorage.getItem("refreshToken");
+    //   return request({
+    //     method: "post",
+    //     url: "/members/login",
+    //     data: { refreshToken },
+    //   })
+    //     .then(res => {
+    //       // save new token to localStorage
+    //       const accessToken = res.headers["authorization"]; // 토큰 정보 추출
+    //       const refreshToken = res.headers["refresh"]; // 토큰 정보 추출
+    //       accessToken && localStorage.setItem("accessToken", accessToken);
+    //       refreshToken && localStorage.setItem("refreshToken", refreshToken);
 
-          // update Authorization header and retry original request
-          originalRequest.headers.authorization = accessToken;
-          return request(originalRequest);
-        })
-        .catch(error => {
-          console.log(error); // debug
-          return Promise.reject(error);
-        });
-    } else {
-      console.log(error); // debug
-      return Promise.reject(error);
-    }
+    //       // update Authorization header and retry original request
+    //       originalRequest.headers.authorization = accessToken;
+    //       return request(originalRequest);
+    //     })
+    //     .catch(error => {
+    //       console.log(error); // debug
+    //       return Promise.reject(error);
+    //     });
+    // } else {
+    //   console.log(error); // debug
+    //   return Promise.reject(error);
+    // }
   }
 );
 
