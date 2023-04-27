@@ -124,10 +124,14 @@
 
 ----
 
+<br/>
+
 ###스키마(객체관점)
 
 ![image](https://user-images.githubusercontent.com/120456261/234884902-0b4923b5-b330-452b-a2d6-a458533dcaa3.png)
 
+
+<br/>
 
 ### 결과물
 
