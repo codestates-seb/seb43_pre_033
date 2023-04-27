@@ -121,3 +121,18 @@
 |[init]|브랜치 초기화 및 초기셋팅 관련된 설정일 경우|
 
 <br/>
+
+----
+
+###스키마(객체관점)
+
+![image](https://user-images.githubusercontent.com/120456261/234884902-0b4923b5-b330-452b-a2d6-a458533dcaa3.png)
+
+
+### 결과물
+
+![image](https://user-images.githubusercontent.com/120456261/234813502-3071056f-0a6f-422a-959e-2a666d969d63.png)
+
+![image](https://user-images.githubusercontent.com/120456261/234885005-79234f54-2a5c-4378-af95-5905c37f00b6.png)
+
+
