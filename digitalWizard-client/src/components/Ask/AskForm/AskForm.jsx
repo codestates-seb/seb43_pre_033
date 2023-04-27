@@ -4,7 +4,7 @@ import Input from "../Form/Input.jsx";
 import Dialog from "../Dialog/Dialog.jsx";
 import useModal from "../../../hooks/useMdoal";
 import useInput from "../../../hooks/useInput";
-import { postQuestion } from "../../../api/questionApi";
+import { getQuestion, postQuestion } from "../../../api/questionApi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -22,6 +22,7 @@ export default function AskForm() {
       tags: hashtags,
     };
     postQuestion(payload, "/question");
+    getQuestion(`/question?size=20&page=0`);
     navigate("/question");
   };
 
