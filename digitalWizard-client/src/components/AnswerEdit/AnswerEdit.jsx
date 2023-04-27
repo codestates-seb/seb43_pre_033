@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Preview from "../Preview/Preview.jsx";
+import { postQuestion } from "../../api/questionApi.js";
 
 function AnswerEdit() {
   const [focus, setFocus] = useState(false);
@@ -24,19 +25,25 @@ function AnswerEdit() {
   }, []);
 
   function patchAnswer(data) {
-    axios
-      .patch(
-        `${process.env.REACT_APP_BASE_URL}/question/${questionId[2]}/answers/${questionId[4]}`,
-        {
-          body: data,
-          headers: {
-            "Content-Type": "application/json",
-            Authorization,
-            withCredentials: true,
-          },
-        }
-      )
-      .catch(error => console.log(error));
+    postQuestion(
+      data,
+      `question/${questionId[2]}/answers/${questionId[4]}`,
+      "patch"
+    ).then(res => navigate(-1));
+
+    // axios
+    //   .patch(
+    //     `${process.env.REACT_APP_BASE_URL}/question/${questionId[2]}/answers/${questionId[4]}`,
+    //     {
+    //       body: data,
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization,
+    //         withCredentials: true,
+    //       },
+    //     }
+    //   )
+    //   .catch(error => console.log(error));
   }
 
   return (
@@ -71,7 +78,6 @@ function AnswerEdit() {
           className={`btnPrimary btn ${styles.btn}`}
           onClick={() => {
             patchAnswer(value.value);
-            navigate(-1);
           }}>
           Save edits
         </button>

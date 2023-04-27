@@ -85,9 +85,13 @@ function Post({ data, QA, email }) {
   const delURL =
     QA === "Q" ? currentPath : currentPath + "/answers/" + data.answerId;
   function deletePost() {
-    delQuestion(delURL);
-    getQuestion(`/question?size=20&page=0`);
-    navigate("/question");
+    delQuestion(delURL).then(res => {
+      QA === "A" && window.location.reload();
+      if (QA === "Q") {
+        getQuestion(`/question?size=20&page=0`);
+        navigate("/question");
+      }
+    });
     closeModal();
   }
 
