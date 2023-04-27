@@ -16,7 +16,7 @@ const postQuestion = (data, url, method = "post") => {
       "Content-Type": "application/json",
       withCredentials: true,
     },
-  }).then(res => console.log(res));
+  });
 };
 
 const delQuestion = (url, method = "delete") => {
