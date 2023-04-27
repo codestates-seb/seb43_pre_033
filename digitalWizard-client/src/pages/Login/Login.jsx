@@ -44,9 +44,9 @@ const Login = () => {
 
   // * oauth - google
   const handleRequestSignupGoogle = () => {
-    // return window.location.assign(
-    //   "https://8ccd-121-133-205-229.ngrok-free.app/oauth2/authorization/google"
-    // );
+    return window.location.assign(
+      "https://8ccd-121-133-205-229.ngrok-free.app/oauth2/authorization/google"
+    );
   };
 
   return (
