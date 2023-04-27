@@ -65,23 +65,25 @@ export default function Footer() {
     },
   ];
   return (
-    <footer className={styles.footer}>
-      <Banner />
-      {/* <div className={styles.bannerTag}>
+    location.pathname !== "/not_found" && (
+      <footer className={styles.footer}>
+        <Banner />
+        {/* <div className={styles.bannerTag}>
         https://github.com/codestates-seb/seb43_pre_033
       </div> */}
-      <div className={styles.textCenter}>
-        {teamMember.map((member, index) => {
-          return (
-            <Member
-              key={index}
-              devRole={member.devRole}
-              name={member.name}
-              github={member.github}
-            />
-          );
-        })}
-      </div>
-    </footer>
+        <div className={styles.textCenter}>
+          {teamMember.map((member, index) => {
+            return (
+              <Member
+                key={index}
+                devRole={member.devRole}
+                name={member.name}
+                github={member.github}
+              />
+            );
+          })}
+        </div>
+      </footer>
+    )
   );
 }

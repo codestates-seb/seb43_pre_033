@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import Editor from "../Editor.jsx";
 import useInput from "../../hooks/useInput.js";
 import { useLoginInfoStore } from "../../stores/loginStore.js";
+import { postQuestion } from "../../api/questionApi.js";
+import { getQuestion } from "../../api/questionApi.js";
 
 function Answer({ id, qemail }) {
   const [data, setData] = useState([]);
@@ -22,16 +24,20 @@ function Answer({ id, qemail }) {
   }, []);
 
   function answerAdd(data) {
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/question/${id}/answers`, {
-        body: data,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization,
-          withCredentials: true,
-        },
-      })
-      .catch(error => console.log(error));
+    postQuestion(data, `/question/${id}/answers`).then(res =>
+      location.reload()
+    );
+
+    // axios
+    //   .post(`${process.env.REACT_APP_BASE_URL}/question/${id}/answers`, {
+    //     body: data,
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization,
+    //       withCredentials: true,
+    //     },
+    //   })
+    //   .catch(error => console.log(error));
   }
 
   return (
