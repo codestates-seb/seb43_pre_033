@@ -128,7 +128,7 @@
 
 ### 스키마(객체관점)
 
-![image](https://user-images.githubusercontent.com/120456261/234884902-0b4923b5-b330-452b-a2d6-a458533dcaa3.png)
+![image](https://user-images.githubusercontent.com/120456261/234886463-e1016d6e-2c5c-459a-a085-232fbfe61c42.png)
 
 <br/>
 
